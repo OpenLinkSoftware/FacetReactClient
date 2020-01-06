@@ -1,0 +1,564 @@
+{
+  "facets": {
+    "sparql": "select ?s1c as ?c1 count (distinct ?s1) as ?c2  where  { ?s1 a ?s1c . quad map virtrdf:DefaultQuadMap { graph ?g {  ?s1 ?s1textp ?o1 . ?o1 bif:contains  '\"skiing\"'  . } }  } group by ?s1c order by desc 2 limit 50  offset 0",
+    "time": 68,
+    "complete": "yes",
+    "timeout": 8000,
+    "db-activity": "5.594K rnd  5.015K seq  3.928K same seg   1.033K same pg    185 same par      0 disk      0 spec disk      0B /      0 messages     96 fork",
+    "result": {
+      "row": [
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../05/cb/vocab#Person",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#Person"
+            },
+            true,
+            576
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...vocab#PersonSummary",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#PersonSummary"
+            },
+            true,
+            575
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../vocab#Organization",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#Organization"
+            },
+            true,
+            115
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...OrganizationSummary",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#OrganizationSummary"
+            },
+            true,
+            115
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:User",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#User"
+            },
+            "Twitter user",
+            49
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "owl:Class",
+              "keyValue": "http://www.w3.org/2002/07/owl#Class"
+            },
+            "Class",
+            34
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "owl:Thing",
+              "keyValue": "http://www.w3.org/2002/07/owl#Thing"
+            },
+            "Thing",
+            28
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://permid.org/on...zation/Organization",
+              "keyValue": "http://permid.org/ontology/organization/Organization"
+            },
+            true,
+            21
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "#NounSynset",
+              "keyValue": "#NounSynset"
+            },
+            "NounSynset",
+            17
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://permid.org/on...ogy/financial/Quote",
+              "keyValue": "http://permid.org/ontology/financial/Quote"
+            },
+            true,
+            14
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "skiresort:SkiResort",
+              "keyValue": "http://www.openlinksw.com/ski_resorts/schema#SkiResort"
+            },
+            true,
+            8
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...05/cb/vocab#Product",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#Product"
+            },
+            true,
+            6
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...ocab#ProductSummary",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#ProductSummary"
+            },
+            true,
+            6
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdf:Statement",
+              "keyValue": "http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"
+            },
+            "Statement",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "#Word",
+              "keyValue": "#Word"
+            },
+            "word",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "#WordSense",
+              "keyValue": "#WordSense"
+            },
+            "word sense",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...10/05/cb/vocab#News",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#News"
+            },
+            true,
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://permid.org/on...inancial/Instrument",
+              "keyValue": "http://permid.org/ontology/financial/Instrument"
+            },
+            true,
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:CreativeWork",
+              "keyValue": "http://schema.org/CreativeWork"
+            },
+            "CreativeWork",
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...0/05/cb/vocab#Image",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#Image"
+            },
+            true,
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "accom:Accommodation",
+              "keyValue": "http://purl.org/acco/ns#Accommodation"
+            },
+            "Accommodation (gr:ProductOrService, gr:Location)",
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...010/05/cb/vocab#Job",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#Job"
+            },
+            true,
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "owl:Axiom",
+              "keyValue": "http://www.w3.org/2002/07/owl#Axiom"
+            },
+            "Axiom",
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opl:NamedEntity",
+              "keyValue": "http://www.openlinksw.com/schema/attribution#NamedEntity"
+            },
+            "NamedEntity",
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "gr:ProductOrService",
+              "keyValue": "http://purl.org/goodrelations/v1#ProductOrService"
+            },
+            "ProductOrService",
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://wafi.iit.cnr....y.owl#Accommodation",
+              "keyValue": "http://wafi.iit.cnr.it/angelica/Hontology.owl#Accommodation"
+            },
+            "Hotel Name",
+            2
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:Location100027167",
+              "keyValue": "http://dbpedia.org/class/yago/Location100027167"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:Region108630985",
+              "keyValue": "http://dbpedia.org/class/yago/Region108630985"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dbpedia-owl:PopulatedPlace",
+              "keyValue": "http://dbpedia.org/ontology/PopulatedPlace"
+            },
+            "populated place",
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...0/05/cb/vocab#Video",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#Video"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://umbel.org/umb...tion_Underspecified",
+              "keyValue": "http://umbel.org/umbel/rc/Location_Underspecified"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:YagoGeoEntity",
+              "keyValue": "http://dbpedia.org/class/yago/YagoGeoEntity"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:Place",
+              "keyValue": "http://schema.org/Place"
+            },
+            "Place",
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "gs1:SportingActivityTypeCode",
+              "keyValue": "gs1:SportingActivityTypeCode"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:WikicatStatesOfTheUnitedStates",
+              "keyValue": "http://dbpedia.org/class/yago/WikicatStatesOfTheUnitedStates"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://umbel.org/umbel/rc/PopulatedPlace",
+              "keyValue": "http://umbel.org/umbel/rc/PopulatedPlace"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "#VerbSynset",
+              "keyValue": "#VerbSynset"
+            },
+            "VerbSynset",
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:Object100002684",
+              "keyValue": "http://dbpedia.org/class/yago/Object100002684"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:YagoLegalActorGeo",
+              "keyValue": "http://dbpedia.org/class/yago/YagoLegalActorGeo"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dbpedia-owl:Location",
+              "keyValue": "http://dbpedia.org/ontology/Location"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:YagoPermanentlyLocatedEntity",
+              "keyValue": "http://dbpedia.org/class/yago/YagoPermanentlyLocatedEntity"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:PhysicalEntity100001930",
+              "keyValue": "http://dbpedia.org/class/yago/PhysicalEntity100001930"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:AdministrativeDistrict108491826",
+              "keyValue": "http://dbpedia.org/class/yago/AdministrativeDistrict108491826"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:AdministrativeArea",
+              "keyValue": "http://schema.org/AdministrativeArea"
+            },
+            "AdministrativeArea",
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:District108552138",
+              "keyValue": "http://dbpedia.org/class/yago/District108552138"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "wikidata:Q3455524",
+              "keyValue": "http://www.wikidata.org/entity/Q3455524"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:WikicatNortheasternUnitedStates",
+              "keyValue": "http://dbpedia.org/class/yago/WikicatNortheasternUnitedStates"
+            },
+            true,
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dbpedia-owl:AdministrativeRegion",
+              "keyValue": "http://dbpedia.org/ontology/AdministrativeRegion"
+            },
+            "administrative region",
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dbpedia-owl:Place",
+              "keyValue": "http://dbpedia.org/ontology/Place"
+            },
+            "place",
+            1
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "yago:WikicatStatesAn...esEstablishedIn1788",
+              "keyValue": "http://dbpedia.org/class/yago/WikicatStatesAndTerritoriesEstablishedIn1788"
+            },
+            true,
+            1
+          ]
+        }
+      ],
+      "@type": "classes"
+    }
+  }
+}

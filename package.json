@@ -1,0 +1,38 @@
+{
+  "name": "FacetReactClient",
+  "version": "0.0.1",
+  "description": "React Client for the Virtuoso Faceted Browsing Service",
+  "main": "index.js",
+  "private": "true",
+  "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "test": "karma start --single-run --browsers ChromeHeadless karma.conf.js"
+  },
+  "keywords": [],
+  "author": "Carl Blakeley",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.3",
+    "@babel/preset-env": "7.4.3",
+    "@babel/preset-react": "7.7.0",
+    "babel-loader": "8.0.6",
+    "chai": "4.2.0",
+    "mocha": "6.1.4",
+    "react-hot-loader": "4.12.16",
+    "webpack": "^4.41.2",
+    "webpack-cli": "3.3.1",
+    "webpack-dev-server": "3.3.1"
+  },
+  "dependencies": {
+    "react": "16.11.0",
+    "react-dom": "16.11.0"
+  }
+}

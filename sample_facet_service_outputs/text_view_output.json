@@ -1,0 +1,1164 @@
+{
+  "facets": {
+    "sparql": "select ?s1 as ?c1, (bif:search_excerpt (bif:vector ('skiing'), ?o1)) as ?c2, ?sc, ?rank, ?g where {{{ select ?s1, (?sc * 3e-1) as ?sc, ?o1, (sql:rnk_scale (<LONG::IRI_RANK> (?s1))) as ?rank, ?g where  { quad map virtrdf:DefaultQuadMap { graph ?g {  ?s1 ?s1textp ?o1 . ?o1 bif:contains  '\"skiing\"'  option (score ?sc)  . } }  } order by desc (?sc * 3e-1 + sql:rnk_scale (<LONG::IRI_RANK> (?s1)))  limit 50  offset 0 }}}",
+    "time": 87,
+    "complete": "yes",
+    "timeout": 8000,
+    "db-activity": "5.525K rnd  3.893K seq  3.023K same seg     791 same pg     79 same par      0 disk      0 spec disk      0B /      0 messages      0 fork",
+    "result": {
+      "row": [
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.4
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.19930748324945
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/nonodename#this",
+              "keyValue": "https://twitter.com/nonodename#this"
+            },
+            "Dan Bennett",
+            "... When not working either parenting, sailing, &lt;b&gt;skiing&lt;/b&gt; or running."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.4
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.000165997236327
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/lisafederer#this",
+              "keyValue": "https://twitter.com/lisafederer#this"
+            },
+            "Lisa Federer, PhD",
+            "... librarian; fan of dogs, knitting, sourdough, &lt;b&gt;skiing&lt;/b&gt;, running."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.4
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 4.841802941874475
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/mraible#this",
+              "keyValue": "https://twitter.com/mraible#this"
+            },
+            "Matt Raible",
+            "... Source Developer oktadev with a passion for &lt;b&gt;skiing&lt;/b&gt;, mtn biking, VWs, good."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.1
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 4.590184522819041
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/4lpine#this",
+              "keyValue": "https://twitter.com/4lpine#this"
+            },
+            "John Otander",
+            "... I love &lt;b&gt;skiing&lt;/b&gt; and soccer."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.4
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 4.4099616386656
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:kidehen"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/IanMitchell2#this",
+              "keyValue": "https://twitter.com/IanMitchell2#this"
+            },
+            "Ian Mitchell",
+            "... s problems, big data, cloud, mountaineering, &lt;b&gt;skiing&lt;/b&gt;, philosophy backgammon."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 1.8
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 4.409197574780614
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:kidehen"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/afalk#this",
+              "keyValue": "https://twitter.com/afalk#this"
+            },
+            "Alexander Falk",
+            "... : AI, Drones, IoT, XBRL, XML, XPath, XQuery, &lt;b&gt;Skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3.6
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.999812590101007
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/slicksymmo#this",
+              "keyValue": "https://twitter.com/slicksymmo#this"
+            },
+            "spencer symmons",
+            "4 kids, Recruitment, Tennis, &lt;b&gt;Skiing&lt;/b&gt;, Snooker, Pirate."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.999812590101007
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/basvaneerdt#this",
+              "keyValue": "https://twitter.com/basvaneerdt#this"
+            },
+            "Bas van Eerdt",
+            "... tal Plant Phenotyping Technology Biking &lt;b&gt;Skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.999812590101007
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/basvaneerdt#this",
+              "keyValue": "https://twitter.com/basvaneerdt#this"
+            },
+            "Bas van Eerdt",
+            "... tal Plant Phenotyping Technology Biking &lt;b&gt;Skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.999812590101007
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/Dj1959Jones#this",
+              "keyValue": "https://twitter.com/Dj1959Jones#this"
+            },
+            "David Jones",
+            "Anything on two wheels, snowboarding, water &lt;b&gt;skiing&lt;/b&gt;, Border Collies, Father of 3 and grandfather to 3..."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.7
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.999812590101007
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/NHristozova#this",
+              "keyValue": "https://twitter.com/NHristozova#this"
+            },
+            "Nina Hristozova",
+            "... thomsonreuters, passionate about volleyball, &lt;b&gt;skiing&lt;/b&gt; and hiking."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.4
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.999812590101007
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/MaryHWells#this",
+              "keyValue": "https://twitter.com/MaryHWells#this"
+            },
+            "Mary Wells",
+            "... Boston; Golf; &lt;b&gt;Skiing&lt;/b&gt;; Animal Advocate; Foodie All Things Chocolate."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.1
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.999812590101007
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/jeffborek#this",
+              "keyValue": "https://twitter.com/jeffborek#this"
+            },
+            "Jeffrey Borek",
+            "... PS Dad, Rotarian, &lt;b&gt;skiing&lt;/b&gt;, squash, hot yoga."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 1.8
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.589623804791628
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:kidehen"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/marketingwizdom#this",
+              "keyValue": "https://twitter.com/marketingwizdom#this"
+            },
+            "Robert Clay",
+            "... tive and foodie into cars, design, Apple and &lt;b&gt;skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.2
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/couldwork#this",
+              "keyValue": "https://twitter.com/couldwork#this"
+            },
+            "Joe Kennedy",
+            "Probably &lt;b&gt;skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3.9
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.003825442435246
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/CoachJoeK#this",
+              "keyValue": "https://twitter.com/CoachJoeK#this"
+            },
+            "Coach Joe K",
+            "Jersey or &lt;b&gt;Skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3.9
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:kidehen"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/me_javier#this",
+              "keyValue": "https://twitter.com/me_javier#this"
+            },
+            "Javier Morales",
+            "working or &lt;b&gt;skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3.9
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/me_javier#this",
+              "keyValue": "https://twitter.com/me_javier#this"
+            },
+            "Javier Morales",
+            "working or &lt;b&gt;skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3.6
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.002549023861562
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/MarieBochet#this",
+              "keyValue": "https://twitter.com/MarieBochet#this"
+            },
+            "Marie Bochet",
+            "French paralympic athlete France &lt;b&gt;skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3.6
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/yukonhiking#this",
+              "keyValue": "https://twitter.com/yukonhiking#this"
+            },
+            "YukonHiking.ca",
+            "Yukon s hiking and &lt;b&gt;skiing&lt;/b&gt; trail guide."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.003825442435246
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/dabmtbski#this",
+              "keyValue": "https://twitter.com/dabmtbski#this"
+            },
+            "Doug Bloom",
+            "... Family &lt;b&gt;Skiing&lt;/b&gt; Mountain Biking Opinions are my own."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.002549023861562
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/tobiasbucher1#this",
+              "keyValue": "https://twitter.com/tobiasbucher1#this"
+            },
+            "Tobias Bucher",
+            "pro skater, funsport addicted, skydiving and &lt;b&gt;skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.7
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:kidehen"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/jolanda_hains#this",
+              "keyValue": "https://twitter.com/jolanda_hains#this"
+            },
+            "JolandaE",
+            "... , information literacy, training, schaatsen, &lt;b&gt;skiing&lt;/b&gt;, speedskating."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.4
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:kidehen"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/_entreprenerd#this",
+              "keyValue": "https://twitter.com/_entreprenerd#this"
+            },
+            "Arno Smit",
+            "... Namibian, music lover, husband, new to &lt;b&gt;skiing&lt;/b&gt; and instagram addict."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.4
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/bmcard#this",
+              "keyValue": "https://twitter.com/bmcard#this"
+            },
+            "Brian Card",
+            "... Tennis, &lt;b&gt;skiing&lt;/b&gt;, and the great outdoors."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 2.1
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3.014082374951407
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/susanmgalbraith#this",
+              "keyValue": "https://twitter.com/susanmgalbraith#this"
+            },
+            "Susan Galbraith",
+            "... Love &lt;b&gt;skiing&lt;/b&gt;, dogs and piano."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 1.8
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 3
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/klindqvist#this",
+              "keyValue": "https://twitter.com/klindqvist#this"
+            },
+            "klindqvist",
+            "... Likes &lt;b&gt;skiing&lt;/b&gt; and mountains."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 3.6
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 2.379991566414591
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/JuliaMancuso#this",
+              "keyValue": "https://twitter.com/JuliaMancuso#this"
+            },
+            "Julia Mancuso",
+            "living my dream &lt;b&gt;skiing&lt;/b&gt; the world I m from Squaw Valley, CA and I ski better than you."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 6.3
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:equivalent:class:property:mappings"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/kko/rc/HeliSkiing",
+              "keyValue": "http://kbpedia.org/kko/rc/HeliSkiing"
+            },
+            "heli-skiing",
+            "Heli &lt;b&gt;skiing&lt;/b&gt; is off trail, downhill &lt;b&gt;skiing&lt;/b&gt; or snowboarding that is accessed by a helicopter, as opposed to a..."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 6.3
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://kbpedia.org/knowledge-graph#"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/kko/rc/HeliSkiing",
+              "keyValue": "http://kbpedia.org/kko/rc/HeliSkiing"
+            },
+            "heli-skiing",
+            "Heli &lt;b&gt;skiing&lt;/b&gt; is off trail, downhill &lt;b&gt;skiing&lt;/b&gt; or snowboarding that is accessed by a helicopter, as opposed to a..."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 5.1
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:equivalent:class:property:mappings"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/k...owSkiingSportsEvent",
+              "keyValue": "http://kbpedia.org/kko/rc/SnowSkiingSportsEvent"
+            },
+            "snow skiing sporting event",
+            "The collection of snow &lt;b&gt;skiing&lt;/b&gt; sports events, including alpine, nordic, and freestyle &lt;b&gt;skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 5.1
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://kbpedia.org/knowledge-graph#"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/k...owSkiingSportsEvent",
+              "keyValue": "http://kbpedia.org/kko/rc/SnowSkiingSportsEvent"
+            },
+            "snow skiing sporting event",
+            "The collection of snow &lt;b&gt;skiing&lt;/b&gt; sports events, including alpine, nordic, and freestyle &lt;b&gt;skiing&lt;/b&gt;."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 0.004150957108077362
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/skiingloui#this",
+              "keyValue": "https://twitter.com/skiingloui#this"
+            },
+            "Skiing Loui",
+            "<span class=\"srch_xerpt\"><b>Skiing</b> Loui.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 0.002535370642210855
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:twitter:analytics:all"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/NateHubbell#this",
+              "keyValue": "https://twitter.com/NateHubbell#this"
+            },
+            "Nate Hubbell",
+            "<span class=\"srch_xerpt\"><b>Skiing</b>.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://www.adampease.org/OP/WordNet.owl"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "#WN30-100440747",
+              "keyValue": "#WN30-100440747"
+            },
+            "skiing",
+            "<span class=\"srch_xerpt\"><b>skiing</b>.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://www.adampease.org/OP/WordNet.owl"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "#WN30Word-skiing",
+              "keyValue": "#WN30Word-skiing"
+            },
+            "skiing",
+            "<span class=\"srch_xerpt\"><b>skiing</b>.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://www.adampease.org/OP/WordNet.owl"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "#WN30Word-skiing_race",
+              "keyValue": "#WN30Word-skiing_race"
+            },
+            "skiing_race",
+            "<span class=\"srch_xerpt\"><b>skiing</b> race.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://www.adampease.org/OP/WordNet.owl"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "#WN30WordSense-skiing_NN_1",
+              "keyValue": "#WN30WordSense-skiing_NN_1"
+            },
+            "skiing_NN_1",
+            "<span class=\"srch_xerpt\"><b>skiing</b> NN...</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://www.adampease.org/OP/WordNet.owl"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "#WN30WordSense-skiing_race_NN_1",
+              "keyValue": "#WN30WordSense-skiing_race_NN_1"
+            },
+            "skiing_race_NN_1",
+            "&lt;b&gt;skiing&lt;/b&gt; race NN..."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://www.adampease.org/OP/WordNet.owl"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "#WN30-100445226",
+              "keyValue": "#WN30-100445226"
+            },
+            "water-skiing",
+            "&lt;b&gt;skiing&lt;/b&gt; on water while being towed by a motorboat."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:tweets:kg"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/DougHam50658794#this",
+              "keyValue": "https://twitter.com/DougHam50658794#this"
+            },
+            "Doug Hamilton",
+            "&lt;b&gt;Skiing&lt;/b&gt; family movies friends sobriety I like bungee jumping and boogie boarding."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:equivalent:class:property:mappings"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/kko/rc/Skiing",
+              "keyValue": "http://kbpedia.org/kko/rc/Skiing"
+            },
+            "skiing",
+            "<span class=\"srch_xerpt\"><b>skiing</b>.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://kbpedia.org/knowledge-graph#"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/kko/rc/Skiing",
+              "keyValue": "http://kbpedia.org/kko/rc/Skiing"
+            },
+            "skiing",
+            "<span class=\"srch_xerpt\"><b>skiing</b>.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:equivalent:class:property:mappings"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/k...c/SkiingCompetition",
+              "keyValue": "http://kbpedia.org/kko/rc/SkiingCompetition"
+            },
+            "skiing competition",
+            "&lt;b&gt;skiing&lt;/b&gt; competition."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://kbpedia.org/knowledge-graph#"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/k...c/SkiingCompetition",
+              "keyValue": "http://kbpedia.org/kko/rc/SkiingCompetition"
+            },
+            "skiing competition",
+            "&lt;b&gt;skiing&lt;/b&gt; competition."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "urn:equivalent:class:property:mappings"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/k.../rc/SkiingEquipment",
+              "keyValue": "http://kbpedia.org/kko/rc/SkiingEquipment"
+            },
+            "skiing equipment",
+            "&lt;b&gt;skiing&lt;/b&gt; equipment."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://kbpedia.org/knowledge-graph#"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/k.../rc/SkiingEquipment",
+              "keyValue": "http://kbpedia.org/kko/rc/SkiingEquipment"
+            },
+            "skiing equipment",
+            "&lt;b&gt;skiing&lt;/b&gt; equipment."
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://gs1.org/voc/"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://linkeddata.ur...c92a63c9387f34e197a",
+              "keyValue": "http://linkeddata.uriburner.com/proxy-iri/0d70c4eb89e1eac37c973c92a63c9387f34e197a"
+            },
+            "5306-01-01T00:00:00.000Z",
+            "<span class=\"srch_xerpt\"><b>SKIING</b>.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "https://www.gs1.org/voc/Product"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "https://linkeddata.u...96cb3ab06ce69d0770f",
+              "keyValue": "https://linkeddata.uriburner.com/proxy-iri/14394ff3f602bd68621d696cb3ab06ce69d0770f"
+            },
+            "5306-01-01T00:00:00.000Z",
+            "<span class=\"srch_xerpt\"><b>SKIING</b>.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@trank": "trank",
+              "keyValue": 4.5
+            },
+            {
+              "@erank": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@graph": "g",
+              "keyValue": "http://gs1.org/voc/"
+            },
+            {
+              "@datatype": "uri",
+              "@shortform": "http://linkeddata.ur...af9fc6465758dbdcfcf",
+              "keyValue": "http://linkeddata.uriburner.com/proxy-iri/1e89f1b048f5ec7793118af9fc6465758dbdcfcf"
+            },
+            "5305-01-01T00:00:00.000Z",
+            "<span class=\"srch_xerpt\"><b>Skiing</b>.</span>"
+          ]
+        }
+      ],
+      "@type": "text"
+    }
+  }
+}

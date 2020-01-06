@@ -1,0 +1,564 @@
+{
+  "facets": {
+    "sparql": "select ?s1 as ?c1 count (*) as ?c2 where { select distinct ?s1 ?g  { quad map virtrdf:DefaultQuadMap { graph ?g {  ?s1 ?s1textp ?o1 . ?o1 bif:contains  '\"linked+data\"'  . } }  } } group by ?s1 order by desc 2 limit 50  offset 0",
+    "time": 87,
+    "complete": "yes",
+    "timeout": 8000,
+    "db-activity": "25.25K rnd  22.62K seq  15.26K same seg     657 same pg    130 same par      0 disk      0 spec disk      0B /      0 messages      0 fork",
+    "result": {
+      "row": [
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dbpedia:Linked_data",
+              "keyValue": "http://dbpedia.org/resource/Linked_data"
+            },
+            "Linked data",
+            158
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "wikidata:P2163",
+              "keyValue": "http://www.wikidata.org/entity/P2163"
+            },
+            "FAST ID",
+            48
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dbpedia:Linked_Data",
+              "keyValue": "http://dbpedia.org/resource/Linked_Data"
+            },
+            "Linked Data",
+            13
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://legilux.public.lu/this",
+              "keyValue": "http://legilux.public.lu/this"
+            },
+            "Luxembourg Publications Portal",
+            9
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://ruben.verbor...veloper-experience/",
+              "keyValue": "https://ruben.verborgh.org/blog/2018/12/28/designing-a-linked-data-developer-experience/"
+            },
+            "Designing a Linked Data developer experience",
+            8
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://virtuoso.openlinksw.com/",
+              "keyValue": "http://virtuoso.openlinksw.com/"
+            },
+            "OpenLink Virtuoso Web Page",
+            7
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://www.openlinksw.com/",
+              "keyValue": "http://www.openlinksw.com/"
+            },
+            "OpenLink Software Web Site Home Page",
+            7
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://data.openlink...erm/LinkedData#this",
+              "keyValue": "http://data.openlinksw.com/oplweb/glossary-term/LinkedData#this"
+            },
+            "Linked Data",
+            6
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://community.op...es-and-vocabularies",
+              "keyValue": "https://community.openlinksw.com/t/what-value-does-linked-data-bring-to-ontologies-and-vocabularies"
+            },
+            true,
+            6
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://ruben.verbor...g-linked-data-apps/",
+              "keyValue": "https://ruben.verborgh.org/blog/2019/06/17/shaping-linked-data-apps/"
+            },
+            "Shaping Linked Data apps",
+            6
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://www.openlink...parison.ttl#content",
+              "keyValue": "https://www.openlinksw.com/data/turtle/general/tabulated-data-comparison.ttl#content"
+            },
+            "HTML Content -- Tabulated RDF Triple/Quad Store and Graph Database Comparison",
+            6
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://community.op...-northwind-database",
+              "keyValue": "https://community.openlinksw.com/t/virtuoso-howto-generating-linked-data-from-csv-version-of-northwind-database"
+            },
+            true,
+            6
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://community.op...s-full-text-example",
+              "keyValue": "https://community.openlinksw.com/t/simple-virtuoso-sparql-and-rdf-linked-data-views-full-text-example"
+            },
+            true,
+            5
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://medium.com/v...tities-83ab7a315568",
+              "keyValue": "https://medium.com/virtuoso-blog/using-a-semantic-web-of-linked-data-to-reconcile-disparate-identities-83ab7a315568"
+            },
+            "Using a Semantic Web of Linked Data to Reconcile Disparate Identities",
+            5
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://github.com/metreeca/link",
+              "keyValue": "https://github.com/metreeca/link"
+            },
+            true,
+            5
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kingsley.ideh...test.ttl#LinkedData",
+              "keyValue": "http://kingsley.idehen.net/DAV/home/jordan/Public/record-test.ttl#LinkedData"
+            },
+            "Linked Data",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://data.openlink...ssary-term/RDF#this",
+              "keyValue": "http://data.openlinksw.com/oplweb/glossary-term/RDF#this"
+            },
+            "Resource Description Framework (RDF)",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://melvincarvalho.com/#ld-cal",
+              "keyValue": "https://melvincarvalho.com/#ld-cal"
+            },
+            true,
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://virtuoso.openlinksw.com/offers/",
+              "keyValue": "http://virtuoso.openlinksw.com/offers/"
+            },
+            "Virtuoso Offers Web page",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://github.com/metreeca/self",
+              "keyValue": "https://github.com/metreeca/self"
+            },
+            true,
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://linkeddata.ur...53d4fcd23e9f378e3cd",
+              "keyValue": "http://linkeddata.uriburner.com/proxy-iri/3a978515242b5dcf8ae7a53d4fcd23e9f378e3cd"
+            },
+            "2001-02-01T00:00:00.000Z",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kidehen.blogs.../07/nanotation.html",
+              "keyValue": "http://kidehen.blogspot.com/2014/07/nanotation.html"
+            },
+            true,
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://www.slidesha...d-open-data/10#this",
+              "keyValue": "https://www.slideshare.net/reduxd/webscale-ia-using-linked-open-data/10#this"
+            },
+            "Mike Atherton&#39;s Linked Data Presentation -- Slide 10",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://www.w3.org/TR/ldn/",
+              "keyValue": "https://www.w3.org/TR/ldn/"
+            },
+            true,
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://aksw.org/About.html",
+              "keyValue": "http://aksw.org/About.html"
+            },
+            true,
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://id.myopenlink.../software-agent.ttl",
+              "keyValue": "http://id.myopenlink.net/DAV/home/KingsleyUyiIdehen/Public/software-agent.ttl"
+            },
+            "My Software Agent Profile Document",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://virtuoso.open...sw.com/linked-data/",
+              "keyValue": "http://virtuoso.openlinksw.com/linked-data/"
+            },
+            "Virtuoso Linked Data -- Web Page",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://www.slidesha...-ontologies/54#this",
+              "keyValue": "https://www.slideshare.net/lysander07/what-are-and-why-are-we-studying-ontologies/54#this"
+            },
+            "Harold Sack&#39;s Linked Data Presentation -- Slide 54",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://alpha.vios.network/app/dashboard",
+              "keyValue": "http://alpha.vios.network/app/dashboard"
+            },
+            true,
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "proxy:entity/https/c...dpigpmilfebpnfaibeb",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/https/chrome.google.com/webstore/detail/openlink-data-explorer/ebdjmjgokgjakdpigpmilfebpnfaibeb"
+            },
+            "OpenLink Data Explorer - Chrome Web Store",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://www.metreeca.com/",
+              "keyValue": "https://www.metreeca.com/"
+            },
+            true,
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://www.slidesha...in-practice/34#this",
+              "keyValue": "https://www.slideshare.net/danbri/semweb-fundamentals-info-linking-layering-in-practice/34#this"
+            },
+            "Dan Brickley&#39;s Linked Data Presentation -- Slide 34",
+            4
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://www.openlinks...m/ontology/licenses",
+              "keyValue": "http://www.openlinksw.com/ontology/licenses"
+            },
+            "OpenLink Product Licensing Ontology Description Document",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://www.openlinks...turtle/software.ttl",
+              "keyValue": "http://www.openlinksw.com/DAV/data/turtle/software.ttl"
+            },
+            "OpenLink Software Ontology Description Document (Turtle)",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "proxy:entity/https/c...ilfebpnfaibeb?hl=en",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/https/chrome.google.com/webstore/detail/openlink-data-explorer/ebdjmjgokgjakdpigpmilfebpnfaibeb?hl=en"
+            },
+            "OpenLink Data Explorer - Chrome Web Store",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://data.openlink...term/URIBurner#this",
+              "keyValue": "http://data.openlinksw.com/oplweb/glossary-term/URIBurner#this"
+            },
+            "URIBurner",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://linkeddata.u...8/1027#content_3779",
+              "keyValue": "https://linkeddata.uriburner.com/about/id/entity/https/community.openlinksw.com/t/weekly-summary-2019-06-28/1027#content_3779"
+            },
+            true,
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://www.openlinksw.com/ontology/acl",
+              "keyValue": "http://www.openlinksw.com/ontology/acl"
+            },
+            "OpenLink ACL Ontology Description Document",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://id.myopenlin.../software-agent.ttl",
+              "keyValue": "https://id.myopenlink.net/DAV/home/KingsleyUyiIdehen/Public/software-agent.ttl"
+            },
+            "My Software Agent Profile Document",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/linkeddatalab#this",
+              "keyValue": "https://twitter.com/linkeddatalab#this"
+            },
+            "Linked Data Lab",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://data.openlink...ary-term/Graph#this",
+              "keyValue": "http://data.openlinksw.com/oplweb/glossary-term/Graph#this"
+            },
+            "Graph",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://linkeddata.u...17b2468ee69e783e6b6",
+              "keyValue": "https://linkeddata.uriburner.com/proxy-iri/f4209e4e024bbd08e307b17b2468ee69e783e6b6"
+            },
+            true,
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://linkeddata.u...17_EntityAnnotation",
+              "keyValue": "https://linkeddata.uriburner.com/about/id/entity/https/community.openlinksw.com/t/weekly-summary-2019-06-28/1027#babelfy_bn%3A00240337n_DD4D557A-9C1E-11E9-9698-E142512C6F17_EntityAnnotation"
+            },
+            true,
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://ruben.verbor...y-with-linked-data/",
+              "keyValue": "https://ruben.verborgh.org/blog/2016/06/22/querying-history-with-linked-data/"
+            },
+            "Querying history with Linked Data",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/...115970703323553792#",
+              "keyValue": "https://twitter.com/kidehen/status/1115970703323553792#"
+            },
+            "Linked Data Platforms &amp; Applications Directory",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/...115971875585314818#",
+              "keyValue": "https://twitter.com/kidehen/status/1115971875585314818#"
+            },
+            "Kingsley retweeting Sonja&#39;s Offers post - Look at magic and promise of the Semantic Web of Linked Data",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://data.openlink...y-term/hashTag#this",
+              "keyValue": "http://data.openlinksw.com/oplweb/glossary-term/hashTag#this"
+            },
+            "Hashtag",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://linkeddata.ur...05326019ddefecd6109",
+              "keyValue": "http://linkeddata.uriburner.com/proxy-iri/c22a5d27aea317a111ab905326019ddefecd6109"
+            },
+            "2001-02-01T00:00:00.000Z",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://linkeddata.u...6fef95651435a78276b",
+              "keyValue": "https://linkeddata.uriburner.com/proxy-iri/1ad7e03860b6da1a201336fef95651435a78276b"
+            },
+            "1951-01-01T00:00:00.000Z",
+            3
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://linkeddata.u...e736ac5d40de3e3fd23",
+              "keyValue": "https://linkeddata.uriburner.com/proxy-iri/171cd29f0983243f6d61ce736ac5d40de3e3fd23"
+            },
+            "1967-01-01T00:00:00.000Z",
+            3
+          ]
+        }
+      ],
+      "@type": "list-count"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+import { addw } from '../src/add_wrapper.js';
+
+describe('Array', () => {
+  describe('#indexOf()', () => {
+    it('should return -1 when the value is not present', () => {
+      assert.equal(-1, [1,2,3].indexOf(4));
+    });
+  });
+});
+
+describe('addw', () => {
+  describe('#add_wrapper', () => {
+    it('should return 50', () => {
+      assert.equal(50, addw(2,3));
+    });
+  });
+});

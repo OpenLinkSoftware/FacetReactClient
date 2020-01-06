@@ -1,0 +1,564 @@
+{
+  "facets": {
+    "sparql": "select ?s1p as ?c1 count (distinct ?s1o) as ?c2  where  { ?s1 ?s1p ?s1o . quad map virtrdf:DefaultQuadMap { graph ?g {  ?s1 ?s1textp ?o1 . ?o1 bif:contains  '\"skiing\"'  . } }  } group by ?s1p order by desc 2 limit 50  offset 0",
+    "time": 73,
+    "complete": "yes",
+    "timeout": 8000,
+    "db-activity": "38.74K rnd  51.09K seq  29.25K same seg   7.791K same pg  1.278K same par      0 disk      0 spec disk      0B /      0 messages    220 fork",
+    "result": {
+      "row": [
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "foaf:topic",
+              "keyValue": "http://xmlns.com/foaf/0.1/topic"
+            },
+            "topic",
+            1739
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...10/05/cb/vocab#jobs",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#jobs"
+            },
+            true,
+            1490
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...5/cb/vocab#websites",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#websites"
+            },
+            true,
+            1430
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...cb/vocab#updated_at",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#updated_at"
+            },
+            true,
+            1422
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...cb/vocab#created_at",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#created_at"
+            },
+            true,
+            1365
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...010/05/cb/vocab#bio",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#bio"
+            },
+            true,
+            877
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...10/05/cb/vocab#uuid",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#uuid"
+            },
+            true,
+            703
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../cb/vocab#permalink",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#permalink"
+            },
+            true,
+            700
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...5/cb/vocab#web_path",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#web_path"
+            },
+            true,
+            697
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...5/cb/vocab#api_path",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#api_path"
+            },
+            true,
+            697
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...vocab#primary_image",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#primary_image"
+            },
+            true,
+            614
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...b#profile_image_url",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#profile_image_url"
+            },
+            true,
+            613
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../cb/vocab#last_name",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#last_name"
+            },
+            true,
+            551
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://km.aifb.kit.e.../api-vocab#websites",
+              "keyValue": "http://km.aifb.kit.edu/services/crunchbase/api-vocab#websites"
+            },
+            true,
+            538
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://km.aifb.kit.e...base/api-vocab#jobs",
+              "keyValue": "http://km.aifb.kit.edu/services/crunchbase/api-vocab#jobs"
+            },
+            true,
+            523
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...primary_affiliation",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#primary_affiliation"
+            },
+            true,
+            511
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...05/cb/vocab#degrees",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#degrees"
+            },
+            true,
+            456
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...b#organization_name",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#organization_name"
+            },
+            true,
+            428
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...ganization_api_path",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#organization_api_path"
+            },
+            true,
+            425
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...anization_permalink",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#organization_permalink"
+            },
+            true,
+            425
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...ganization_web_path",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#organization_web_path"
+            },
+            true,
+            425
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../vocab#linkedin_url",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#linkedin_url"
+            },
+            true,
+            396
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...cb/vocab#first_name",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#first_name"
+            },
+            true,
+            355
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://km.aifb.kit.e...e/api-vocab#degrees",
+              "keyValue": "http://km.aifb.kit.edu/services/crunchbase/api-vocab#degrees"
+            },
+            true,
+            324
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...0/05/cb/vocab#title",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#title"
+            },
+            true,
+            316
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...10/05/cb/vocab#news",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#news"
+            },
+            true,
+            299
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...ocab#advisory_roles",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#advisory_roles"
+            },
+            true,
+            298
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...b/vocab#twitter_url",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#twitter_url"
+            },
+            true,
+            297
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../vocab#homepage_url",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#homepage_url"
+            },
+            true,
+            221
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...cb/vocab#categories",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#categories"
+            },
+            true,
+            209
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...ab#primary_location",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#primary_location"
+            },
+            true,
+            208
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...b#founded_companies",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#founded_companies"
+            },
+            true,
+            200
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../vocab#facebook_url",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#facebook_url"
+            },
+            true,
+            165
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://km.aifb.kit.e...b#founded_companies",
+              "keyValue": "http://km.aifb.kit.edu/services/crunchbase/api-vocab#founded_companies"
+            },
+            true,
+            150
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../05/cb/vocab#images",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#images"
+            },
+            true,
+            149
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../cb/vocab#city_name",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#city_name"
+            },
+            true,
+            138
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "skos:altLabel",
+              "keyValue": "http://www.w3.org/2004/02/skos/core#altLabel"
+            },
+            "alternative label",
+            135
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...10/05/cb/vocab#name",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#name"
+            },
+            true,
+            121
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../vocab#current_team",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#current_team"
+            },
+            true,
+            119
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...b/vocab#description",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#description"
+            },
+            true,
+            118
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://km.aifb.kit.e...ocab#advisory_roles",
+              "keyValue": "http://km.aifb.kit.edu/services/crunchbase/api-vocab#advisory_roles"
+            },
+            true,
+            118
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:followersCount",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#followersCount"
+            },
+            "followersCount",
+            115
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...b#short_description",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#short_description"
+            },
+            true,
+            110
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../05/cb/vocab#domain",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#domain"
+            },
+            true,
+            106
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:tweetsCount",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#tweetsCount"
+            },
+            true,
+            103
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:likesCount",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#likesCount"
+            },
+            true,
+            100
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:followingCount",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#followingCount"
+            },
+            true,
+            99
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://kbpedia.org/o...es/kko#superClassOf",
+              "keyValue": "http://kbpedia.org/ontologies/kko#superClassOf"
+            },
+            true,
+            97
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://km.aifb.kit.e...pi-vocab#categories",
+              "keyValue": "http://km.aifb.kit.edu/services/crunchbase/api-vocab#categories"
+            },
+            true,
+            91
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdfs:subClassOf",
+              "keyValue": "http://www.w3.org/2000/01/rdf-schema#subClassOf"
+            },
+            "subClassOf",
+            88
+          ]
+        }
+      ],
+      "@type": "properties"
+    }
+  }
+}
