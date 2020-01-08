@@ -5,6 +5,7 @@ import { FctQuery, FctResult } from '../lib/facet-js-client.js';
 import FctRspDbActvty from './FctRspDbActvty';
 import FctRspRslt from './FctRspRslt';
 import FctSearchInputEditor from './FctSearchInputEditor';
+import FctFilters from './FctFilters';
 
 // TO DO: Allow defaults to be set through a config .js file.
 const FCT_QRY_DFLT_VIEW_LIMIT = 50; // Default view limit
@@ -26,6 +27,9 @@ class FctClient extends React.Component {
     this.state = { searchText: '', fctResult: null };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
+    this.handleSetSubjectFocus = this.handleSetSubjectFocus.bind(this);
+    this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
+    this.handleDropQueryText = this.handleDropQueryText.bind(this);
 
     this.fctQuery = new FctQuery();
     this.fctQuery.setServiceEndpoint(FCT_QRY_DFLT_SVC_ENDPOINT);
@@ -61,6 +65,21 @@ class FctClient extends React.Component {
     this.fctQuery.setViewType(event.target.value);
   }
 
+  handleSetSubjectFocus(subjectId) {
+    console.log('FctClient#handleSetSubjectFocus: subjectId:', subjectId) // TO DO: Remove
+    // this.fctQuery.setViewSubjectIndex(subjectId); // TO DO: Enable
+  }
+
+  handleDropQueryFilter(filterId) {
+    console.log('FctClient#handleDropQueryFilter: filterId:', filterId) // TO DO: Remove
+    // this.fctQuery.removeQueryFilter(filterId); // TO DO: Enable
+  }
+
+  handleDropQueryText() {
+    console.log('FctClient#handleDropQueryText') // TO DO: Remove
+    // this.fctQuery.removeQueryText(); // TO DO: Enable
+  }
+
   render() {
     const dbActivity = this.state.fctResult ? this.state.fctResult.json.facets["db-activity"] : '';
     const qryResult = this.state.fctResult ? this.state.fctResult.json.facets.result : null;
@@ -90,9 +109,19 @@ class FctClient extends React.Component {
         <div style={componentContainerStyle}>
           <FctRspDbActvty dbActivity={dbActivity} />
         </div>
+
         <p>Component: FctRspRslt</p>
         <div style={componentContainerStyle}>
           <FctRspRslt qryResult={qryResult} />
+        </div>
+
+        <p>Component: FctFilters</p>
+        <div style={componentContainerStyle}>
+        <FctFilters 
+          onSetSubjectFocus={this.handleSetSubjectFocus} 
+          onDropQueryFilter={this.handleDropQueryFilter} 
+          onDropQueryText={this.handleDropQueryText} 
+          />
         </div>
       </div>
     );
