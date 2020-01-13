@@ -2,6 +2,12 @@ import React from 'react';
 
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
 
+// -- Hardwired test fixtures ----------
+// TO DO: Remove
+import fixtureFctQry4 from '../test/fixtures/fct_qry_3_viewtype_list-viewlevel_3b-request.js';
+import fixtureFctQry3 from '../test/fixtures/fct_qry_4_viewtype_list-request.js';
+// -------------------------------------
+
 import FctRspDbActvty from './FctRspDbActvty';
 import FctRspRslt from './FctRspRslt';
 import FctSearchInputEditor from './FctSearchInputEditor';
@@ -24,14 +30,19 @@ const componentContainerStyle = {
 class FctClient extends React.Component {
   constructor() {
     super();
-    this.state = { searchText: '', fctResult: null };
+    this.state = { 
+      searchText: '', 
+      fctResult: null,
+      tripleTerminology: "spo",   // TO DO: Initialize from UI control.
+    };
     this.handleSearch = this.handleSearch.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleSetSubjectFocus = this.handleSetSubjectFocus.bind(this);
     this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
     this.handleDropQueryText = this.handleDropQueryText.bind(this);
 
-    this.fctQuery = new FctQuery();
+    // this.fctQuery = new FctQuery();
+    this.fctQuery = new FctQuery(fixtureFctQry3); // TO DO: Remove
     this.fctQuery.setServiceEndpoint(FCT_QRY_DFLT_SVC_ENDPOINT);
     this.fctQuery.setViewLimit(FCT_QRY_DFLT_VIEW_LIMIT);
     this.fctQuery.setViewType(FCT_QRY_DFLT_VIEW_TYPE); 
@@ -83,6 +94,7 @@ class FctClient extends React.Component {
   render() {
     const dbActivity = this.state.fctResult ? this.state.fctResult.json.facets["db-activity"] : '';
     const qryResult = this.state.fctResult ? this.state.fctResult.json.facets.result : null;
+    const qryFilters = this.fctQuery.queryFilterDescriptors();
 
     return (
       <div>
@@ -118,6 +130,8 @@ class FctClient extends React.Component {
         <p>Component: FctFilters</p>
         <div style={componentContainerStyle}>
         <FctFilters 
+          qryFilters={qryFilters}
+          tripleTerminology={this.state.tripleTerminology}
           onSetSubjectFocus={this.handleSetSubjectFocus} 
           onDropQueryFilter={this.handleDropQueryFilter} 
           onDropQueryText={this.handleDropQueryText} 

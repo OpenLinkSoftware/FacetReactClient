@@ -2,15 +2,15 @@
 
 import React from 'react';
 
-const componentContainerStyle = {
-  listStyle: 'none'
-}
+import FctUiUtil from './FctUiUtil'; 
 
 export default class FctFilters extends React.Component {
 
   constructor(props) {
     super(props);
     console.log("FctFilters#constructor: props:", props);
+    this.qryFilters = props.qryFilters;
+    this.tripleTerminology = props.tripleTerminology;
     this.onSetSubjectFocus = props.onSetSubjectFocus;
     this.onDropQueryText = props.onDropQueryText;
     this.onDropQueryFilter = props.onDropQueryFilter;
@@ -18,6 +18,9 @@ export default class FctFilters extends React.Component {
     this.subjectClickHndlr = this.subjectClickHndlr.bind(this);
     this.dropTextClickHndlr = this.dropTextClickHndlr.bind(this);
     this.dropFilterClickHndlr = this.dropFilterClickHndlr.bind(this);
+
+    // TO DO: Hold and initialize at a higher level?
+    this.fctUiUtil = new FctUiUtil(this.tripleTerminology);
   }
 
   subjectClickHndlr(subjectId, e) {
@@ -33,61 +36,22 @@ export default class FctFilters extends React.Component {
     this.onDropQueryFilter(filterId);
   }
 
-  // TO DO: Remove
-  dummyData() {
-    let rFilterDescs = [
-      {
-        s: { type: "variable", value: "?s1" },
-        p: { type: "operator", value: "is a" },
-        o: { type: "uri", value: "http://schema.org/Business", curie: "schema:Business"}
-      },
-      {
-        s: { type: "variable", value: "?s1" },
-        p: { type: "uri", value: "http://schema.org/makesOffer", curie: "schema:makesOffer" },
-        o: { type: "variable", value: "?s2"}
-      },
-      {
-        s: { type: "variable", value: "?s2" },
-        p: { type: "uri", value: "http://schema.org/businessFunction", curie: "schema:businessFunction" },
-        o: { type: "variable", value: "?s3"}
-      },
-      {
-        s: { type: "variable", value: "?s3" },
-        p: { type: "operator", value: "==" },
-        o: { type: "uri", value: "http://purl.org/goodrelations/v1#Dispose", curie: "gr:Dispose" }
-      },
-      {
-        s: { type: "variable", value: "?s2" },
-        p: { type: "uri", value: "http://schema.org/itemOffered", curie: "schema:itemOffered"},
-        o: { type: "variable", value: "?s4" }
-      },
-      {
-        s: { type: "variable", value: "?s4" },
-        p: { type: "operator", value: "is a"},
-        o: { type: "variable", value: "?s4" }
-      }, 
-      {
-        s: { type: "variable", value: "?s4" },
-        p: { type: "uri", value: "http://schema.org/material", curie: "schema:material"},
-        o: { type: "variable", value: "?s5" }
-      },
-      {
-        s: { type: "variable", value: "?s5" },
-        p: { type: "operator", value: "==" },
-        o: { type: "literal", value: "asbestos" }
-      }
-    ];
-
-    return rFilterDescs;
-  }
-
   render() {
-    const subjectHtml = (subjDesc, i) => {
+    console.log('FctFilters#render');
+    const subjectHtml = (subjDesc, iFilter, rActionDesc) => {
       // type ::= variable
+      // variable values ::= ?$1, ?$2, ?$3, ...
+
       if (subjDesc.type === 'variable') {
         let rMatch = /\d+/.exec(subjDesc.value);
         let subjIndx = rMatch ? Number(rMatch[0]) : 0;
         let title = `Set focus to ${subjDesc.value}`;
+        // TO DO:
+        // Set class on <a> to highlight which $s<n> has the focus.
+        // The subject has the focus if subjIndx === FctQuery.getViewSubjectIndex()
+        //
+        // Equivalent to:
+        // /fct/facet.vsp?cmd=set_focus&sid=%d&n=%d
         return <a href="#" title={title}
           onClick={(e) => this.subjectClickHndlr(subjIndx, e)}>{subjDesc.value}</a>
       }
@@ -95,8 +59,66 @@ export default class FctFilters extends React.Component {
         throw new Error(`Unexpected subjDesc.type (${subjDesc.type})`);
     };
 
-    const predicateHtml = (predDesc, i) => {
+    const predicateHtml = (predDesc, iFilter, rActionDesc) => {
+      console.log('predicateHtml()');
+      // TO DO: Move these comments to FctQuery
+      //
       // type ::= uri | operator
+      // operator values ::= 
+      //     'is [not a]'
+      //  |  'has [[<propertyUri>]] containing text'
+      //  |  'is the {{subjectTerm}} of any [[action<n>|{{predicateTerm}}]] where the {{objectTerm}} is associated with'
+      //       (where action<n> is 'set view to text-properties')
+      //  |  'is the {{objectTerm}} of any [[action<n>|{{predicateTerm}}]] where the {{subjectTerm}} is associated with'
+      //       (where action<n> is 'set view to text-properties')
+      //  |  'has [[action<n>|any {{predicateTerm}}]] with {{objectTerm}}'
+      //       (where action<n> is 'set view to text-properties')
+      //  | '[does not have property] [[<propertyUri>]]'
+      //  | '=' | '<' | '<=' | '>' | '>='
+      //
+      //  The permitted values for operator use placeholders to try to decouple the Facet XML
+      //  manipulation and description done by FctQuery from the Facet UI. The Facet UI, and
+      //  this class FctFilters, are responsible for replacing these placeholders with the 
+      //  appropriate values. The placeholders can take the forms described below.
+      //
+      //  {{(subject|predicate|object)Term}} is a placeholder to be replaced by the appropriate
+      //  term depending on the terminology setting ('spo' or 'eav') being used by Facet. 
+      //  (see FctUiUtil)
+      //    subjectTerm ::= subject | entity
+      //    predicateTerm ::= predicate | attribute
+      //    objectTerm  ::= object | value
+      // 
+      //  [<text>] identifies optional text which may or may not be present depending on the filter 
+      //  definition in the Facet XML.
+      //
+      //  [[<propertyUri>]] is a placeholder to be replaced by an <a> element.
+      //  The anchor text is to be <propertyUri> or a corresponding curie. 
+      //  The href is to be <propertyUri> or that of a viewer to display the description of <propertyUri>.
+      //  [[action<n>|label]] is a placeholder to be replaced by an <a> element.
+      //  The anchor text is to be <label>, and the action associated with the href or click handler
+      //  to be that described by entry action[n], an action descriptor in an accompanying 'actions' array.
+      //
+      // Recognized actions:
+      //   - 'setFocus'
+      //       Not set through an action[n] entry.
+      //       Implicit action when a ?$n link is clicked.
+      //   - 'setView'
+      //       Set through an action[n] entry.
+      //       viewType ::= text-properties|text|classes|properties|properties-in|list-count|list|full-text 
+      //   - TO DO: others to be added? - see the corresponding facet.vsp cmd's below.
+      // 
+      // facet.vsp actions to be replicated in FacetReactClient:
+      //    - /fct/facet.vsp?cmd=text
+      //    - /fct/facet.vsp?cmd=set_focus&n=%d
+      //    - /fct/facet.vsp?cmd=set_view&type=%s&limit=%d&offset=0
+      //    - /fct/facet.vsp?cmd=refresh
+      //    - /fct/facet.vsp?md=set_inf - Set inference context
+      //    - /fct/facet.vsp?cmd=drop&n=%d
+      //    - /fct/facet.vsp?cmd=drop_cond&cno=%d
+      //    - /fct/facet.vsp?cmd=drop_text
+      //    - /fct/facet.vsp?cmd=drop_text_prop
+      //
+
       if (predDesc.type === 'uri') {
         if (predDesc.curie) {
           return <a href={predDesc.value}>{predDesc.curie}</a>
@@ -106,14 +128,111 @@ export default class FctFilters extends React.Component {
         }
       }
       else if (predDesc.type === 'operator') {
-        return <span>{predDesc.value}</span>
+        console.log('predDesc:', predDesc);
+
+        // rHtml is any array of React fragments.
+        // It is a deconstruction of the predDesc.value containing
+        // the original text of the value, split into substrings, 
+        // interspersed with React elements/HTML which have been 
+        // injected to replace placeholders.
+        let rHtml = [];
+
+        let op = predDesc.value;
+        // !!! FORCED VALUES !!!
+        // TO DO: Remove these forced values used for testing
+        // op = 'has [[http://url1]] containing text [[http://url2]] xxx [[action0|label0]] zzz [[action1|label1]] eee';
+        // op = "has [[action0|any {{predicateTerm}}]] with {{objectTerm}}"
+        // !!!!!!!!!!!!!!!!!!!!!
+
+        // Replace {{(subject|predicate|object)Term}} placeholders
+
+        op = op.replace(/\{\{subjectTerm\}\}/g, this.fctUiUtil.fctSubjectTerm());
+        op = op.replace(/\{\{predicateTerm\}\}/g, this.fctUiUtil.fctPredicateTerm());
+        op = op.replace(/\{\{objectTerm\}\}/g, this.fctUiUtil.fctObjectTerm());
+
+        console.log('op:', op);
+
+        // Replace [[<propertyUri>]] placeholders
+        let rMatchedPlaceholders = op.match(/(\[\[[^|\]]+\]\])/g);
+        if (rMatchedPlaceholders) {
+          console.log('predicateHtml(): Replacing [[<propertyUri>]] placeholders')
+          let propertyLinks = [];
+          let tmp = op;
+
+          for (const ph of rMatchedPlaceholders) {
+            let propertyUri = ph.match(/\[\[(.+)\]\]/)[1];
+            let propertyCurie = propertyUri; // TO DO: Get this from the predDesc
+            propertyLinks.push(<a href={propertyUri}>{propertyCurie}</a>);
+            tmp = tmp.replace(ph, `!!${propertyUri}!!`);
+          }
+
+          let fragments = tmp.split('!!');
+          for (let f of fragments) {
+            if (rMatchedPlaceholders.includes(`[[${f}]]`))
+              rHtml.push(propertyLinks.shift());
+            else
+              rHtml.push(f);
+          }
+        }
+
+        if (rHtml.length == 0) // No placeholders found yet.
+          rHtml.push(op);
+
+        // Replace [[action<n>|label]] placeholders
+        rMatchedPlaceholders = [];
+        for (let [i, val] of rHtml.entries()) {
+          // Ignore React elements already added to rHtml.
+          // These React elements are for already transformed
+          // [[<propertyUri>]] placeholders.
+          // Just inspect the strings for [[action<n>|label]] placeholders.
+          if (typeof val === 'string') {  
+            rMatchedPlaceholders = val.match(/\[\[action\d+\|[^\]]+\]\]/g);
+            if (rMatchedPlaceholders) {
+              console.log('predicateHtml(): Replacing [[action<n>|label]] placeholders');
+              console.log('rMatchedPlaceholders:', rMatchedPlaceholders);
+              let actionLinks = [];
+              let tmp = val;
+
+              for (const ph of rMatchedPlaceholders) {
+                let phContent = ph.match(/\[\[(.*)\]\]/)[1];
+                let rMatch = phContent.match(/action(\d+)\|(.*)/);
+                let actionId = Number(rMatch[1]);
+                let actionLabel = rMatch[2];
+                console.log('ph:', ph);
+                console.log('rMatch:', rMatch);
+                console.log('rActionDesc:', rActionDesc);
+                console.log('actionId:', actionId);
+                console.log('actionLabel:', actionLabel);
+                
+                // TO DO: Build action URI from action[actionId] descriptor.
+                let actionDesc = rActionDesc[actionId];
+                let actionUri = this.buildActionUri(actionDesc);
+                
+                actionLinks.push(<a href={actionUri}>{actionLabel}</a>);
+                tmp = tmp.replace(ph, `!!${phContent}!!`);
+              }
+
+              let fragments = tmp.split('!!');
+              rHtml[i] = [];
+              for (let f of fragments) {
+                if (rMatchedPlaceholders.includes(`[[${f}]]`))
+                  rHtml[i].push(actionLinks.shift());
+                else
+                  rHtml[i].push(f);
+              }
+            }
+          }
+        }
+        return rHtml;
       }
       else
         throw new Error(`Unexpected predDesc.type (${predDesc.type})`);
     };
 
-    const objectHtml = (objDesc, i) => {
+    const objectHtml = (objDesc, iFilter, rActionDesc) => {
       // type ::= variable | uri | literal
+      // variable values ::= ?$1, ?$2, ?$3, ...
+      
       if (objDesc.type === 'variable') {
         let rMatch = /\d+/.exec(objDesc.value);
         let objIndx = rMatch ? Number(rMatch[0]) : 0;
@@ -137,14 +256,14 @@ export default class FctFilters extends React.Component {
         throw new Error(`Unexpected objDesc.type (${objDesc.type})`);
     };
 
-    const rFilterDescs = this.dummyData(); // TO DO: Remove
-    const filters = rFilterDescs.map((filterDesc, i) => {
+    console.log('this.qryFilters.length:', this.qryFilters.length);
+    const filters = this.qryFilters.map((filterDesc, i) => {
       let filterHtml = [];
-      filterHtml.push(subjectHtml(filterDesc.s, i));
+      filterHtml.push(subjectHtml(filterDesc.s, i, filterDesc.actions));
       filterHtml.push(<>&nbsp;</>);
-      filterHtml.push(predicateHtml(filterDesc.p, i));
+      filterHtml.push(predicateHtml(filterDesc.p, i, filterDesc.actions));
       filterHtml.push(<>&nbsp;</>);
-      filterHtml.push(objectHtml(filterDesc.o, i));
+      filterHtml.push(objectHtml(filterDesc.o, i, filterDesc.actions));
       filterHtml.push(<>&nbsp;</>);
 
       const dfSpanStyle = { color: 'gray' };
@@ -169,5 +288,25 @@ export default class FctFilters extends React.Component {
         </table>
         </div>
     );
+  }
+
+  /**
+   * Builds a URI which will be the target of a filter action.
+   * The URI is built from a generic action descriptor which
+   * is independent of the UI implementation.
+   */
+  buildActionUri(actionDesc)
+  {
+    const rootPath = '/facet';
+    let path = `${rootPath}/${actionDesc.action}`;
+    let queryString = '';
+    if (actionDesc.args) {
+      queryString = '?';
+      for (const arg in actionDesc.args) {
+        queryString += `${arg}=${actionDesc.args[arg]}&`;
+      }
+      queryString = queryString.slice(0, -1);
+    }
+    return `${path}${queryString}`;
   }
 }
