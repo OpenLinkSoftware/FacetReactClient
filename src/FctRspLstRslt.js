@@ -35,6 +35,8 @@ export default class FctRspLstRslt extends React.Component {
       renderedHeadings = `<thead><tr>${renderedHeadings.join('')}</tr></thead>`;
 
       let rows = this.state.qryResult.row;
+      if (!Array.isArray(rows)) // => a single results row
+        rows = [rows];
       let renderedRows = rows.map((row) => {
         let renderedCols = '';
         let cols = row.column;
