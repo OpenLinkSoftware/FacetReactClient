@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
 
 import App from './App';
 
 const title = 'Facet React Client - Bare Component List';
 
 ReactDOM.render(
-  <App title={title} />,
+  
+  <BrowserRouter>
+    <App title={title} />
+  </BrowserRouter>,
   document.getElementById('app')
 );
 

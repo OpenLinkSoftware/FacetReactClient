@@ -15,14 +15,15 @@ export default class FctRspTxtRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("FctRspTxtResult#constructor: props:", props)
+    console.log("FctRspTxtRslt#constructor: props:", props)
     if (props.qryResult["@type"] !== "text")
       throw new Error (`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
     this.state = { qryResult: props.qryResult };
   }
 
   render() {
-    let html = "Empty result set";
+    console.log('FctRspTxtRslt#render: this.state.qryResult: ', this.state.qryResult)
+    let html = <span>Empty result set</span>
     
     if (this.state.qryResult && this.state.qryResult.row)
     {
@@ -50,13 +51,18 @@ export default class FctRspTxtRslt extends React.Component {
       })
       renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
 
-      html = 
+      html = `
+      <div>
+      <span><em>entities / FctRspTxtRslt result:</em></span>` +
         '<table class="table table-sm table-striped">' + 
         renderedHeadings + 
         renderedRows +
-        "</table>";
+        `</table>
+        </div>`;
+
     }
     
+    console.log('FctRspTxtRslt#render: html:', html);
     return ( 
       <div 
       style={componentContainerStyle} 
@@ -79,7 +85,7 @@ export default class FctRspTxtRslt extends React.Component {
           val = col.keyValue;
           break;
         case 3: // entity URI (urn: or http[s]:)
-          if (col.keyValue.startsWith('http'))
+          if (col.keyValue.toString().startsWith('http'))
             val = `<a href="${col.keyValue}">${col["@shortform"]}</a>`;
           else
             val = col.keyValue;

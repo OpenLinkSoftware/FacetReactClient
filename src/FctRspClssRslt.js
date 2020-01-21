@@ -13,7 +13,7 @@ export default class FctRspClssRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("FctRspClssResult#constructor: props:", props);
+    console.log("FctRspClssRslt#constructor: props:", props);
     if (props.qryResult["@type"] !== "classes")
       throw new Error(`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
     this.state = { qryResult: props.qryResult };
@@ -57,7 +57,7 @@ export default class FctRspClssRslt extends React.Component {
           }
         }
         else
-          typeColVal = rowCols[0].keyValue.toString();
+          typeColVal = cols[0].keyValue.toString();
         renderedCols += "<td>" + typeColVal + "</td>";
 
         let countColVal;
@@ -69,11 +69,15 @@ export default class FctRspClssRslt extends React.Component {
       })
       renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
 
-      html = 
+      html = `
+      <div>
+      <span><em>classes / FctRspClssRslt result:</em></span>` +
         '<table class="table table-sm table-striped">' + 
         renderedHeadings + 
         renderedRows +
-        "</table>";
+        `</table>
+        </div>`;
+
     }
     
     return ( 

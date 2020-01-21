@@ -13,7 +13,7 @@ export default class FctRspPrprtsRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("FctRspPrprtsResult#constructor: props:", props)
+    console.log("FctRspPrprtsRslt#constructor: props:", props)
     if (props.qryResult["@type"] !== "properties")
       throw new Error(`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
     this.state = { qryResult: props.qryResult };
@@ -69,11 +69,14 @@ export default class FctRspPrprtsRslt extends React.Component {
       })
       renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
 
-      html = 
+      html = `
+        <div>
+        <span><em>attributes / FctRspPrprtsRslt result:</em></span>` +
         '<table class="table table-sm table-striped">' + 
         renderedHeadings + 
         renderedRows +
-        "</table>";
+        `</table>
+        </div>`;
     }
     
     return ( 

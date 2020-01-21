@@ -69,11 +69,14 @@ export default class FctRspLstCntRslt extends React.Component {
       })
       renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
 
-      html = 
+      html = `
+        <div>
+        <span><em>distinct (count) / FctRspLstCntRslt result:</em></span>` +
         '<table class="table table-sm table-striped">' + 
         renderedHeadings + 
         renderedRows +
-        "</table>";
+        `</table>
+        </div>`;
     }
     
     return ( 

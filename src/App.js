@@ -1,13 +1,12 @@
 import React from 'react';
-
-import FctClient from './FctClient';
+import { Route, Switch } from 'react-router-dom'
+import MainPage from './pages/MainPage'
 
 const App = ({title}) => {
   return (
-    <div>
-      <h2>{title}</h2>
-      <FctClient />
-    </div>
+    <Switch>
+      <Route path="/" component={MainPage} />
+    </Switch>
   );
 };
 

@@ -4,9 +4,11 @@
 import React from 'react';
 
 import FctRspTxtRslt from './FctRspTxtRslt';
+import FctRspTxtPrprtsRslt from './FctRspTxtPrprtsRslt';
 import FctRspClssRslt from './FctRspClssRslt';
 import FctRspPrprtsRslt from './FctRspPrprtsRslt';
 import FctRspLstCntRslt from './FctRspLstCntRslt';
+import FctRspLstRslt from './FctRspLstRslt';
 
 export default function FctRspRslt(props) {
   const viewType = props.qryResult ? props.qryResult["@type"] : "empty";
@@ -15,10 +17,14 @@ export default function FctRspRslt(props) {
   {
     case "text":
       return <FctRspTxtRslt qryResult={props.qryResult} />;
+    case "text-properties":
+      return <FctRspTxtPrprtsRslt qryResult={props.qryResult} />;
     case "classes":
       return <FctRspClssRslt qryResult={props.qryResult} />;
     case "properties":
       return <FctRspPrprtsRslt qryResult={props.qryResult} />;
+    case "list":
+      return <FctRspLstRslt qryResult={props.qryResult} />;
     case "list-count":
       return <FctRspLstCntRslt qryResult={props.qryResult} />;
     case "empty":

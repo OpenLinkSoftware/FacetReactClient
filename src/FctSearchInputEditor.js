@@ -8,13 +8,15 @@ class FctSearchInputEditor extends React.Component {
     super(props);
     this.state = { searchText: props.searchText };
     this.onSearch = props.onSearch;
+    this.onChange = props.onChange;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ searchText: event.target.value });
+    this.setState({ searchText: event.target.value }); 
+    this.onChange(event.target.value);
   }
 
   handleSubmit(event) {
@@ -34,6 +36,10 @@ class FctSearchInputEditor extends React.Component {
         </div>
       </form>
     );
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return { searchText: props.searchText };
   }
 }
 

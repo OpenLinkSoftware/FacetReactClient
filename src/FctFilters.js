@@ -1,6 +1,7 @@
 // A component to display the Facet filters defined by the Facet XML.
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import FctUiUtil from './FctUiUtil'; 
 
@@ -136,16 +137,9 @@ export default class FctFilters extends React.Component {
         // interspersed with React elements/HTML which have been 
         // injected to replace placeholders.
         let rHtml = [];
-
-        let op = predDesc.value;
-        // !!! FORCED VALUES !!!
-        // TO DO: Remove these forced values used for testing
-        // op = 'has [[http://url1]] containing text [[http://url2]] xxx [[action0|label0]] zzz [[action1|label1]] eee';
-        // op = "has [[action0|any {{predicateTerm}}]] with {{objectTerm}}"
-        // !!!!!!!!!!!!!!!!!!!!!
-
+        
         // Replace {{(subject|predicate|object)Term}} placeholders
-
+        let op = predDesc.value;
         op = op.replace(/\{\{subjectTerm\}\}/g, this.fctUiUtil.fctSubjectTerm());
         op = op.replace(/\{\{predicateTerm\}\}/g, this.fctUiUtil.fctPredicateTerm());
         op = op.replace(/\{\{objectTerm\}\}/g, this.fctUiUtil.fctObjectTerm());
@@ -208,7 +202,8 @@ export default class FctFilters extends React.Component {
                 let actionDesc = rActionDesc[actionId];
                 let actionUri = this.buildActionUri(actionDesc);
                 
-                actionLinks.push(<a href={actionUri}>{actionLabel}</a>);
+                // actionLinks.push(<a href={actionUri}>{actionLabel}</a>);
+                actionLinks.push(<Link to={actionUri}>{actionLabel}</Link>);
                 tmp = tmp.replace(ph, `!!${phContent}!!`);
               }
 
@@ -272,15 +267,15 @@ export default class FctFilters extends React.Component {
           <span className="oi oi-circle-x" style={dfSpanStyle}></span>
         </a>
       return (
-        <tr>
-          <td>{filterHtml}</td>
-          <td>{dropFilterHtml}</td>
+        <tr key={`filter-${i}`}>
+          <td key={`filter-${i}1`}>{filterHtml}</td>
+          <td key={`filter-${i}2`}>{dropFilterHtml}</td>
         </tr>
       );
     });
 
     return (
-      <div class="col ml-3">
+      <div className="col ml-3">
         <table className="table-sm table-hover">
           <tbody>
             {filters}
@@ -297,15 +292,23 @@ export default class FctFilters extends React.Component {
    */
   buildActionUri(actionDesc)
   {
-    const rootPath = '/facet';
-    let path = `${rootPath}/${actionDesc.action}`;
-    let queryString = '';
+    // const rootPath = '/facet/';
+    // let path = `${rootPath}${actionDesc.action}`;
+    // let queryString = '';
+    // if (actionDesc.args) {
+    //   queryString = '?';
+    //   for (const arg in actionDesc.args) {
+    //     queryString += `${arg}=${actionDesc.args[arg]}&`;
+    //   }
+    //   queryString = queryString.slice(0, -1);
+    // }
+
+    const path = '/';
+    let queryString = `?action=${actionDesc.action}`;
     if (actionDesc.args) {
-      queryString = '?';
       for (const arg in actionDesc.args) {
-        queryString += `${arg}=${actionDesc.args[arg]}&`;
+        queryString += `&${arg}=${actionDesc.args[arg]}`;
       }
-      queryString = queryString.slice(0, -1);
     }
     return `${path}${queryString}`;
   }
