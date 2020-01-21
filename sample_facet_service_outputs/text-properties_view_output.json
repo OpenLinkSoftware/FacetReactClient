@@ -1,0 +1,564 @@
+{
+  "facets": {
+    "sparql": "select  ?s1textp as ?c1 count (*) as ?c2  where  { quad map virtrdf:DefaultQuadMap { graph ?g {  ?s1 ?s1textp ?o1 . ?o1 bif:contains  '(DATA AND LINKED)'  . } }  } group by ?s1textp order by desc 2 limit 50  offset 0",
+    "time": 74,
+    "complete": "yes",
+    "timeout": 8000,
+    "db-activity": "23.68K rnd  19.57K seq  17.16K same seg     798 same pg    364 same par      0 disk      0 spec disk      0B /      0 messages     46 fork",
+    "result": {
+      "row": [
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:text",
+              "keyValue": "http://schema.org/text"
+            },
+            "text",
+            9082
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdfs:label",
+              "keyValue": "http://www.w3.org/2000/01/rdf-schema#label"
+            },
+            "label",
+            1163
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:description",
+              "keyValue": "http://schema.org/description"
+            },
+            "description",
+            764
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "skos:prefLabel",
+              "keyValue": "http://www.w3.org/2004/02/skos/core#prefLabel"
+            },
+            "preferred label",
+            682
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdfs:comment",
+              "keyValue": "http://www.w3.org/2000/01/rdf-schema#comment"
+            },
+            "comment",
+            624
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdf:object",
+              "keyValue": "http://www.w3.org/1999/02/22-rdf-syntax-ns#object"
+            },
+            "object",
+            545
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rss:link",
+              "keyValue": "http://purl.org/rss/1.0/link"
+            },
+            true,
+            347
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dc:description",
+              "keyValue": "http://purl.org/dc/elements/1.1/description"
+            },
+            "Description",
+            333
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dc:title",
+              "keyValue": "http://purl.org/dc/elements/1.1/title"
+            },
+            "Title",
+            325
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:name",
+              "keyValue": "http://schema.org/name"
+            },
+            "name",
+            320
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "fam:entity-label",
+              "keyValue": "http://vocab.fusepool.info/fam#entity-label"
+            },
+            true,
+            309
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "nif:anchorOf",
+              "keyValue": "http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#anchorOf"
+            },
+            true,
+            269
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "nif:isString",
+              "keyValue": "http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString"
+            },
+            true,
+            181
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:comment",
+              "keyValue": "http://schema.org/comment"
+            },
+            "comment",
+            173
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "bibo:abstract",
+              "keyValue": "http://purl.org/ontology/bibo/abstract"
+            },
+            "abstract",
+            134
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...b/vocab#description",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#description"
+            },
+            true,
+            109
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://w3id.org/sch...tology.owl#abstract",
+              "keyValue": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#abstract"
+            },
+            "abstract",
+            88
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "awol:body",
+              "keyValue": "http://bblfish.net/work/atom-owl/2006-06-06/#body"
+            },
+            "body relation",
+            68
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://w3id.org/sch...ntology.owl#keyword",
+              "keyValue": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#keyword"
+            },
+            "keyword",
+            66
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:articleBody",
+              "keyValue": "http://schema.org/articleBody"
+            },
+            "articleBody",
+            62
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:keywords",
+              "keyValue": "http://schema.org/keywords"
+            },
+            "keywords",
+            59
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "og:description",
+              "keyValue": "og:description"
+            },
+            true,
+            53
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...010/05/cb/vocab#bio",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#bio"
+            },
+            true,
+            49
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "foaf:name",
+              "keyValue": "http://xmlns.com/foaf/0.1/name"
+            },
+            "name",
+            46
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:headline",
+              "keyValue": "http://schema.org/headline"
+            },
+            "headline",
+            44
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://swrc.ontoware...g/ontology#abstract",
+              "keyValue": "http://swrc.ontoware.org/ontology#abstract"
+            },
+            true,
+            44
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "sioc:content",
+              "keyValue": "http://rdfs.org/sioc/ns#content"
+            },
+            "content",
+            40
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "bibo:content",
+              "keyValue": "http://purl.org/ontology/bibo/content"
+            },
+            "content",
+            39
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dc:subject",
+              "keyValue": "http://purl.org/dc/elements/1.1/subject"
+            },
+            "Subject",
+            37
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "ctag:label",
+              "keyValue": "http://commontag.org/ns#label"
+            },
+            true,
+            33
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:about",
+              "keyValue": "http://schema.org/about"
+            },
+            "about",
+            31
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dbpedia-owl:abstract",
+              "keyValue": "http://dbpedia.org/ontology/abstract"
+            },
+            "has abstract",
+            30
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://schema.org/description",
+              "keyValue": "https://schema.org/description"
+            },
+            true,
+            30
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://w3id.org/sch...-ontology.owl#title",
+              "keyValue": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#title"
+            },
+            "title",
+            28
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:title",
+              "keyValue": "http://schema.org/title"
+            },
+            "title",
+            25
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "foaf:topic",
+              "keyValue": "http://xmlns.com/foaf/0.1/topic"
+            },
+            "topic",
+            22
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "og:title",
+              "keyValue": "og:title"
+            },
+            true,
+            20
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://www.openlinks...y/faq#hasAnswerText",
+              "keyValue": "http://www.openlinksw.com/ontology/faq#hasAnswerText"
+            },
+            "hasAnswerText",
+            20
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://w3id.org/sch...ogy.owl#description",
+              "keyValue": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#description"
+            },
+            "description",
+            20
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "foaf:title",
+              "keyValue": "http://xmlns.com/foaf/0.1/title"
+            },
+            "title",
+            20
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "content:encoded",
+              "keyValue": "http://purl.org/rss/1.0/modules/content/encoded"
+            },
+            true,
+            19
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dcterms:title",
+              "keyValue": "http://purl.org/dc/terms/title"
+            },
+            "Title",
+            18
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dcterms:description",
+              "keyValue": "http://purl.org/dc/terms/description"
+            },
+            "Description",
+            16
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:alternativeHeadline",
+              "keyValue": "http://schema.org/alternativeHeadline"
+            },
+            "alternativeHeadline",
+            16
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://schema.org/name",
+              "keyValue": "https://schema.org/name"
+            },
+            true,
+            14
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "sioc:topic",
+              "keyValue": "http://rdfs.org/sioc/ns#topic"
+            },
+            "topic",
+            13
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://rdf.guidetop...org/ns/gtpo#comment",
+              "keyValue": "https://rdf.guidetopharmacology.org/ns/gtpo#comment"
+            },
+            true,
+            13
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dcterms:subject",
+              "keyValue": "http://purl.org/dc/terms/subject"
+            },
+            "Subject",
+            12
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:commentText",
+              "keyValue": "http://schema.org/commentText"
+            },
+            "commentText",
+            12
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://strategy.dat...-cases.csv#instance",
+              "keyValue": "https://strategy.data.gov/data/use-cases.csv#instance"
+            },
+            "instance",
+            12
+          ]
+        }
+      ],
+      "@type": "text-properties"
+    }
+  }
+}

@@ -1,0 +1,564 @@
+{
+  "facets": {
+    "sparql": "select ?s1 as ?c1  where  { quad map virtrdf:DefaultQuadMap { graph ?g {  ?s1 ?s1textp ?o1 . ?o1 bif:contains  '\"linked+data\"'  . } }  } group by (?s1) order by desc (<LONG::IRI_RANK> (?s1))  limit 50  offset 0",
+    "time": 304,
+    "complete": "yes",
+    "timeout": 8000,
+    "db-activity": "24.64K rnd  14.25K seq  15.41K same seg     663 same pg    317 same par      0 disk      0 spec disk      0B /      0 messages    230 fork",
+    "result": {
+      "row": [
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/RubenVerborgh#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/RubenVerborgh#this"
+            },
+            "Ruben Verborgh"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/semwebcompany#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/semwebcompany#this"
+            },
+            "Semantic Web Company"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/joplam#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/joplam#this"
+            },
+            "Jos��e Plamondon"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/northernjamie#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/northernjamie#this"
+            },
+            "Jamie Whyte"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/kerfors#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/kerfors#this"
+            },
+            "Kerstin Forsberg"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/jindrichmynarz#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/jindrichmynarz#this"
+            },
+            "Jind��ich Mynarz"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/linkedktk#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/linkedktk#this"
+            },
+            "Adrian Gschwend"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/soilandreyes#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/soilandreyes#this"
+            },
+            "Stian Soiland-Reyes���#FBPE  ��������������������������������"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/ImageSnippets#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/ImageSnippets#this"
+            },
+            "Margaret Warren"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/daviskellyk#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/daviskellyk#this"
+            },
+            "Kelly Davis"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/metaphacts#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/metaphacts#this"
+            },
+            "metaphacts"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/koujikozaki#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/koujikozaki#this"
+            },
+            "Kouji KOZAKI"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/freemoth#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/freemoth#this"
+            },
+            "F. Tim Knight"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/JuUm#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/JuUm#this"
+            },
+            "Jürgen Umbrich"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/danbri#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/danbri#this"
+            },
+            "Dan Brickley"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/aaranged#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/aaranged#this"
+            },
+            "Aaron Bradley"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/linkeddatanl#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/linkeddatanl#this"
+            },
+            "pldn"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/kasei#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/kasei#this"
+            },
+            "Gregory Williams"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/rubensworks#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/rubensworks#this"
+            },
+            "Ruben Taelman"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/MusiCog#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/MusiCog#this"
+            },
+            "David M. Weigl"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/marijaneWhite#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/marijaneWhite#this"
+            },
+            "marijane white"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/SemanticWeb#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/SemanticWeb#this"
+            },
+            "Semantic Tech &amp; Biz"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/tommyh#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/tommyh#this"
+            },
+            "Tom Heath #FBPE"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/Connected_Data#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/Connected_Data#this"
+            },
+            "Connected Data LDN"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/phaase#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/phaase#this"
+            },
+            "Peter Haase"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/mdaquin#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/mdaquin#this"
+            },
+            "Mathieu d&#39;Aquin"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/LOVocabularies#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/LOVocabularies#this"
+            },
+            "LOV"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/ericaxel#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/ericaxel#this"
+            },
+            "Eric Axel Franzon"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/danja#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/danja#this"
+            },
+            "Danny Ayers"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/jschneider#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/jschneider#this"
+            },
+            "Jodi Schneider"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/SolidMit#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/SolidMit#this"
+            },
+            "Solid Project @ MIT"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/der42#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/der42#this"
+            },
+            "Dave Reynolds"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/datapatterns#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/datapatterns#this"
+            },
+            "Linked Data Patterns"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/saleem_muhamad#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/saleem_muhamad#this"
+            },
+            "Muhammad Saleem"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/metreeca#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/metreeca#this"
+            },
+            "Metreeca"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/Miel_vds#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/Miel_vds#this"
+            },
+            "Miel Vander Sande"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/anjeve#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/anjeve#this"
+            },
+            "Anja Jentzsch"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/CarbonLDP#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/CarbonLDP#this"
+            },
+            "Carbon LDP"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/nanopub_org#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/nanopub_org#this"
+            },
+            "Nanopublications"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/jerdeb#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/jerdeb#this"
+            },
+            "Jeremy Debattista"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/rlzijdeman#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/rlzijdeman#this"
+            },
+            "Richard Zijdeman"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/lidrc#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/lidrc#this"
+            },
+            "Linked Data Research"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/ijdickinson#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/ijdickinson#this"
+            },
+            "Ian Dickinson"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/joernhees#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/joernhees#this"
+            },
+            "Jörn Hees"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/LDPWG#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/LDPWG#this"
+            },
+            "Linked Data Platform"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/UKGovLD#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/UKGovLD#this"
+            },
+            "Linked Data Group"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/pret_a_llod#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/pret_a_llod#this"
+            },
+            "Pr��t-��-LLOD"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/geoknow#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/geoknow#this"
+            },
+            "GeoKnow"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/FactsMission#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/FactsMission#this"
+            },
+            "FactsMission AG"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://twitter.com/datalanguage#this",
+              "@sparql_ser": null,
+              "keyValue": "https://twitter.com/datalanguage#this"
+            },
+            "Data Language"
+          ]
+        }
+      ],
+      "@type": "list"
+    }
+  }
+}
