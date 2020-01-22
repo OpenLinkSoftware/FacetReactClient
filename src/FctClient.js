@@ -6,10 +6,12 @@ import { FctQuery, FctResult } from '../lib/facet-js-client.js';
 // TO DO: Remove
 import fixtureLinkedDataTweets from '../test/fixtures/linked_data_tweets.js';
 import fixtureSkiResortsDescs from '../test/fixtures/ski_resorts_descs.js';
+import fixtureFilters1 from '../test/fixtures/filters1.js';
 
 const presets = new Map();
 presets.set('linked_data_tweets', fixtureLinkedDataTweets);
 presets.set('ski_resorts_descs', fixtureSkiResortsDescs);
+presets.set('filters1', fixtureFilters1);
 
 // -------------------------------------
 
@@ -76,7 +78,9 @@ class FctClient extends React.Component {
           this.setState({ fctResult: qryResult });
         })
         .catch(err => {
-          // TO DO: Display the error in the UI
+          // TO DO: 
+          // Display the error in the UI
+          // Facet does return some error text. e.g. sparql compilation on invalid XML.
           console.log('FctClient#handleSearch: Error: ' + err.message);
         });
     }
@@ -93,9 +97,9 @@ class FctClient extends React.Component {
     let presetKey = event.target.value;
     switch (presetKey) {
       case "none":
-        alert('Remove presets'); // TO DO: Remove
         this.fctQuery = new FctQuery();
         this.fctQuery.setServiceEndpoint(FCT_QRY_DFLT_SVC_ENDPOINT); // TO DO: Make this a default in the constructor
+        this.fctQuery.setViewLimit(FCT_QRY_DFLT_VIEW_LIMIT); // TO DO: Make this a default in the constructor
         this.fctQuery.setViewType(FCT_QRY_DFLT_VIEW_TYPE); // TO DO: Make this a default in the constructor
         break;
       default:
@@ -140,6 +144,8 @@ class FctClient extends React.Component {
     const qryResult = this.state.fctResult ? this.state.fctResult.json.facets.result : null;
     const qryFilters = this.fctQuery.queryFilterDescriptors();
 
+    console.log('FctClient#render: qryFilters:', qryFilters);
+
     // TO DO: Build the options names/values from the presets map contents.
 
     return (
@@ -153,6 +159,7 @@ class FctClient extends React.Component {
                 <option value="none">None</option>
                 <option value="linked_data_tweets">linked data tweets list</option>
                 <option value="ski_resorts_descs">ski resort descriptions</option>
+                <option value="filters1">filters1 (empty resultset)</option>
               </select>
             </div>
           </div>

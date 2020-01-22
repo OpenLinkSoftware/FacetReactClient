@@ -312,4 +312,9 @@ export default class FctFilters extends React.Component {
     }
     return `${path}${queryString}`;
   }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('FctFilters#getDerivedStateFromProps: props:', props);
+    return { qryFilters: props.qryFilters, tripleTerminology: props.tripleTerminology };
+  }
 }

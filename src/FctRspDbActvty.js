@@ -6,7 +6,7 @@ class FctRspDbActvty extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { dbActivity: props.dbActivity };
+    this.state = { dbActivity: props.dbActivity }; // FIX ME! ANTIPATTERN! See https://reactjs.org/docs/react-component.html
   }
 
   render() {

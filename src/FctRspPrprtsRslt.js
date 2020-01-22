@@ -16,7 +16,7 @@ export default class FctRspPrprtsRslt extends React.Component {
     console.log("FctRspPrprtsRslt#constructor: props:", props)
     if (props.qryResult["@type"] !== "properties")
       throw new Error(`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
-    this.state = { qryResult: props.qryResult };
+    this.state = { qryResult: props.qryResult };  // FIX ME! ANTIPATTERN! See https://reactjs.org/docs/react-component.html
   }
 
   render() {

@@ -16,7 +16,7 @@ export default class FctRspLstCntRslt extends React.Component {
     console.log("FctRspLstCntRslt#constructor: props:", props)
     if (props.qryResult["@type"] !== "list-count")
       throw new Error(`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
-    this.state = { qryResult: props.qryResult };
+    this.state = { qryResult: props.qryResult }; // FIX ME! ANTIPATTERN! See https://reactjs.org/docs/react-component.html
   }
 
   render() {
