@@ -144,8 +144,6 @@ class FctClient extends React.Component {
     const qryResult = this.state.fctResult ? this.state.fctResult.json.facets.result : null;
     const qryFilters = this.fctQuery.queryFilterDescriptors();
 
-    console.log('FctClient#render: qryFilters:', qryFilters);
-
     // TO DO: Build the options names/values from the presets map contents.
 
     return (

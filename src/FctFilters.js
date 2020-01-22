@@ -9,9 +9,10 @@ export default class FctFilters extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("FctFilters#constructor: props:", props);
-    this.qryFilters = props.qryFilters;
-    this.tripleTerminology = props.tripleTerminology;
+    this.state = { 
+      qryFilters: props.qryFilters,
+      tripleTerminology: props.tripleTerminology
+    }; // FIX ME! ANTIPATTERN! See https://reactjs.org/docs/react-component.html
     this.onSetSubjectFocus = props.onSetSubjectFocus;
     this.onDropQueryText = props.onDropQueryText;
     this.onDropQueryFilter = props.onDropQueryFilter;
@@ -21,7 +22,7 @@ export default class FctFilters extends React.Component {
     this.dropFilterClickHndlr = this.dropFilterClickHndlr.bind(this);
 
     // TO DO: Hold and initialize at a higher level?
-    this.fctUiUtil = new FctUiUtil(this.tripleTerminology);
+    this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
   }
 
   subjectClickHndlr(subjectId, e) {
@@ -38,7 +39,6 @@ export default class FctFilters extends React.Component {
   }
 
   render() {
-    console.log('FctFilters#render');
     const subjectHtml = (subjDesc, iFilter, rActionDesc) => {
       // type ::= variable
       // variable values ::= ?$1, ?$2, ?$3, ...
@@ -251,8 +251,8 @@ export default class FctFilters extends React.Component {
         throw new Error(`Unexpected objDesc.type (${objDesc.type})`);
     };
 
-    console.log('this.qryFilters.length:', this.qryFilters.length);
-    const filters = this.qryFilters.map((filterDesc, i) => {
+    console.log('FctFilters#render: this.state.qryFilters.length:', this.state.qryFilters.length);
+    const filters = this.state.qryFilters.map((filterDesc, i) => {
       let filterHtml = [];
       filterHtml.push(subjectHtml(filterDesc.s, i, filterDesc.actions));
       filterHtml.push(<>&nbsp;</>);
@@ -314,7 +314,6 @@ export default class FctFilters extends React.Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log('FctFilters#getDerivedStateFromProps: props:', props);
     return { qryFilters: props.qryFilters, tripleTerminology: props.tripleTerminology };
   }
 }
