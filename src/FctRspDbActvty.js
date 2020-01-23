@@ -4,20 +4,14 @@ import React from 'react';
 
 class FctRspDbActvty extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { dbActivity: props.dbActivity }; // FIX ME! ANTIPATTERN! See https://reactjs.org/docs/react-component.html
-  }
+//  constructor(props) {
+//    super(props);
+//  }
 
   render() {
-    return ( <div>{this.state.dbActivity}</div> );
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    return { dbActivity: props.dbActivity }
+    return ( <div>{this.props.dbActivity}</div> );
   }
 
 }
-
 
 export { FctRspDbActvty as default };

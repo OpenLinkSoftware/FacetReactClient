@@ -18,14 +18,12 @@ export default class FctRspTxtRslt extends React.Component {
     console.log("FctRspTxtRslt#constructor: props:", props)
     if (props.qryResult["@type"] !== "text")
       throw new Error (`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
-    this.state = { qryResult: props.qryResult }; // FIX ME! ANTIPATTERN! See https://reactjs.org/docs/react-component.html
   }
 
   render() {
-    console.log('FctRspTxtRslt#render: this.state.qryResult: ', this.state.qryResult)
     let html = <span>Empty result set</span>
     
-    if (this.state.qryResult && this.state.qryResult.row)
+    if (this.props.qryResult && this.props.qryResult.row)
     {
       html = "";
       
@@ -37,7 +35,7 @@ export default class FctRspTxtRslt extends React.Component {
       });
       renderedHeadings = `<thead><tr>${renderedHeadings.join('')}</tr></thead>`;
 
-      let rows = this.state.qryResult.row;
+      let rows = this.props.qryResult.row;
       if (!Array.isArray(rows)) // => a single results row
         rows = [rows];
       let renderedRows = rows.map((row) => {
@@ -101,10 +99,6 @@ export default class FctRspTxtRslt extends React.Component {
       }
       return val;
     }
-  }
-
-  static getDerivedStateFromProps(props, state) {
-    return { qryResult: props.qryResult }
   }
 
 }
