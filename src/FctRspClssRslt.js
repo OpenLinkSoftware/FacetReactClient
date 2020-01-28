@@ -13,9 +13,9 @@ export default class FctRspClssRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("FctRspClssRslt#constructor: props:", props);
+    // console.log("FctRspClssRslt#constructor: props:", props);
     if (props.qryResult["@type"] !== "classes")
-      throw new Error(`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
+      throw new Error(`Invalid Facet result type supplied. (${props.qryResult["@type"]})`);
   }
 
   render() {

@@ -1,0 +1,564 @@
+{
+  "facets": {
+    "sparql": "select ?s1ip as ?c1 count (distinct ?s1) as ?c2  where  { ?s1o ?s1ip ?s1 . quad map virtrdf:DefaultQuadMap { graph ?g {  ?s1 ?s1textp ?o1 . ?o1 bif:contains  '\"linked+data\"'  . } }  } group by ?s1ip order by desc 2 limit 50  offset 0",
+    "time": 144,
+    "complete": "yes",
+    "timeout": 8000,
+    "db-activity": "75.12K rnd  665.8K seq  68.89K same seg    2.96K same pg    982 same par     43 disk  1.168K spec disk      0B /      0 messages    426 fork",
+    "result": {
+      "row": [
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:madeTweet",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#madeTweet"
+            },
+            "madeTweet",
+            4331
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "sioc:container_of",
+              "keyValue": "http://rdfs.org/sioc/ns#container_of"
+            },
+            "container of",
+            960
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "foaf:topic",
+              "keyValue": "http://xmlns.com/foaf/0.1/topic"
+            },
+            "topic",
+            568
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "skos:related",
+              "keyValue": "http://www.w3.org/2004/02/skos/core#related"
+            },
+            "has related",
+            450
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "oa:hasBody",
+              "keyValue": "http://www.w3.org/ns/oa#hasBody"
+            },
+            "hasBody",
+            316
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdf:subject",
+              "keyValue": "http://www.w3.org/1999/02/22-rdf-syntax-ns#subject"
+            },
+            "subject",
+            290
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdf:object",
+              "keyValue": "http://www.w3.org/1999/02/22-rdf-syntax-ns#object"
+            },
+            "object",
+            260
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "awol:src",
+              "keyValue": "http://bblfish.net/work/atom-owl/2006-06-06/#src"
+            },
+            "source",
+            256
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:about",
+              "keyValue": "http://schema.org/about"
+            },
+            "about",
+            255
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "fam:selector",
+              "keyValue": "http://vocab.fusepool.info/fam#selector"
+            },
+            true,
+            236
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "oa:hasSelector",
+              "keyValue": "http://www.w3.org/ns/oa#hasSelector"
+            },
+            "hasSelector",
+            236
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "foaf:made",
+              "keyValue": "http://xmlns.com/foaf/0.1/made"
+            },
+            "made",
+            207
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "sioc:link",
+              "keyValue": "http://rdfs.org/sioc/ns#link"
+            },
+            "link",
+            192
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:follows",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#follows"
+            },
+            "follows",
+            176
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "wdrs:describedby",
+              "keyValue": "http://www.w3.org/2007/05/powder-s#describedby"
+            },
+            "described by",
+            172
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "bibo:uri",
+              "keyValue": "http://purl.org/ontology/bibo/uri"
+            },
+            "uri",
+            169
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://vocab.deri.ie/void#inDataset",
+              "keyValue": "http://vocab.deri.ie/void#inDataset"
+            },
+            true,
+            152
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "nif:referenceContext",
+              "keyValue": "http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext"
+            },
+            true,
+            148
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:url",
+              "keyValue": "http://schema.org/url"
+            },
+            "url",
+            130
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdfs:seeAlso",
+              "keyValue": "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+            },
+            "geographic identifier",
+            120
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "sioc:links_to",
+              "keyValue": "http://rdfs.org/sioc/ns#links_to"
+            },
+            "links to",
+            117
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:mainEntity",
+              "keyValue": "http://schema.org/mainEntity"
+            },
+            "mainEntity",
+            117
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "prv:accessedService",
+              "keyValue": "http://purl.org/net/provenance/ns#accessedService"
+            },
+            "accessed",
+            79
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "xhv:canonical",
+              "keyValue": "http://www.w3.org/1999/xhtml/vocab#canonical"
+            },
+            true,
+            77
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "owl:sameAs",
+              "keyValue": "http://www.w3.org/2002/07/owl#sameAs"
+            },
+            "same as",
+            73
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:mentions",
+              "keyValue": "http://schema.org/mentions"
+            },
+            "mentions",
+            73
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "rdf:first",
+              "keyValue": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first"
+            },
+            "first",
+            64
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "awol:content",
+              "keyValue": "http://bblfish.net/work/atom-owl/2006-06-06/#content"
+            },
+            "content",
+            55
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "fam:extracted-from",
+              "keyValue": "http://vocab.fusepool.info/fam#extracted-from"
+            },
+            true,
+            49
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "nif:sourceUrl",
+              "keyValue": "http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#sourceUrl"
+            },
+            true,
+            49
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "oa:hasSource",
+              "keyValue": "http://www.w3.org/ns/oa#hasSource"
+            },
+            "hasSource",
+            49
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://w3id.org/sch...ntology.owl#hasPart",
+              "keyValue": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#hasPart"
+            },
+            "has part",
+            38
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dcterms:hasPart",
+              "keyValue": "http://purl.org/dc/terms/hasPart"
+            },
+            "Has Part",
+            31
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://w3id.org/sch...gy.owl#withDocument",
+              "keyValue": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#withDocument"
+            },
+            true,
+            30
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "doap:homepage",
+              "keyValue": "http://usefulinc.com/ns/doap#homepage"
+            },
+            "homepage",
+            30
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:url",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#url"
+            },
+            true,
+            30
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "md:item",
+              "keyValue": "http://www.w3.org/1999/xhtml/microdata#item"
+            },
+            true,
+            21
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr...vocab#organizations",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#organizations"
+            },
+            true,
+            21
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "dcterms:subject",
+              "keyValue": "http://purl.org/dc/terms/subject"
+            },
+            "Subject",
+            20
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "https://w3id.org/sch...wl#isEventRelatedTo",
+              "keyValue": "https://w3id.org/scholarlydata/ontology/conference-ontology.owl#isEventRelatedTo"
+            },
+            true,
+            19
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "gh:hasProject",
+              "keyValue": "http://www.openlinksw.com/schemas/github#hasProject"
+            },
+            "hasProject",
+            18
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "xhv:alternate",
+              "keyValue": "http://www.w3.org/1999/xhtml/vocab#alternate"
+            },
+            true,
+            18
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:mainEntityOfPage",
+              "keyValue": "http://schema.org/mainEntityOfPage"
+            },
+            "mainEntityOfPage",
+            18
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../05/cb/vocab#people",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#people"
+            },
+            true,
+            17
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "foaf:homepage",
+              "keyValue": "http://xmlns.com/foaf/0.1/homepage"
+            },
+            "homepage",
+            17
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "schema:interactionStatistic",
+              "keyValue": "http://schema.org/interactionStatistic"
+            },
+            "interactionStatistic",
+            17
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "opltw:hasCard",
+              "keyValue": "http://www.openlinksw.com/schemas/twitter#hasCard"
+            },
+            "hasCard",
+            17
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "http://ontologycentr.../05/cb/vocab#person",
+              "keyValue": "http://ontologycentral.com/2010/05/cb/vocab#person"
+            },
+            true,
+            17
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "fam:entity-reference",
+              "keyValue": "http://vocab.fusepool.info/fam#entity-reference"
+            },
+            true,
+            15
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "uri",
+              "@shortform": "foaf:primaryTopic",
+              "keyValue": "http://xmlns.com/foaf/0.1/primaryTopic"
+            },
+            "primary topic",
+            14
+          ]
+        }
+      ],
+      "@type": "properties-in"
+    }
+  }
+}

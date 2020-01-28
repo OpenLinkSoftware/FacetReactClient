@@ -13,9 +13,9 @@ export default class FctRspLstRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("FctRspLstRslt#constructor: props:", props);
+    // console.log("FctRspLstRslt#constructor: props:", props);
     if (props.qryResult["@type"] !== "list")
-      throw new Error(`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
+      throw new Error(`Invalid Facet result type supplied. (${props.qryResult["@type"]})`);
   }
 
   render() {
@@ -45,7 +45,7 @@ export default class FctRspLstRslt extends React.Component {
         let item = cols[0].keyValue;
         let itemCurie = cols[0]["@shortform"];
         let itemLabel = cols[1];
-        let itemColVal = '';
+        let itemColVal;
 
         if (cols[0]["@datatype"] === "uri") {
           if (itemLabel) {

@@ -29,7 +29,7 @@ export default class FctFilters extends React.Component {
   }
 
   dropFilterClickHndlr(filterId, e) {
-    console.log('dropFilterClickHndlr: filterId:', filterId)
+    // console.log('dropFilterClickHndlr: filterId:', filterId)
     this.onDropQueryFilter(filterId);
   }
 
@@ -56,7 +56,7 @@ export default class FctFilters extends React.Component {
     };
 
     const predicateHtml = (predDesc, iFilter, rActionDesc) => {
-      console.log('predicateHtml()');
+      // console.log('predicateHtml()');
       // TO DO: Move these comments to FctQuery
       //
       // type ::= uri | operator
@@ -124,7 +124,7 @@ export default class FctFilters extends React.Component {
         }
       }
       else if (predDesc.type === 'operator') {
-        console.log('predDesc:', predDesc);
+        // console.log('predDesc:', predDesc);
 
         // rHtml is any array of React fragments.
         // It is a deconstruction of the predDesc.value containing
@@ -139,12 +139,12 @@ export default class FctFilters extends React.Component {
         op = op.replace(/\{\{predicateTerm\}\}/g, this.fctUiUtil.fctPredicateTerm());
         op = op.replace(/\{\{objectTerm\}\}/g, this.fctUiUtil.fctObjectTerm());
 
-        console.log('op:', op);
+        // console.log('op:', op);
 
         // Replace [[<propertyUri>]] placeholders
         let rMatchedPlaceholders = op.match(/(\[\[[^|\]]+\]\])/g);
         if (rMatchedPlaceholders) {
-          console.log('predicateHtml(): Replacing [[<propertyUri>]] placeholders')
+          // console.log('predicateHtml(): Replacing [[<propertyUri>]] placeholders')
           let propertyLinks = [];
           let tmp = op;
 
@@ -177,8 +177,8 @@ export default class FctFilters extends React.Component {
           if (typeof val === 'string') {  
             rMatchedPlaceholders = val.match(/\[\[action\d+\|[^\]]+\]\]/g);
             if (rMatchedPlaceholders) {
-              console.log('predicateHtml(): Replacing [[action<n>|label]] placeholders');
-              console.log('rMatchedPlaceholders:', rMatchedPlaceholders);
+              // console.log('predicateHtml(): Replacing [[action<n>|label]] placeholders');
+              // console.log('rMatchedPlaceholders:', rMatchedPlaceholders);
               let actionLinks = [];
               let tmp = val;
 
@@ -187,11 +187,11 @@ export default class FctFilters extends React.Component {
                 let rMatch = phContent.match(/action(\d+)\|(.*)/);
                 let actionId = Number(rMatch[1]);
                 let actionLabel = rMatch[2];
-                console.log('ph:', ph);
-                console.log('rMatch:', rMatch);
-                console.log('rActionDesc:', rActionDesc);
-                console.log('actionId:', actionId);
-                console.log('actionLabel:', actionLabel);
+                // console.log('ph:', ph);
+                // console.log('rMatch:', rMatch);
+                // console.log('rActionDesc:', rActionDesc);
+                // console.log('actionId:', actionId);
+                // console.log('actionLabel:', actionLabel);
                 
                 // TO DO: Build action URI from action[actionId] descriptor.
                 let actionDesc = rActionDesc[actionId];
@@ -246,7 +246,7 @@ export default class FctFilters extends React.Component {
         throw new Error(`Unexpected objDesc.type (${objDesc.type})`);
     };
 
-    console.log('FctFilters#render: this.props.qryFilters.length:', this.props.qryFilters.length);
+    // console.log('FctFilters#render: this.props.qryFilters.length:', this.props.qryFilters.length);
     const filters = this.props.qryFilters.map((filterDesc, i) => {
       let filterHtml = [];
       filterHtml.push(subjectHtml(filterDesc.s, i, filterDesc.actions));

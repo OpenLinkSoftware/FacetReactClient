@@ -5,6 +5,7 @@
 // e.g. ?s1 has [[any attribute]] with value "linked data".
 
 import React from 'react';
+import FctView from './FctView';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -17,9 +18,9 @@ export default class FctRspTxtPrprtsRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("FctRspTxtPrprtsRslt#constructor: props:", props);
+    // console.log("FctRspTxtPrprtsRslt#constructor: props:", props);
     if (props.qryResult["@type"] !== "text-properties")
-      throw new Error(`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
+      throw new Error(`Invalid Facet result type supplied. (${props.qryResult["@type"]})`);
   }
 
   render() {
@@ -51,14 +52,23 @@ export default class FctRspTxtPrprtsRslt extends React.Component {
         let classCurie = cols[0]["@shortform"];
         let typeColVal;
 
+        let actionOpts = {
+          action: FctView.fctViewAction('text-properties'),
+          iri: classURI,
+          dataType: cols[0]["@datatype"]
+        };
+        let href = FctView.fctBuildAction(actionOpts);
+
         if (cols[0]["@datatype"] === "uri") {
           // typeof cols[1] is 'string' or 'boolean'
           if (typeof cols[1] === 'string') {
             let classLabel = cols[1];
-            typeColVal = `<a href="${classURI}">${classLabel}</a>`;
+            // typeColVal = `<a href="${classURI}">${classLabel}</a>`;
+            typeColVal = `<a href="${href}">${classLabel}</a>`;
           }
           else {
-            typeColVal = `<a href="${classURI}">${classCurie}</a>`;
+            // typeColVal = `<a href="${classURI}">${classCurie}</a>`;
+            typeColVal = `<a href="${href}">${classCurie}</a>`;
           }
         }
         else

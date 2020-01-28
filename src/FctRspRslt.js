@@ -9,6 +9,7 @@ import FctRspClssRslt from './FctRspClssRslt';
 import FctRspPrprtsRslt from './FctRspPrprtsRslt';
 import FctRspLstCntRslt from './FctRspLstCntRslt';
 import FctRspLstRslt from './FctRspLstRslt';
+import FctRspPrpVlLstRslt from './FctRspPrpVlLstRslt';
 
 export default function FctRspRslt(props) {
   const viewType = props.qryResult ? props.qryResult["@type"] : "empty";
@@ -23,6 +24,8 @@ export default function FctRspRslt(props) {
       return <FctRspClssRslt qryResult={props.qryResult} />;
     case "properties":
       return <FctRspPrprtsRslt qryResult={props.qryResult} />;
+    case "propval-list":
+      return <FctRspPrpVlLstRslt qryResult={props.qryResult} />;
     case "list":
       return <FctRspLstRslt qryResult={props.qryResult} />;
     case "list-count":

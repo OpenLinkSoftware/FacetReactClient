@@ -1,4 +1,4 @@
-// A component to display the <fct:result type="classes"> element of a Facet service response.
+// A component to display the <fct:result type="propval-list"> element of a Facet service response.
 
 import React from 'react';
 
@@ -9,12 +9,12 @@ const componentContainerStyle = {
   maxWidth: '100%',
 }
 
-export default class FctRspLstCntRslt extends React.Component {
+export default class FctRspPrpVlLstRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    // console.log("FctRspLstCntRslt#constructor: props:", props)
-    if (props.qryResult["@type"] !== "list-count")
+    // console.log("FctRspPrpVlLstRslt#constructor: props:", props);
+    if (props.qryResult["@type"] !== "propval-list")
       throw new Error(`Invalid Facet result type supplied. (${props.qryResult["@type"]})`);
   }
 
@@ -25,8 +25,8 @@ export default class FctRspLstCntRslt extends React.Component {
     {
       html = "";
       
-      // Facet list-count result/view column mappings
-      const columnHeadings = ['Entity', 'Count'];
+      // Facet classes result/view column mappings
+      const columnHeadings = ['Entity', 'Entity Label'];
 
       let renderedHeadings = columnHeadings.map(heading => {
         return `<th>${heading}</th>`;
@@ -35,49 +35,47 @@ export default class FctRspLstCntRslt extends React.Component {
 
       let rows = this.props.qryResult.row;
       if (!Array.isArray(rows)) // => a single results row
-        rows = [rows];
+      rows = [rows];
       let renderedRows = rows.map((row) => {
         let renderedCols = '';
         let cols = row.column;
-        // cols[0]: class URI (@keyValue) + class curie (@shortForm)
-        // cols[1]: class label
-        // cols[2]: class occurrence count
+        // cols[0]: entity URI (@keyValue) + entity curie? (@shortForm)
+        // cols[1]: entity label
 
-        let classURI = cols[0].keyValue;
-        let classCurie = cols[0]["@shortform"];
-        let typeColVal;
+        let itemURI = cols[0].keyValue;
+        let itemCurie = cols[0]["@shortform"];
+        let itemLabel = cols[1].toString();
+        let itemColVal;
 
         if (cols[0]["@datatype"] === "uri") {
-          // typeof cols[1] is 'string' or 'boolean'
+          // typeof cols[1] is usually a 'string'. Other types possible? // TO DO
           if (typeof cols[1] === 'string') {
-            let classLabel = cols[1];
-            typeColVal = `<a href="${classURI}">${classLabel}</a>`;
+            let itemLabel = cols[1];
+            itemColVal = `<a href="${itemURI}">${itemLabel}</a>`;
           }
           else {
-            typeColVal = `<a href="${classURI}">${classCurie}</a>`;
+            itemColVal = `<a href="${itemURI}">${itemCurie}</a>`;
           }
         }
         else
-          typeColVal = rowCols[0].keyValue.toString();
-        renderedCols += "<td>" + typeColVal + "</td>";
+          itemColVal = cols[0].keyValue.toString();
+        renderedCols += "<td>" + itemColVal + "</td>";
 
-        let countColVal;
-        countColVal = Number(cols[2]);
-        countColVal = Number.isNaN(countColVal) ? 'NaN' : countColVal;
-        renderedCols += "<td>" + countColVal + "</td>";
+        renderedCols += "<td>" + itemLabel + "</td>";
 
         return "<tr>" + renderedCols + "</tr>";
       })
       renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
 
       html = `
-        <div>
-        <span><em>distinct (count) / FctRspLstCntRslt result:</em></span>` +
+      <div>
+      <span><em>propval-list / FctRspPrpVlLstRslt result:</em></span>` +
         '<table class="table table-sm table-striped">' + 
         renderedHeadings + 
         renderedRows +
         `</table>
         </div>`;
+
     }
     
     return ( 

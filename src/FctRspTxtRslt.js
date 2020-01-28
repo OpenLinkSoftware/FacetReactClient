@@ -15,9 +15,8 @@ export default class FctRspTxtRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("FctRspTxtRslt#constructor: props:", props)
     if (props.qryResult["@type"] !== "text")
-      throw new Error (`Invalid Facet result type supplied. (${props.fctTextResult["@type"]})`);
+      throw new Error (`Invalid Facet result type supplied. (${props.qryResult["@type"]})`);
   }
 
   render() {
@@ -62,7 +61,7 @@ export default class FctRspTxtRslt extends React.Component {
 
     }
     
-    console.log('FctRspTxtRslt#render: html:', html);
+    // console.log('FctRspTxtRslt#render: html:', html);
     return ( 
       <div 
       style={componentContainerStyle} 
