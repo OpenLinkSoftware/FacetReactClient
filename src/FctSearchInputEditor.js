@@ -6,7 +6,7 @@ class FctSearchInputEditor extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { searchText: props.searchText }; // FIX ME! ANTIPATTERN! See https://reactjs.org/docs/react-component.html
+    this.state = { searchText: props.searchText };
     this.onSearch = props.onSearch;
     this.onChange = props.onChange;
 

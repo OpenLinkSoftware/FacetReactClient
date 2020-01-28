@@ -35,12 +35,13 @@ const componentContainerStyle = {
 
 
 class FctClient extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log('FctClient#constructor: props:', props)
     this.state = {
       searchText: "",
-      viewType: FCT_QRY_DFLT_VIEW_TYPE,
       fctResult: null,
+      viewType: props.viewType || FCT_QRY_DFLT_VIEW_TYPE,
       tripleTerminology: "eav",   // TO DO: Initialize from UI control. spo | eav
       preset: "none",
     };
@@ -64,6 +65,7 @@ class FctClient extends React.Component {
   }
 
   handleSearch(searchInputEditorText) {
+    console.log('FctClient#handleSearch');
     searchInputEditorText = searchInputEditorText.trim();
     this.setState({ searchText: searchInputEditorText }); // Async!
 
@@ -74,7 +76,7 @@ class FctClient extends React.Component {
       this.fctQuery.queryText = searchInputEditorText;
       this.fctQuery.execute()
         .then(qryResult => {
-          console.log('FacetClient#handleSearch: New result:', JSON.stringify(qryResult._resultJson)); // TO DO: Remove
+          // console.log('FacetClient#handleSearch: New result:', JSON.stringify(qryResult._resultJson)); // TO DO: Remove
           this.setState({ fctResult: qryResult });
         })
         .catch(err => {
@@ -87,8 +89,12 @@ class FctClient extends React.Component {
   }
 
   handleViewChange(event) {
-    this.fctQuery.setViewType(event.target.value);
-    this.setState({ viewType: event.target.value }); // Async!
+    this.changeView(event.target.value);
+  }
+
+  changeView(viewType) {
+    this.setState({ viewType }); // Async!
+    this.fctQuery.setViewType(viewType);
     if (this.state.fctResult)
       this.handleSearch(this.state.searchText); // Update any existing results to reflect the new view
   }
@@ -140,6 +146,7 @@ class FctClient extends React.Component {
   }
 
   render() {
+    console.log('FctClient#render: this.props:', this.props);
     const dbActivity = this.state.fctResult ? this.state.fctResult.json.facets["db-activity"] : '';
     const qryResult = this.state.fctResult ? this.state.fctResult.json.facets.result : null;
     const qryFilters = this.fctQuery.queryFilterDescriptors();
@@ -177,6 +184,8 @@ class FctClient extends React.Component {
             <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
             <div className="col-sm-4">
               <select value={this.state.viewType} className="custom-select" onChange={this.handleViewChange}>
+                <option value="properties-in">properties-in : TO DO! [vt=properties-in]</option>
+                <option value="propval-list">propval-list : [vt=propval-list]</option>
                 <option value="classes">classes [vt=classes]</option>
                 <option value="text">entities [vt=text]</option>
                 <option value="text-properties">text-properties [vt=text-properties]</option>
@@ -211,6 +220,37 @@ class FctClient extends React.Component {
       </div>
     );
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('FctClient#componentDidUpdate: prevProps.viewType: ', prevProps.viewType);
+    // console.log('FctClient#componentDidUpdate: this.props.viewType: ', this.props.viewType);
+    // console.log('FctClient#componentDidUpdate: prevState.viewType: ', prevState.viewType);
+    // console.log('FctClient#componentDidUpdate: this.state.viewType: ', this.state.viewType);
+
+    // props.viewType !== undefined indicates that the viewType is being set via a URL query string.
+    // e.g. http://localhost:8600/?action=setView&viewType=text-properties&...
+    // This is the only occasion where props.viewType should override state.viewType.
+    // Changes of the viewType via UI controls, rather than via a querystring, change state.viewType directly,
+    // and don't change props.viewType.
+    // We cannot simply always set state.viewType from props.viewType (other than in the constructor) because
+    // this would ignore any update to viewType made through UI controls.
+    //
+    // We cannot use static method getDerivedStateFromProps(props, state), as props will then always override state.
+    //
+    // TO DO: 
+    // Consider adding a prop 'refresh' which is only used when refreshing the view via a URL.
+    // This would make explicit the fact that props needs to override state where the two share common properties.
+
+    if (prevProps.viewType !== this.props.viewType)
+    {
+      if (this.props.viewType !== this.state.viewType)
+      {
+        // changeView updates this.state.viewType and updates any existing Facet search results to reflect the new view 
+        this.changeView(this.props.viewType); 
+      }
+    }
+  }
+
 }
 
 export default FctClient;
