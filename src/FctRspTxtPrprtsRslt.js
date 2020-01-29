@@ -5,6 +5,8 @@
 // e.g. ?s1 has [[any attribute]] with value "linked data".
 
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import FctView from './FctView';
 
 const componentContainerStyle = {
@@ -28,21 +30,18 @@ export default class FctRspTxtPrprtsRslt extends React.Component {
     
     if (this.props.qryResult && this.props.qryResult.row)
     {
-      html = "";
-      
       // Facet text-properties result/view column mappings
       const columnHeadings = ['Attribute', 'Count'];
-
-      let renderedHeadings = columnHeadings.map(heading => {
-        return `<th>${heading}</th>`;
-      });
-      renderedHeadings = `<thead><tr>${renderedHeadings.join('')}</tr></thead>`;
+      let renderedHeadings = <thead><tr>{
+          columnHeadings.map(heading => {
+            return <th>{heading}</th>;
+          })
+        }</tr></thead>;
 
       let rows = this.props.qryResult.row;
       if (!Array.isArray(rows))
         rows = [rows];
       let renderedRows = rows.map((row) => {
-        let renderedCols = '';
         let cols = row.column;
         // cols[0]: class URI (@keyValue) + class curie (@shortForm)
         // cols[1]: text value
@@ -63,43 +62,36 @@ export default class FctRspTxtPrprtsRslt extends React.Component {
           // typeof cols[1] is 'string' or 'boolean'
           if (typeof cols[1] === 'string') {
             let classLabel = cols[1];
-            // typeColVal = `<a href="${classURI}">${classLabel}</a>`;
-            typeColVal = `<a href="${href}">${classLabel}</a>`;
+            typeColVal = <Link to={href}>{classLabel}</Link>;
           }
           else {
-            // typeColVal = `<a href="${classURI}">${classCurie}</a>`;
-            typeColVal = `<a href="${href}">${classCurie}</a>`;
+            typeColVal = <Link to={href}>{classCurie}</Link>;
           }
         }
         else
           typeColVal = cols[0].keyValue.toString();
-        renderedCols += "<td>" + typeColVal + "</td>";
-
-        let countColVal;
-        countColVal = Number(cols[2]);
+          
+        let countColVal = Number(cols[2]);
         countColVal = Number.isNaN(countColVal) ? 'NaN' : countColVal;
-        renderedCols += "<td>" + countColVal + "</td>";
+        
+        let renderedCols = <><td>{typeColVal}</td><td>{countColVal}</td></>;
+        return <tr>{renderedCols}</tr>;
+      });
 
-        return "<tr>" + renderedCols + "</tr>";
-      })
-      renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
+      renderedRows = <tbody>{renderedRows}</tbody>;
 
-      html = `
+      html = (
         <div>
-        <span><em>text-properties / FctRspTxtPrprts result:</em></span>` +
-        '<table class="table table-sm table-striped">' + 
-        renderedHeadings + 
-        renderedRows +
-        `</table>
-        </div>`;
-
+        <span><em>text-properties / FctRspTxtPrprts result:</em></span>
+        <table className="table table-sm table-striped">
+        {renderedHeadings}
+        {renderedRows}
+        </table>
+        </div> 
+      );
     }
     
-    return ( 
-      <div 
-      style={componentContainerStyle} 
-      dangerouslySetInnerHTML={{__html: html}}>
-      </div> );
+    return <div style={componentContainerStyle}>{html}</div>;
   }
 
 }
