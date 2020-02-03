@@ -27,7 +27,7 @@ export default class FctRspTxtRslt extends React.Component {
       html = "";
       
       // Facet text result/view column mappings
-      const columnHeadings = ['trank', 'erank', 'Graph', 'Entity URI', 'Title', 'Matched Text'];
+      const columnHeadings = ['trank', 'erank', 'Named Graph', 'Entity URI', 'Title', 'Matched Text'];
 
       let renderedHeadings = columnHeadings.map(heading => {
         return `<th>${heading}</th>`;
@@ -52,7 +52,7 @@ export default class FctRspTxtRslt extends React.Component {
 
       html = `
       <div>
-      <span><em>entities / FctRspTxtRslt result:</em></span>` +
+      <span><em>text / FctRspTxtRslt result:</em></span>` +
         '<table class="table table-sm table-striped">' + 
         renderedHeadings + 
         renderedRows +
@@ -72,15 +72,15 @@ export default class FctRspTxtRslt extends React.Component {
       let val;
 
       switch (iCol) {
-        case 0: // trank
+        case 0: // trank / text rank
           val = Number(col.keyValue);
           val = Number.isNaN(val) ? 'NaN' : val.toPrecision(5);
           break;
-        case 1: // erank
+        case 1: // erank / entity rank
           val = Number(col.keyValue);
           val = Number.isNaN(val) ? 'NaN' : val.toPrecision(5);
         break;
-        case 2: // g
+        case 2: // g / named graph
           val = col.keyValue;
           break;
         case 3: // entity URI (urn: or http[s]:)
@@ -92,7 +92,7 @@ export default class FctRspTxtRslt extends React.Component {
         case 4: // title
           val = typeof col === 'string' ? col : '';
           break;
-        case 5: // matched text
+        case 5: // matched text / search excerpt
           val = col.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>');
           break;
       }

@@ -72,7 +72,7 @@ export default class FctRspPrprtsRslt extends React.Component {
 
       html = `
         <div>
-        <span><em>attributes / FctRspPrprtsRslt result:</em></span>` +
+        <span><em>properties / FctRspPrprtsRslt result:</em></span>` +
         '<table class="table table-sm table-striped">' + 
         renderedHeadings + 
         renderedRows +

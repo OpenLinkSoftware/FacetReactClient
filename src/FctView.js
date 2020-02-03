@@ -10,23 +10,23 @@ export default class FctView
     let action;
     switch(viewType) {
       case 'text-properties':
-        action = 'set_text_property';
+        action = 'setTextProperty';
         break;
       case 'properties':
-        action = 'open_property';
+        action = 'openProperty';
         break;
       case 'properties-in':
-        action = 'open_property_of';
+        action = 'openPropertyOf';
         break;
       case 'classes':
-        action = 'set_class';
+        action = 'setClass';
         break;
       case 'full-text':
-        action = 'set_text';
+        action = 'setText';
         break;
       case 'list-count':
       case 'geo-list':
-        action = 'select_value'
+        action = 'selectValue'
       default:
         action = 'cond';
     }

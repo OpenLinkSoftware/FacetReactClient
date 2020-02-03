@@ -4,6 +4,7 @@
 import React from 'react';
 
 import FctRspTxtRslt from './FctRspTxtRslt';
+import FctRspTxtdRslt from './FctRspTxtdRslt';
 import FctRspTxtPrprtsRslt from './FctRspTxtPrprtsRslt';
 import FctRspClssRslt from './FctRspClssRslt';
 import FctRspPrprtsRslt from './FctRspPrprtsRslt';
@@ -18,6 +19,8 @@ export default function FctRspRslt(props) {
   {
     case "text":
       return <FctRspTxtRslt qryResult={props.qryResult} />;
+    case "text-d":
+      return <FctRspTxtdRslt qryResult={props.qryResult} />;
     case "text-properties":
       return <FctRspTxtPrprtsRslt qryResult={props.qryResult} />;
     case "classes":

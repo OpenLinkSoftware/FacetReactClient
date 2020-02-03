@@ -64,6 +64,7 @@ class FctClient extends React.Component {
     this.setState({ searchText: searchInputEditorText });
   }
 
+
   handleSearch(searchInputEditorText) {
     console.log('FctClient#handleSearch');
     searchInputEditorText = searchInputEditorText.trim();
@@ -74,29 +75,35 @@ class FctClient extends React.Component {
     }
     else {
       this.fctQuery.queryText = searchInputEditorText;
-      this.fctQuery.execute()
-        .then(qryResult => {
-          // console.log('FacetClient#handleSearch: New result:', JSON.stringify(qryResult._resultJson)); // TO DO: Remove
-          this.setState({ fctResult: qryResult });
-        })
-        .catch(err => {
-          // TO DO: 
-          // Display the error in the UI
-          // Facet does return some error text. e.g. sparql compilation on invalid XML.
-          console.log('FctClient#handleSearch: Error: ' + err.message);
-        });
+      this.search();
     }
   }
 
+  search() {
+    this.fctQuery.execute()
+      .then(qryResult => {
+        this.setState({ fctResult: qryResult });
+      })
+      .catch(err => {
+        // TO DO: 
+        // Display the error in the UI
+        // Facet does return some error text. e.g. sparql compilation on invalid XML.
+        console.log('FctClient#search: Error: ' + err.message);
+      });
+  }
+  
   handleViewChange(event) {
-    this.changeView(event.target.value);
+    this.updateView(event.target.value);
   }
 
-  changeView(viewType) {
-    this.setState({ viewType }); // Async!
-    this.fctQuery.setViewType(viewType);
+  updateView(viewType) {
+    if (viewType) {
+      this.setState({ viewType }); // Async!
+      this.fctQuery.setViewType(viewType);
+    }
     if (this.state.fctResult)
-      this.handleSearch(this.state.searchText); // Update any existing results to reflect the new view
+      // this.handleSearch(this.state.searchText); // Update any existing results to reflect the new view
+      this.search(); // Update any existing results to reflect the new view
   }
 
   handlePresetChange(event) {
@@ -188,6 +195,7 @@ class FctClient extends React.Component {
                 <option value="propval-list">propval-list : [vt=propval-list]</option>
                 <option value="classes">classes [vt=classes]</option>
                 <option value="text">entities [vt=text]</option>
+                <option value="text-d">text-d [vt=text-d]</option>
                 <option value="text-properties">text-properties [vt=text-properties]</option>
                 <option value="properties">attributes [vt=properties]</option>
                 <option value="list-count">distinct (count) [vt=list-count]</option>
@@ -195,11 +203,6 @@ class FctClient extends React.Component {
               </select>
             </div>
           </div>
-        </div>
-
-        <p>Component: FctRspDbActivity</p>
-        <div style={componentContainerStyle}>
-          <FctRspDbActvty dbActivity={dbActivity} />
         </div>
 
         <p>Component: FctRspRslt</p>
@@ -217,15 +220,25 @@ class FctClient extends React.Component {
             onDropQueryText={this.handleDropQueryText}
           />
         </div>
+
+        <p>Component: FctRspDbActivity</p>
+        <div style={componentContainerStyle}>
+          <FctRspDbActvty dbActivity={dbActivity} />
+        </div>
+
       </div>
     );
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log('FctClient#componentDidUpdate: prevProps.viewType: ', prevProps.viewType);
-    // console.log('FctClient#componentDidUpdate: this.props.viewType: ', this.props.viewType);
-    // console.log('FctClient#componentDidUpdate: prevState.viewType: ', prevState.viewType);
-    // console.log('FctClient#componentDidUpdate: this.state.viewType: ', this.state.viewType);
+    /*
+    console.log('FctClient#componentDidUpdate: prevProps.viewType: ', prevProps.viewType);
+    console.log('FctClient#componentDidUpdate: this.props.viewType: ', this.props.viewType);
+    console.log('FctClient#componentDidUpdate: prevProps.ts: ', prevProps.ts);
+    console.log('FctClient#componentDidUpdate: this.props.ts: ', this.props.ts);
+    console.log('FctClient#componentDidUpdate: prevState.viewType: ', prevState.viewType);
+    console.log('FctClient#componentDidUpdate: this.state.viewType: ', this.state.viewType);
+    */
 
     // props.viewType !== undefined indicates that the viewType is being set via a URL query string.
     // e.g. http://localhost:8600/?action=setView&viewType=text-properties&...
@@ -237,17 +250,51 @@ class FctClient extends React.Component {
     //
     // We cannot use static method getDerivedStateFromProps(props, state), as props will then always override state.
     //
-    // TO DO: 
-    // Consider adding a prop 'refresh' which is only used when refreshing the view via a URL.
-    // This would make explicit the fact that props needs to override state where the two share common properties.
+    // props.ts acts as a refresh flag and is only used when setting the view via a URL querystring 
+    // or performing some other action specified in the query string.
 
+    let newView = undefined; // undefined => don't change the current viewType.
+    let refreshSearchResults = false;
+
+    // Check for changes in props.ts
+    if (prevProps.ts !== this.props.ts)
+      refreshSearchResults = true;
+
+    // Check for changes in props.viewType
     if (prevProps.viewType !== this.props.viewType)
     {
       if (this.props.viewType !== this.state.viewType)
       {
-        // changeView updates this.state.viewType and updates any existing Facet search results to reflect the new view 
-        this.changeView(this.props.viewType); 
+        newView = this.props.viewType;
+        refreshSearchResults = true;
       }
+    }
+
+    // Check for changes in props.action 
+    if (this.props.action && prevProps.ts !== this.props.ts) {
+      newView = this.props.viewType; // Redundant? Done above?
+      this.performUiAction();
+      refreshSearchResults = true;
+    }
+
+    if (refreshSearchResults) {
+      console.log('FctClient#componentDidUpdate: #updateView:', newView);
+      // updateView 
+      // - optionally updates this.state.viewType
+      // - updates any existing Facet search results 
+      this.updateView(newView); 
+    }
+  }
+
+  performUiAction() {
+    switch (this.props.action.name) {
+      case "setTextProperty": 
+        console.log('FctClient#performUiAction: setTextProperty:', this.props.action.propertyIri)
+        this.fctQuery.queryTextProperty = this.props.action.propertyIri;
+        break;
+      case "openProperty":
+        console.log('FctClient#performUiAction: openProperty: TO DO');
+        break;
     }
   }
 

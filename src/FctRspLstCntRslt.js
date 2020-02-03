@@ -72,7 +72,7 @@ export default class FctRspLstCntRslt extends React.Component {
 
       html = `
         <div>
-        <span><em>distinct (count) / FctRspLstCntRslt result:</em></span>` +
+        <span><em>list-count / FctRspLstCntRslt result:</em></span>` +
         '<table class="table table-sm table-striped">' + 
         renderedHeadings + 
         renderedRows +

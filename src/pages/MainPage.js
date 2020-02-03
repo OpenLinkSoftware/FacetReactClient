@@ -16,14 +16,50 @@ export default function MainPage({location}) {
 
   if (qryStrParams) { // Update the UI in response to user interaction
     if (qryStrParams.action) {
+
+      // action.ts is used to force a refresh in FctClient#componentDidUpdate
+      // when a link with the same href is followed on two different occasions
+      // but with a completely different Facet input XML on each visit
+      // to the link.
+      // e.g. an 'any attribute' link:
+      // /?action=setView&viewType=text-properties&...
+      // could be followed on two separation occasions, between two searches using completely
+      // different search text.
+
       switch (qryStrParams.action) {
         case "setView":
-          console.log('MainPage: TO DO: Action: setView');
-          action.viewType = "text-properties"; // FIX ME
+          // Example equivalent /fct link
+          // View shows: ?s1 has <any Attribute> with Value "skiing" 
+          // The <any Attribute> link is:
+          // http://localhost:8896/fct/facet.vsp?sid=22&cmd=set_view&type=text-properties&limit=20&offset=0&cno=0
+          console.log('MainPage: Action: setView');
+          action.viewType = qryStrParams.viewType;
+          action.ts = new Date().getTime(); 
+          // TO DO: Act on limit, offset and cno query string params
           break;
-        case "set_text_property":
-          console.log('MainPage: TO DO: Action: set_text_property');
-          break
+        case "setTextProperty":
+          // Example equivalent /fct link
+          // View shows: ?s1 has any Attribute with Value "skiing"
+          // The href under the first attribute (http://www.openlinks.../schema#description) is:
+          // http://localhost:8896/fct/facet.vsp?
+          //   cmd=set_text_property&
+          //   iri=http%3A%2F%2Fwww.openlinksw.com%2Fski_resorts%2Fschema%23description&
+          //   lang=&datatype=uri&sid=22
+          // Equivalent to /fct PL routine fct_set_text_property()
+          console.log('MainPage: Action: setTextProperty');
+          // Set XML:
+          // - Set <text> element attribute @property-iri to iri qs param.
+          // - Set view type to text-d.
+          action.viewType = 'text-d';
+          action.action = {
+              name: "setTextProperty",
+              propertyIri: qryStrParams.iri
+            };
+          action.ts = new Date().getTime(); 
+          break;
+        case "openProperty":
+          console.log('MainPage: Action: openProperty: TO DO');
+          break;
       }
     }
   }
