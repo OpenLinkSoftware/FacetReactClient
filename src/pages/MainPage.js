@@ -5,6 +5,12 @@ import qs from 'qs'
 import FctClient from '../FctClient';
 
 // Acts as a basic controller performing input URL deconstruction
+//
+// Equivalent /fct cmd query string parameter values:
+// set_view, set_focus, text, next, previous, go_to, set_text_property, open_property
+// open_property_of, drop, drop_cond, drop_text_prop, drop_text, set_class, open,
+// refresh, set_inf, set_agg, select_value, cond, save, save_init, featured, set_loc
+ 
 export default function MainPage({location}) {
   let action = {};
   let qryStrParams;
