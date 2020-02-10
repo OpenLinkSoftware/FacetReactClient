@@ -20,11 +20,7 @@ import FctRspRslt from './FctRspRslt';
 import FctSearchInputEditor from './FctSearchInputEditor';
 import FctFilters from './FctFilters';
 
-// TO DO: Allow defaults to be set through a config .js file.
-const FCT_QRY_DFLT_VIEW_LIMIT = 50; // Default view limit
-const FCT_QRY_DFLT_VIEW_TYPE = "text";
-// const FCT_QRY_DFLT_SVC_ENDPOINT = 'http://localhost:8896/fct/service';
-const FCT_QRY_DFLT_SVC_ENDPOINT = 'http://linkeddata.uriburner.com/fct/service';
+const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
 
 const componentContainerStyle = {
   padding: '10px',
@@ -41,7 +37,7 @@ class FctClient extends React.Component {
     this.state = {
       searchText: "",
       fctResult: null,
-      viewType: props.viewType || FCT_QRY_DFLT_VIEW_TYPE,
+      viewType: props.viewType || FCT_CLIENT_DFLT_VIEW_TYPE,
       tripleTerminology: "eav",   // TO DO: Initialize from UI control. spo | eav
       preset: "none",
     };
@@ -54,10 +50,17 @@ class FctClient extends React.Component {
     this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
     this.handleDropQueryText = this.handleDropQueryText.bind(this);
 
+    // viewLimit may be overridden in the UI.
+    // TO DO: Add UI control and intialize to FctQuery default.
+    this.viewLimit = FctQuery.FCT_QRY_DFLT_VIEW_LIMIT; 
+    // serviceEndpoint may be overridden in the UI.
+    // TO DO: Add UI control and initialize to FctQuery default.
+    this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT; 
+
     this.fctQuery = new FctQuery();
-    this.fctQuery.setServiceEndpoint(FCT_QRY_DFLT_SVC_ENDPOINT);
-    this.fctQuery.setViewLimit(FCT_QRY_DFLT_VIEW_LIMIT);
-    this.fctQuery.setViewType(FCT_QRY_DFLT_VIEW_TYPE);
+    this.fctQuery.setViewType(FCT_CLIENT_DFLT_VIEW_TYPE);
+    this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
+    this.fctQuery.setViewLimit(this.viewLimit);
   }
 
   handleSearchInputEditorChange(searchInputEditorText) {
@@ -111,15 +114,13 @@ class FctClient extends React.Component {
     switch (presetKey) {
       case "none":
         this.fctQuery = new FctQuery();
-        this.fctQuery.setServiceEndpoint(FCT_QRY_DFLT_SVC_ENDPOINT); // TO DO: Make this a default in the constructor
-        this.fctQuery.setViewLimit(FCT_QRY_DFLT_VIEW_LIMIT); // TO DO: Make this a default in the constructor
-        this.fctQuery.setViewType(FCT_QRY_DFLT_VIEW_TYPE); // TO DO: Make this a default in the constructor
         break;
       default:
-          this.fctQuery = new FctQuery(presets.get(presetKey));
-          this.fctQuery.setServiceEndpoint(FCT_QRY_DFLT_SVC_ENDPOINT); // TO DO: Make this a default in the constructor
-        break;  
+        this.fctQuery = new FctQuery(presets.get(presetKey));
+        break;
     }
+    this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
+    this.fctQuery.setViewLimit(this.viewLimit);
 
     // Update the UI:
     // Set the controls holding Facet request inputs to match the preset's settings.
@@ -289,11 +290,25 @@ class FctClient extends React.Component {
   performUiAction() {
     switch (this.props.action.name) {
       case "setTextProperty": 
-        console.log('FctClient#performUiAction: setTextProperty:', this.props.action.propertyIri)
+        console.log('FctClient#performUiAction: setTextProperty:', this.props.action.propertyIri);
         this.fctQuery.queryTextProperty = this.props.action.propertyIri;
         break;
       case "openProperty":
-        console.log('FctClient#performUiAction: openProperty: TO DO');
+          // Create XML element:
+          // <property iri="{propertyURI}" [exclude="yes"]>
+          //   <view type="list" limit="{limit}" offset="0" />
+          // </property>
+        console.log('FctClient#performUiAction: openProperty:', this.props.action.propertyIri);
+        let propSubjIndx = this.fctQuery.addProperty(
+          this.props.action.propertyIri,
+          this.fctQuery.getViewSubjectIndex(),
+          this.props.action.excludeProperty
+          // sameAs,
+          // inferenceContext
+          );
+        this.fctQuery.setViewSubjectIndex(propSubjIndx);
+        this.fctQuery.setViewType(this.props.viewType);
+        this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
         break;
     }
   }
