@@ -1,6 +1,7 @@
 // A component to display the <fct:result type="list"> element of a Facet service response.
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -28,16 +29,16 @@ export default class FctRspLstRslt extends React.Component {
       // Facet list result/view column mappings
       const columnHeadings = ['', '']; // No headings in /fct version
 
-      let renderedHeadings = columnHeadings.map(heading => {
-        return `<th>${heading}</th>`;
-      });
-      renderedHeadings = `<thead><tr>${renderedHeadings.join('')}</tr></thead>`;
-
+      let renderedHeadings = <thead><tr>{
+        columnHeadings.map(heading => {
+          return <th>{heading}</th>;
+        })
+      }</tr></thead>;
+      
       let rows = this.props.qryResult.row;
       if (!Array.isArray(rows)) // => a single results row
         rows = [rows];
       let renderedRows = rows.map((row) => {
-        let renderedCols = '';
         let cols = row.column;
         // cols[0]: item
         // cols[1]: item label
@@ -49,38 +50,34 @@ export default class FctRspLstRslt extends React.Component {
 
         if (cols[0]["@datatype"] === "uri") {
           if (itemLabel) {
-            itemColVal = `<a href="${item}">${itemLabel}</a>`;
+            itemColVal = <Link to={item}>{itemLabel}</Link>;
           }
           else {
-            itemColVal = `<a href="${item}">${itemCurie}</a>`;
+            itemColVal = <Link to={item}>{itemCurie}</Link>;
           }
         }
         else
           itemColVal = cols[0].keyValue.toString();
-        renderedCols += "<td>" + itemColVal + "</td>";
 
-        renderedCols += "<td>" + cols[0]["@datatype"]  + "</td>";
+        let dataType = cols[0]["@datatype"];
+        let renderedCols = <><td>{itemColVal}</td><td>{dataType}</td></>;
+        return <tr>{renderedCols}</tr>;
+      });
 
-        return "<tr>" + renderedCols + "</tr>";
-      })
-      renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
+      renderedRows = <tbody>{renderedRows}</tbody>;
 
-      html = `
-      <div>
-      <span><em>list / FctRspLstRslt result:</em></span>` +
-        '<table class="table table-sm table-striped">' + 
-        renderedHeadings + 
-        renderedRows +
-        `</table>
-        </div>`;
-
+      html = (
+        <div>
+        <span><em>list / FctRspLstRslt result:</em></span>
+        <table class="table table-sm table-striped">
+        {renderedHeadings} 
+        {renderedRows}
+        </table>
+        </div>
+      );
     }
     
-    return ( 
-      <div 
-      style={componentContainerStyle} 
-      dangerouslySetInnerHTML={{__html: html}}>
-      </div> );
+    return <div style={componentContainerStyle}>{html}</div>;
   }
 
 }

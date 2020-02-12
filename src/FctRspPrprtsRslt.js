@@ -69,8 +69,6 @@ export default class FctRspPrprtsRslt extends React.Component {
         else
           propertyColVal = cols[0].keyValue.toString();
 
-        renderedCols += "<td>" + propertyColVal + "</td>";
-
         let countColVal = Number(cols[2]);
         countColVal = Number.isNaN(countColVal) ? 'NaN' : countColVal;
 
