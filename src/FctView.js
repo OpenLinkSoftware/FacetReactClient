@@ -35,11 +35,27 @@ export default class FctView
   }
 
   static fctBuildAction(actionOpts) {
+    /*
     let path = '/';
     let qs = '?';
     qs += `action=${actionOpts.action}`;
     qs += `&iri=${encodeURIComponent(actionOpts.iri)}`;
     qs += `&dataType=${actionOpts.dataType}`;
+    return `${path}${qs}`;
+    */
+
+    let path = '/';
+    let qs = '?';
+    let qsSep = '';
+    for (const opt in actionOpts) {
+      let optVal = actionOpts[opt];
+      if (optVal && (typeof optVal === 'string') && optVal.startsWith('http'))
+        optVal = encodeURIComponent(optVal);
+      if (!optVal)
+        optVal = '';
+      qs += `${qsSep}${opt}=${optVal}`;
+      qsSep = '&';
+    }
     return `${path}${qs}`;
   }
 }

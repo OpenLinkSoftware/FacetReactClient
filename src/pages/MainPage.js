@@ -96,6 +96,12 @@ export default function MainPage({location}) {
             };
           action.ts = new Date().getTime();
           break;
+        case "cond":
+          console.log('MainPage: Action: cond');
+          throw new Error("Implement action 'cond'"); // TO DO
+          break;
+        default:
+          throw new Error("Unrecognized action:", qryStrParams.action);
       }
     }
   }

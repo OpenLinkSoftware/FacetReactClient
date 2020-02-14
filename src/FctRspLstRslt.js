@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FctView from './FctView';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -43,23 +44,31 @@ export default class FctRspLstRslt extends React.Component {
         // cols[0]: item
         // cols[1]: item label
 
-        let item = cols[0].keyValue;
+        let item = cols[0].keyValue.toString();
         let itemCurie = cols[0]["@shortform"];
         let itemLabel = cols[1];
         let itemColVal;
-
-        if (cols[0]["@datatype"] === "uri") {
-          if (itemLabel) {
-            itemColVal = <Link to={item}>{itemLabel}</Link>;
-          }
-          else {
-            itemColVal = <Link to={item}>{itemCurie}</Link>;
-          }
-        }
-        else
-          itemColVal = cols[0].keyValue.toString();
-
         let dataType = cols[0]["@datatype"];
+
+        let actionOpts = {
+          action: FctView.fctViewAction('cond'),
+          cond_t: 'eq', // TO DO: Need UI control to set the condition: ==, !==, >, >=, <, <=, between, not between, contains, in, not in
+          val: item,
+          dataType,
+          lang: null  
+        };
+        let href = FctView.fctBuildAction(actionOpts);
+
+        if (dataType === "uri" && itemLabel) {
+          itemColVal = <Link to={href}>{itemLabel}</Link>;
+        }
+        else if (dataType === "uri" && itemCurie) {
+          itemColVal = <Link to={href}>{itemCurie}</Link>;
+        }
+        else {
+          itemColVal = <Link to={href}>{item}</Link>;
+        }
+
         let renderedCols = <><td>{itemColVal}</td><td>{dataType}</td></>;
         return <tr>{renderedCols}</tr>;
       });

@@ -232,14 +232,12 @@ class FctClient extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    /*
     console.log('FctClient#componentDidUpdate: prevProps.viewType: ', prevProps.viewType);
     console.log('FctClient#componentDidUpdate: this.props.viewType: ', this.props.viewType);
     console.log('FctClient#componentDidUpdate: prevProps.ts: ', prevProps.ts);
     console.log('FctClient#componentDidUpdate: this.props.ts: ', this.props.ts);
     console.log('FctClient#componentDidUpdate: prevState.viewType: ', prevState.viewType);
     console.log('FctClient#componentDidUpdate: this.state.viewType: ', this.state.viewType);
-    */
 
     // props.viewType !== undefined indicates that the viewType is being set via a URL query string.
     // e.g. http://localhost:8600/?action=setView&viewType=text-properties&...
@@ -294,6 +292,9 @@ class FctClient extends React.Component {
         this.fctQuery.queryTextProperty = this.props.action.propertyIri;
         break;
       case "openProperty":
+          // - Add filter: ?s[n] has the given property.
+          //     e.g. ?s1 skiresorts:advanced_slopes ?s2
+          // - Display a list of values (instances of values) for the property
           // Create XML element:
           // <property iri="{propertyURI}" [exclude="yes"]>
           //   <view type="list" limit="{limit}" offset="0" />
@@ -306,6 +307,8 @@ class FctClient extends React.Component {
           // sameAs,
           // inferenceContext
           );
+        console.log('FctClient#performUiAction: propSubjIndx:', propSubjIndx);
+        console.log('FctClient#performUiAction: this.props.viewType:', this.props.viewType);
         this.fctQuery.setViewSubjectIndex(propSubjIndx);
         this.fctQuery.setViewType(this.props.viewType);
         this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
