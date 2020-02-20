@@ -10,4 +10,4 @@ FacetReactClient uses [FacetJsClient](https://github.com/cblakeley/FacetJsClient
 See also:
 
 * branch [develop](https://github.com/cblakeley/FacetReactClient/tree/develop)
-* [FctReactClientDeploy](https://github.com/cblakeley/FacetClientDeploy)
+* [FacetReactClientDeploy](https://github.com/cblakeley/FacetReactClientDeploy)
