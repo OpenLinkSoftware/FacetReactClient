@@ -1,6 +1,6 @@
 # FacetReactClient
 
-2019-Nov-07
+2019-Nov-07  
 CMSB
 
 A React-based client for the [Virtuoso Faceted Browsing Service](http://vos.openlinksw.com/owiki/wiki/VOS/VirtuosoFacetsWebService).
