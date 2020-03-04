@@ -87,7 +87,6 @@ export default function MainPage({location}) {
           //     <view type="list" limit="20" offset="0" />
           //   </property>
           // </query>
-          //
           action.viewType = 'list';
           action.action = {
             name: qryStrParams.action,
@@ -98,7 +97,39 @@ export default function MainPage({location}) {
           break;
         case "cond":
           console.log('MainPage: Action: cond');
-          throw new Error("Implement action 'cond'"); // TO DO
+          // Example equivalent /fct link:
+          // http://linkeddata.uriburner.com/fct/facet.vsp?
+          //   cmd=cond&cond_t=eq&val=2&lang=&
+          //   datatype=http%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23integer&sid=883402
+          // Equivalent to /fct PL routines:
+          // fct_set_cond(), fct_set_cond_in(), fct_set_cond_near(), fct_set_cond_range()
+          switch (qryStrParams.cond_t) {
+            case "eq":
+            case "neq":
+            case "gt":
+            case "gte":
+            case "lt":
+            case "lte":
+              action.viewType = 'text-d';
+              action.action = {
+                name: qryStrParams.action,
+                conditionType: qryStrParams.cond_t,
+                value: qryStrParams.val,
+                valueDataType: qryStrParams.dataType,
+                valueLang: qryStrParams.lang,
+                negate: (qryStrParams.neg ? true : false)
+              };
+              action.ts = new Date().getTime();
+              break;
+            case "in":
+            case "not_in":
+            case "range":
+            case "neg_range":
+            case "near":
+              throw new Error("Condition type (cond_t) not yet implemented:", qryStrParams.cond_t);
+            default:
+              throw new Error("Unrecognized condition type (cond_t):", qryStrParams.cond_t);
+          }
           break;
         default:
           throw new Error("Unrecognized action:", qryStrParams.action);

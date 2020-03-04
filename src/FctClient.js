@@ -313,6 +313,23 @@ class FctClient extends React.Component {
         this.fctQuery.setViewType(this.props.viewType);
         this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
         break;
+      case "cond": 
+        // Set a condition on a subject node
+        // Create an XML <cond> element, e.g.:
+        // <property iri="http://www.openlinksw.com/ski_resorts/schema#advanced_slopes">
+        //   <cond type="eq" neg="" xml:lang="" datatype="http://www.w3.org/2001/XMLSchema#integer">27</cond>
+        // </property>
+        console.log('FctClient#permformUiAction: cond:', this.props.action.conditionType);
+        // After setting a condition, FctQuery#setSubjectCondition sets subject node to 1, 
+        // the view type to 'text-d' and the view offset set to 0.
+        this.fctQuery.setSubjectCondition(
+          this.props.action.conditionType,
+          this.props.action.value, 
+          this.props.action.valueDataType,
+          this.props.action.valueLang,
+          this.props.action.negate
+        );
+        break;
     }
   }
 
