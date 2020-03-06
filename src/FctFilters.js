@@ -21,14 +21,17 @@ export default class FctFilters extends React.Component {
   }
 
   subjectClickHndlr(subjectId, e) {
+    // e.preventDefault();
     this.onSetSubjectFocus(subjectId);
   }
 
   dropTextClickHndlr(e) {
+    // e.preventDefault();
     this.onDropQueryText();
   }
 
   dropFilterClickHndlr(filterId, e) {
+    e.preventDefault();
     // console.log('dropFilterClickHndlr: filterId:', filterId)
     this.onDropQueryFilter(filterId);
   }
@@ -48,7 +51,7 @@ export default class FctFilters extends React.Component {
         //
         // Equivalent to:
         // /fct/facet.vsp?cmd=set_focus&sid=%d&n=%d
-        return <a href="#" title={title}
+        return <a href="/" title={title}
           onClick={(e) => this.subjectClickHndlr(subjIndx, e)}>{subjDesc.value}</a>
       }
       else
@@ -108,7 +111,7 @@ export default class FctFilters extends React.Component {
       //    - /fct/facet.vsp?cmd=set_focus&n=%d
       //    - /fct/facet.vsp?cmd=set_view&type=%s&limit=%d&offset=0
       //    - /fct/facet.vsp?cmd=refresh
-      //    - /fct/facet.vsp?md=set_inf - Set inference context
+      //    - /fct/facet.vsp?cmd=set_inf - Set inference context
       //    - /fct/facet.vsp?cmd=drop&n=%d
       //    - /fct/facet.vsp?cmd=drop_cond&cno=%d
       //    - /fct/facet.vsp?cmd=drop_text
@@ -124,8 +127,6 @@ export default class FctFilters extends React.Component {
         }
       }
       else if (predDesc.type === 'operator') {
-        // console.log('predDesc:', predDesc);
-
         // rHtml is any array of React fragments.
         // It is a deconstruction of the predDesc.value containing
         // the original text of the value, split into substrings, 
@@ -220,7 +221,7 @@ export default class FctFilters extends React.Component {
     };
 
     const objectHtml = (objDesc, iFilter, rActionDesc) => {
-      // type ::= variable | uri | literal
+      // type ::= variable | uri | literal | number
       // variable values ::= ?$1, ?$2, ?$3, ...
       
       if (objDesc.type === 'variable') {
@@ -242,6 +243,9 @@ export default class FctFilters extends React.Component {
         let literal = `"${objDesc.value}"`;
         return <span>{literal}</span>
       }
+      else if (objDesc.type === 'number') {
+      return <span>{objDesc.value}</span>
+      }
       else
         throw new Error(`Unexpected objDesc.type (${objDesc.type})`);
     };
@@ -256,9 +260,14 @@ export default class FctFilters extends React.Component {
       filterHtml.push(objectHtml(filterDesc.o, i, filterDesc.actions));
       filterHtml.push(<>&nbsp;</>);
 
+      // Note:
+      // Two possible ways of handling 'drop filter condition' clicks are:
+      // 1) Attach a click handler to the link and use e.preventDefault()
+      // 2) Post back to the page with an action parameter, e.g. '/?action=dropFilter&...'
+      // Here we use option 1.
       const dfSpanStyle = { color: 'gray' };
       const dropFilterHtml =
-        <a href="#" title="Drop filter" onClick={(e) => this.dropFilterClickHndlr(i, e)}>
+        <a href="/" title="Drop filter" onClick={(e) => this.dropFilterClickHndlr(i, e)}>
           <span className="oi oi-circle-x" style={dfSpanStyle}></span>
         </a>
       return (

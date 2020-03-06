@@ -145,7 +145,8 @@ class FctClient extends React.Component {
 
   handleDropQueryFilter(filterId) {
     console.log('FctClient#handleDropQueryFilter: filterId:', filterId) // TO DO: Remove
-    // this.fctQuery.removeQueryFilter(filterId); // TO DO: Enable
+    this.fctQuery.removeQueryFilter(filterId);
+    this.search();
   }
 
   handleDropQueryText() {
