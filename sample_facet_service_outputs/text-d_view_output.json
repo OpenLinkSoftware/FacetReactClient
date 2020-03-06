@@ -1,0 +1,1214 @@
+{
+  "facets": {
+    "sparql": "select \t\t  \t(<sql:s_sum_page> (<sql:vector_agg> (<bif:vector> (?c1, ?sm, ?g1)), <bif:vector> ('linked+data'))) as ?res where { {       select (<SHORT_OR_LONG::>(?s1)) as ?c1,  (<sql:S_SUM> ( <SHORT_OR_LONG::IRI_RANK> (?s1), <SHORT_OR_LONG::>(?s1textp), <SHORT_OR_LONG::>(?o1), ?sc ) ) as ?sm, <SHORT_OR_LONG::>(?g) as ?g1 where  { quad map virtrdf:DefaultQuadMap { graph ?g {  ?s1 ?s1textp ?o1 . ?o1 bif:contains  '\"linked+data\"'  option (score ?sc)  . } }  }order by desc (<sql:sum_rank> ((<sql:S_SUM> ( <SHORT_OR_LONG::IRI_RANK> (?s1), <SHORT_OR_LONG::>(?s1textp), <SHORT_OR_LONG::>(?o1), ?sc ) ) ) ) limit 50  offset 0 }}",
+    "time": 710,
+    "complete": "yes",
+    "timeout": 8000,
+    "db-activity": "32.28K rnd  14.01K seq  15.68K same seg     636 same pg    128 same par      0 disk      0 spec disk      0B /      0 messages      0 fork",
+    "result": {
+      "row": [
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 6193
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/https/e...pplications#Context",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/https/en.wikitolearn.org/Course:How_to_use_Linked_Data/Building_Linked_Data_Applications/Characterization_of_Linked_Data_Applications#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "https://en.wikitolea...d_Data_Applications",
+              "keyValue": "https://en.wikitolearn.org/Course:How_to_use_Linked_Data/Building_Linked_Data_Applications/Characterization_of_Linked_Data_Applications"
+            },
+            "<span class=\"srch_xerpt\">Course:How to use Linked Data Building Linked Data Applications Characterization of Linked Data...   WikiToLearn collaborative textbooks http: linkeddata. uriburner. com about id entity https en. wikitolearn. org Course:How to use Linked Data Building LinkedData</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 5052
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2512989216768#tweet",
+              "keyValue": "https://twitter.com/atomoharu/status/1082092512989216768#tweet"
+            },
+            "Post:[2019-01-06 20:52:14]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Linked Data.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 5052
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2512989216768#tweet",
+              "keyValue": "https://twitter.com/atomoharu/status/1082092512989216768#tweet"
+            },
+            "Post:[2019-01-06 20:52:14]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Linked Data.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4965
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/https/e...d_Data_Applications",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/https/en.wikitolearn.org/Course:How_to_use_Linked_Data/Building_Linked_Data_Applications/Characterization_of_Linked_Data_Applications"
+            },
+            "Course:How to use Linked Data/Building Linked Data Applications/Characterization of Linked Data Applications - WikiToLearn - collaborative textbooks",
+            {
+              "@datatype": "url",
+              "@shortform": "https://en.wikitolea...d_Data_Applications",
+              "keyValue": "https://en.wikitolearn.org/Course:How_to_use_Linked_Data/Building_Linked_Data_Applications/Characterization_of_Linked_Data_Applications"
+            },
+            "<span class=\"srch_xerpt\">Course:How to use Linked Data Building Linked Data Applications Characterization of Linked Data...   WikiToLearn collaborative textbooks.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4800
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.06041152361106
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...7573609930752#tweet",
+              "keyValue": "https://twitter.com/hectorjcorrea/status/1129037573609930752#tweet"
+            },
+            "Post:[2019-05-16 10:55:08]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Great post on Linked Data: Linked Data is Made of Systems http: ruthtillman. com linked data is made of systems by ruthbrarian.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4800
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.06041152361106
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...7573609930752#tweet",
+              "keyValue": "https://twitter.com/hectorjcorrea/status/1129037573609930752#tweet"
+            },
+            "Post:[2019-05-16 10:55:08]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Great post on Linked Data: Linked Data is Made of Systems http: ruthtillman. com linked data is made of systems by ruthbrarian.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4645
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/https/v...mBL_v3.html#%282%29",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/https/virtuoso.openlinksw.com/presentations/Creating_Deploying_Exploiting_Linked_Data2/Creating_Deploying_Exploiting_Linked_Data2_TimBL_v3.html#%282%29"
+            },
+            "Presentation Goals",
+            {
+              "@datatype": "url",
+              "@shortform": "https://virtuoso.ope...Data2_TimBL_v3.html",
+              "keyValue": "https://virtuoso.openlinksw.com/presentations/Creating_Deploying_Exploiting_Linked_Data2/Creating_Deploying_Exploiting_Linked_Data2_TimBL_v3.html"
+            },
+            "<span class=\"srch_xerpt\">Presentation Goals Demystify Linked Data Demonstrate the unobtrusive nature of Linked Data Explore how...  Data can Work for You.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4645
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:https/en.wikit...d_Data_Applications",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/https/en.wikitolearn.org/Course:How_to_use_Linked_Data/Building_Linked_Data_Applications/Characterization_of_Linked_Data_Applications"
+            },
+            "https://en.wikitolearn.org/Course:How_to_use_Linked_Data/Building_Linked_Data_Applications/Characterization_of_Linked_Data_Applications",
+            {
+              "@datatype": "url",
+              "@shortform": "https://en.wikitolea...d_Data_Applications",
+              "keyValue": "https://en.wikitolearn.org/Course:How_to_use_Linked_Data/Building_Linked_Data_Applications/Characterization_of_Linked_Data_Applications"
+            },
+            "<span class=\"srch_xerpt\">https: en. wikitolearn. org Course:How to use Linked Data Building Linked Data Applications Characterization of LinkedData</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4444
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/https/c...ed+data&te=#Context",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/https/cran.ent.sirsidynix.net.uk/client/en_GB/knl/search/results?qu=linked+data&amp;te=#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "https://cran.ent.sir...?qu=linked+data&te=",
+              "keyValue": "https://cran.ent.sirsidynix.net.uk/client/en_GB/knl/search/results?qu=linked+data&amp;te="
+            },
+            "<span class=\"srch_xerpt\">... uk client en GB knl search results qu <b>linked</b> data te content https: cran. uk client en GB knl search results qu <b>linked</b> data te Linked data Linked Data Data Structures O Reilly Media...</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4430
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/http/op...for_Techies#Context",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/http/openorg.ecs.soton.ac.uk/wiki/Linked_Data_Basics_for_Techies#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "http://openorg.ecs.s..._Basics_for_Techies",
+              "keyValue": "http://openorg.ecs.soton.ac.uk/wiki/Linked_Data_Basics_for_Techies"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Basics for Techies OpenOrg http: linkeddata. uriburner. com about id entity http openorg. ecs. soton. ac. uk wiki Linked Data Basics for Techies content TED talks Linked Data Open Data Tim Berners Lee Why ShouldI  http: openorg. ecs. soton. ac. uk wiki Linked Data Basics for Techies Incomputing,</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4363
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.06041152361106
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...6277079109632#tweet",
+              "keyValue": "https://twitter.com/NRICPT/status/1159756277079109632#tweet"
+            },
+            "Post:[2019-08-09 05:20:18]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">2019 6 25 Linked Data Linked Data https: www. tobunken. go. jp materials katudo 818006. html.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4363
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.06041152361106
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...6277079109632#tweet",
+              "keyValue": "https://twitter.com/NRICPT/status/1159756277079109632#tweet"
+            },
+            "Post:[2019-08-09 05:20:18]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">2019 6 25 Linked Data Linked Data https: www. tobunken. go. jp materials katudo 818006. html.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4363
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/http/qu...gments.org/#Context",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/http/query.linkeddatafragments.org/#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "http://query.linkeddatafragments.org/",
+              "keyValue": "http://query.linkeddatafragments.org/"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Fragments client http: linkeddata. uriburner. com about id entity http query. linkeddatafragments. org content Linked Data Ghent University Source code http: query. linkeddatafragments. org In computing, linked data often capitalized as Linked Data is a method of publishing structureddata  that itcan</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4173
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.379991566414591
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...9727623225345#tweet",
+              "keyValue": "https://twitter.com/VandyLibraries/status/1094959727623225345#tweet"
+            },
+            "Post:[2019-02-11 09:01:57]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Working Group: Introduction to Linked Data III; SELECT SPARQL queries.  The Wikibase Wikidata graph model on Feb 11 from 12:10 1:00 in Eskind Biomedical Library TrainingRoom   vandylibraries https: bit. ly 2DJMuf6 pic. twitter. com WmNOyia7du.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4173
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.379991566414591
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...9727623225345#tweet",
+              "keyValue": "https://twitter.com/VandyLibraries/status/1094959727623225345#tweet"
+            },
+            "Post:[2019-02-11 09:01:57]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Working Group: Introduction to Linked Data III; SELECT SPARQL queries.  The Wikibase Wikidata graph model on Feb 11 from 12:10 1:00 in Eskind Biomedical Library TrainingRoom   vandylibraries https: bit. ly 2DJMuf6 pic. twitter. com WmNOyia7du.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4173
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 0.1954199534433994
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2277579968512#tweet",
+              "keyValue": "https://twitter.com/ConWeaverGmbH/status/1129322277579968512#tweet"
+            },
+            "Post:[2019-05-17 05:46:27]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Approaches Expertenaustausch auf dem Linked Data Day pic. twitter. com f6Y7IxjCaU.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4173
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 0.1954199534433994
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2277579968512#tweet",
+              "keyValue": "https://twitter.com/ConWeaverGmbH/status/1129322277579968512#tweet"
+            },
+            "Post:[2019-05-17 05:46:27]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Approaches Expertenaustausch auf dem Linked Data Day pic. twitter. com f6Y7IxjCaU.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4173
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/http/pd...torial.html#Context",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/http/pdd.wangmengsd.com/Tutorial.html#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "http://pdd.wangmengsd.com/Tutorial.html",
+              "keyValue": "http://pdd.wangmengsd.com/Tutorial.html"
+            },
+            "<span class=\"srch_xerpt\">PDD Graph MIMIC III to Linked Data Cloud http: linkeddata. uriburner. com about id entity http pdd. wangmengsd. com Tutorial. html content Linked Data http: pdd. wangmengsd. com Tutorial. html In computing, linked data often capitalized as Linked Data is a method of publishing structureddata  that it canbe</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 7.874533966547222
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/linkeddatanl#this",
+              "keyValue": "https://twitter.com/linkeddatanl#this"
+            },
+            "pldn",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Platform Netherlands is a meeting place for linked data experts and a guide for those...  in linked data.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 7.874533966547222
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/linkeddatanl#this",
+              "keyValue": "https://twitter.com/linkeddatanl#this"
+            },
+            "pldn",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:twitter:analytics:kidehen",
+              "keyValue": "urn:twitter:analytics:kidehen"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Platform Netherlands is a meeting place for linked data experts and a guide for those...  in linked data.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...5652183396354#tweet",
+              "keyValue": "https://twitter.com/carissapffffft/status/1117035652183396354#tweet"
+            },
+            "Post:[2019-04-13 08:03:47]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Is it Linked Data I feel like Linked Data could ve been mine, too.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...5652183396354#tweet",
+              "keyValue": "https://twitter.com/carissapffffft/status/1117035652183396354#tweet"
+            },
+            "Post:[2019-04-13 08:03:47]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Is it Linked Data I feel like Linked Data could ve been mine, too.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...0629880025089#tweet",
+              "keyValue": "https://twitter.com/artefactors/status/1085190629880025089#tweet"
+            },
+            "Post:[2019-01-15 10:03:02]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Linked Data, Unlinked Communities https: www. ladyscience. com blog linked data unlinked communities via ladyxscience pic. twitter. com 6v0X66CKRL.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...1433048846336#tweet",
+              "keyValue": "https://twitter.com/python_IT_jobs/status/1094491433048846336#tweet"
+            },
+            "Post:[2019-02-10 02:01:06]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Semantic Web Linked Data Scientist: Semantic Web Linked Data Scientist Introduction:The Johns Hopkins...  Applied Physics Laboratory APL , a national leader in scientific research and development, located...  between Baltimore and...  ...  ...  ...  ...  ... </span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2304133480448#tweet",
+              "keyValue": "https://twitter.com/Alaska_hired/status/1094242304133480448#tweet"
+            },
+            "Post:[2019-02-09 09:31:10]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Semantic Web Linked Data Scientist: Semantic Web Linked Data Scientist Introduction:The Johns Hopkins...  Applied Physics Laboratory APL , a national leader in scientific research and development, located...  between Baltimore and...  ...  ...  ...  ...  ... </span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2304133480448#tweet",
+              "keyValue": "https://twitter.com/Alaska_hired/status/1094242304133480448#tweet"
+            },
+            "Post:[2019-02-09 09:31:10]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Semantic Web Linked Data Scientist: Semantic Web Linked Data Scientist Introduction:The Johns Hopkins...  Applied Physics Laboratory APL , a national leader in scientific research and development, located...  between Baltimore and...  ...  ...  ...  ...  ... </span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2840403738624#tweet",
+              "keyValue": "https://twitter.com/tanarisuu/status/1171652840403738624#tweet"
+            },
+            "Post:[2019-09-11 01:13:00]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked Data linkeddata linkedopendata https: www. slideshare. net KoujiKozaki linked data 76290775 SlideShare.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...1433048846336#tweet",
+              "keyValue": "https://twitter.com/python_IT_jobs/status/1094491433048846336#tweet"
+            },
+            "Post:[2019-02-10 02:01:06]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Semantic Web Linked Data Scientist: Semantic Web Linked Data Scientist Introduction:The Johns Hopkins...  Applied Physics Laboratory APL , a national leader in scientific research and development, located...  between Baltimore and...  ...  ...  ...  ...  ... </span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...0629880025089#tweet",
+              "keyValue": "https://twitter.com/artefactors/status/1085190629880025089#tweet"
+            },
+            "Post:[2019-01-15 10:03:02]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked Data, Unlinked Communities https: www. ladyscience. com blog linked data unlinked communities via ladyxscience pic. twitter. com 6v0X66CKRL.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2840403738624#tweet",
+              "keyValue": "https://twitter.com/tanarisuu/status/1171652840403738624#tweet"
+            },
+            "Post:[2019-09-11 01:13:00]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Linked Data linkeddata linkedopendata https: www. slideshare. net KoujiKozaki linked data 76290775 SlideShare.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 4000
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://linkeddata.u...totype.html#Context",
+              "keyValue": "https://linkeddata.uriburner.com/about/id/entity/https/www.oclc.org/research/themes/data-science/linkeddata/linked-data-prototype.html#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "https://www.oclc.org...data-prototype.html",
+              "keyValue": "https://www.oclc.org/research/themes/data-science/linkeddata/linked-data-prototype.html"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Prototype https: linkeddata. uriburner. com about id entity https www. oclc. org research themes data science linkeddata linked data prototype. html content Linked Data Harvard University Princeton University American University YaleUniversity  University</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3934
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://linkeddata.u...-data-apps/#Context",
+              "keyValue": "https://linkeddata.uriburner.com/about/id/entity/https/ruben.verborgh.org/blog/2019/06/17/shaping-linked-data-apps/#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "https://ruben.verbor...g-linked-data-apps/",
+              "keyValue": "https://ruben.verborgh.org/blog/2019/06/17/shaping-linked-data-apps/"
+            },
+            "<span class=\"srch_xerpt\">Shaping Linked Data apps Ruben Verborgh https: linkeddata. uriburner. com about id entity https ruben. verborgh. org blog 2019 06 17 shaping linked data apps content Ed Sheeran Linked Data In essence Semantic WebTim -Lee Shaping Linked Data apps https: ruben. verborgh. org blog 2019 06 17shaping</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3870
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/http/pd...tology.html#Context",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/http/pdd.wangmengsd.com/Ontology.html#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "http://pdd.wangmengsd.com/Ontology.html",
+              "keyValue": "http://pdd.wangmengsd.com/Ontology.html"
+            },
+            "<span class=\"srch_xerpt\">PDD Graph An RDF Graph to Bridge MIMIC III and Linked Data Cloud MIMIC III to Linked Data Cloud http:... uriburner. com about id entity http pdd. wangmengsd. com Ontology. html content Linked Data Body Mass Index RDF Graph http: pdd. wangmengsd. com Ontology. html In computing, linked data often capitalizedas</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3840
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...6613095723008#tweet",
+              "keyValue": "https://twitter.com/Feedjunknl/status/1089156613095723008#tweet"
+            },
+            "Post:[2019-01-26 08:42:26]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Slagen met linked data Onlangs hield het Platform Linked Data Nederland PLDN een congres op de...  locatie van Beeld Geluid op het Media Park Hilversum.  Behalve sprekers van het ministerie van OCW, het Kadaster en DUO, was datahub leverancie http: bit. ly</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3840
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...0012468695040#tweet",
+              "keyValue": "https://twitter.com/UniboDHDK/status/1120630012468695040#tweet"
+            },
+            "Post:[2019-04-23 06:06:29]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Linked Data per i Beni Culturali https: site. unibo. it linked data per i beni culturali it.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3840
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...0012468695040#tweet",
+              "keyValue": "https://twitter.com/UniboDHDK/status/1120630012468695040#tweet"
+            },
+            "Post:[2019-04-23 06:06:29]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked Data per i Beni Culturali https: site. unibo. it linked data per i beni culturali it.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3840
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...6613095723008#tweet",
+              "keyValue": "https://twitter.com/Feedjunknl/status/1089156613095723008#tweet"
+            },
+            "Post:[2019-01-26 08:42:26]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Slagen met linked data Onlangs hield het Platform Linked Data Nederland PLDN een congres op de...  locatie van Beeld Geluid op het Media Park Hilversum.  Behalve sprekers van het ministerie van OCW, het Kadaster en DUO, was datahub leverancie http: bit. ly</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3840
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://linkeddata.u...inked-data/#Context",
+              "keyValue": "https://linkeddata.uriburner.com/about/id/entity/http/www.mkbergman.com/447/what-is-linked-data/#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "http://www.mkbergman...hat-is-linked-data/",
+              "keyValue": "http://www.mkbergman.com/447/what-is-linked-data/"
+            },
+            "<span class=\"srch_xerpt\">What is Linked Data AI3:::Adaptive Information Linked Data is a set of best practices for publishing and...  instance and class data using the RDF data model, naming the data objects using uniform resource...   URIs , and exposing the data for...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ... </span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3840
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 5.881291583872891e-14
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "proxy:entity/http/ww...linked-data#Context",
+              "keyValue": "http://linkeddata.uriburner.com/about/id/entity/http/www.mkbergman.com/447/what-is-linked-data#Context"
+            },
+            true,
+            {
+              "@datatype": "url",
+              "@shortform": "http://www.mkbergman...what-is-linked-data",
+              "keyValue": "http://www.mkbergman.com/447/what-is-linked-data"
+            },
+            "<span class=\"srch_xerpt\">What is Linked Data AI3:::Adaptive Information Linked Data is a set of best practices for publishing and...  instance and class data using the RDF data model, naming the data objects using uniform resource...   URIs , and exposing the data for...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ...  ... </span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3789
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.06041152361106
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...4524070006784#tweet",
+              "keyValue": "https://twitter.com/teioh/status/1113964524070006784#tweet"
+            },
+            "Post:[2019-04-04 20:40:13]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Librarian friends: linked data amirite Me: y, yeah, right, linked data it s just, like, so linked...  friends: Me, sweating: linked data is the best Librarian friends: Me, hyperventilating: w, we should...  link all the data.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3789
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.06041152361106
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...4524070006784#tweet",
+              "keyValue": "https://twitter.com/teioh/status/1113964524070006784#tweet"
+            },
+            "Post:[2019-04-04 20:40:13]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Librarian friends: linked data amirite Me: y, yeah, right, linked data it s just, like, so linked...  friends: Me, sweating: linked data is the best Librarian friends: Me, hyperventilating: w, we should...  link all the data.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...9237921529856#tweet",
+              "keyValue": "https://twitter.com/aaranged/status/1133099237921529856#tweet"
+            },
+            "Post:[2019-05-27 15:54:44]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Intros to linked data 2 3 https: medium. com wallscope linked data a conceptual exploration 9860a1f44d68.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...5296695672832#tweet",
+              "keyValue": "https://twitter.com/marianacmalta/status/1082205296695672832#tweet"
+            },
+            "Post:[2019-01-07 04:20:23]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked data and terminologies https: jogracia. wordpress. com 2019 01 03 linked data and terminologies via wordpressdotcom.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...5296695672832#tweet",
+              "keyValue": "https://twitter.com/marianacmalta/status/1082205296695672832#tweet"
+            },
+            "Post:[2019-01-07 04:20:23]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Linked data and terminologies https: jogracia. wordpress. com 2019 01 03 linked data and terminologies via wordpressdotcom.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 3
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...9237921529856#tweet",
+              "keyValue": "https://twitter.com/aaranged/status/1133099237921529856#tweet"
+            },
+            "Post:[2019-05-27 15:54:44]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Intros to linked data 2 3 https: medium. com wallscope linked data a conceptual exploration 9860a1f44d68.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.379991566414591
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...7121280303104#tweet",
+              "keyValue": "https://twitter.com/rob_van_dort/status/1095647121280303104#tweet"
+            },
+            "Post:[2019-02-13 06:33:24]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Hi Martynas, my view on editing Linked Data: Linked Data is meant for publishing data on the Web, not for...  management.   See https: en. wikipedia. org wiki Linked data , first sentence.  My strong views: 1 use Linked Data just for publishing data 2 CRUD is too limited for most needs.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.379991566414591
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...7121280303104#tweet",
+              "keyValue": "https://twitter.com/rob_van_dort/status/1095647121280303104#tweet"
+            },
+            "Post:[2019-02-13 06:33:24]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Hi Martynas, my view on editing Linked Data: Linked Data is meant for publishing data on the Web, not for...  management.   See https: en. wikipedia. org wiki Linked data , first sentence.  My strong views: 1 use Linked Data just for publishing data 2 CRUD is too limited for most needs.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.379991566414591
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...5043429859328#tweet",
+              "keyValue": "https://twitter.com/ITsEasyTraining/status/1147125043429859328#tweet"
+            },
+            "Post:[2019-07-05 08:48:17]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:demo:tweet-analytics",
+              "keyValue": "urn:demo:tweet-analytics"
+            },
+            "<span class=\"srch_xerpt\">Visio Linked Data https: stevesaxton. wordpress. com 2019 07 05 visio linked data.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 2.379991566414591
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...5043429859328#tweet",
+              "keyValue": "https://twitter.com/ITsEasyTraining/status/1147125043429859328#tweet"
+            },
+            "Post:[2019-07-05 08:48:17]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Visio Linked Data https: stevesaxton. wordpress. com 2019 07 05 visio linked data.</span>"
+          ]
+        },
+        {
+          "column": [
+            {
+              "@datatype": "trank",
+              "keyValue": 3692
+            },
+            {
+              "@datatype": "erank",
+              "keyValue": 1.389239969881927
+            },
+            {
+              "@datatype": "url",
+              "@shortform": "https://twitter.com/...2586606751747#tweet",
+              "keyValue": "https://twitter.com/Libraried/status/1123662586606751747#tweet"
+            },
+            "Post:[2019-05-01 14:56:51]",
+            {
+              "@datatype": "url",
+              "@shortform": "urn:tweets:kg",
+              "keyValue": "urn:tweets:kg"
+            },
+            "<span class=\"srch_xerpt\">Linked Data Principles: Cataloguing of new records by using linked data formats.  We need to recognized we will have side by side, multiple formats, moving forward.</span>"
+          ]
+        }
+      ],
+      "@type": "text-d"
+    }
+  }
+}
