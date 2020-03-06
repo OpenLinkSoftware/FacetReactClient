@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import FctView from './FctView';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -47,15 +48,24 @@ export default class FctRspClssRslt extends React.Component {
         let classURI = cols[0].keyValue;
         let classCurie = cols[0]["@shortform"];
         let typeColVal;
+        let dataType = cols[0]["@datatype"];
 
-        if (cols[0]["@datatype"] === "uri") {
+        let actionOpts = {
+          action: FctView.fctViewAction('classes'),
+          iri: classURI,
+          dataType,
+          lang: null
+        };
+        let href = FctView.fctBuildAction(actionOpts);
+
+        if (dataType === "uri") {
           // typeof cols[1] is 'string' or 'boolean'
           if (typeof cols[1] === 'string') {
             let classLabel = cols[1];
-            typeColVal = <Link to={classURI}>{classLabel}</Link>;
+            typeColVal = <Link to={href}>{classLabel}</Link>;
           }
           else {
-            typeColVal = <Link to={classURI}>{classCurie}</Link>;
+            typeColVal = <Link to={href}>{classCurie}</Link>;
           }
         }
         else {

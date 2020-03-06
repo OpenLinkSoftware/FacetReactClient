@@ -331,6 +331,15 @@ class FctClient extends React.Component {
           this.props.action.negate
         );
         break;
+      case "setClass":
+        // - Add filter: ?s[n] is an instance of the given class. 
+        //     e.g. ?s1 is a skiresort:SkiResort 
+        // Create XML element:
+        // <class>
+        console.log('FctClient#performUiAction: setClass:', this.props.action.classIri);
+        this.fctQuery.setSubjectClass(this.props.action.classIri);
+        this.fctQuery.setViewType(this.props.viewType);
+        break;
     }
   }
 

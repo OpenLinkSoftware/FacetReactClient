@@ -35,15 +35,6 @@ export default class FctView
   }
 
   static fctBuildAction(actionOpts) {
-    /*
-    let path = '/';
-    let qs = '?';
-    qs += `action=${actionOpts.action}`;
-    qs += `&iri=${encodeURIComponent(actionOpts.iri)}`;
-    qs += `&dataType=${actionOpts.dataType}`;
-    return `${path}${qs}`;
-    */
-
     let path = '/';
     let qs = '?';
     let qsSep = '';

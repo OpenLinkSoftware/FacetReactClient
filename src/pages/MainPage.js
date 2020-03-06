@@ -38,7 +38,10 @@ export default function MainPage({location}) {
           // Example equivalent /fct link
           // View shows: ?s1 has <any Attribute> with Value "skiing" 
           // The <any Attribute> link is:
-          // http://localhost:8896/fct/facet.vsp?sid=22&cmd=set_view&type=text-properties&limit=20&offset=0&cno=0
+          // http://linkeddata.uriburner.com/fct/facet.vsp?
+          //   cmd=set_view&
+          //   type=text-properties&limit=20&offset=0&cno=0
+          //   &sid=22
           action.viewType = qryStrParams.viewType;
           action.ts = new Date().getTime(); 
           // TO DO: Act on limit, offset and cno query string params
@@ -130,6 +133,22 @@ export default function MainPage({location}) {
             default:
               throw new Error("Unrecognized condition type (cond_t):", qryStrParams.cond_t);
           }
+          break;
+        case "setClass":
+          console.log('MainPage: Action: setClass');
+          // Example equivalent /fct link
+          // http://linkeddata.uriburner.com/fct/facet.vsp?
+          //   cmd=set_class&
+          //   iri=http%3A%2F%2Fwww.openlinksw.com%2Fski_resorts%2Fschema%23SkiResort&
+          //   lang=&datatype=uri&sid=901795
+          action.viewType = 'text-d';
+          action.action =  {
+            name: qryStrParams.action, 
+            classIri: qryStrParams.iri, 
+            // dataType,
+            // lang
+          };
+          action.ts = new Date().getTime();
           break;
         default:
           throw new Error("Unrecognized action:", qryStrParams.action);
