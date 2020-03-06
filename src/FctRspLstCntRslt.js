@@ -1,4 +1,4 @@
-// A component to display the <fct:result type="classes"> element of a Facet service response.
+// A component to display the <fct:result type="list-count"> element of a Facet service response.
 
 import React from 'react';
 
