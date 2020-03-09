@@ -9,6 +9,7 @@ export default class FctFilters extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = { viewSubjectIndex: props.viewSubjectIndex };
     this.onSetSubjectFocus = props.onSetSubjectFocus;
     this.onDropQueryText = props.onDropQueryText;
     this.onDropQueryFilter = props.onDropQueryFilter;
@@ -21,12 +22,12 @@ export default class FctFilters extends React.Component {
   }
 
   subjectClickHndlr(subjectId, e) {
-    // e.preventDefault();
+    e.preventDefault();
     this.onSetSubjectFocus(subjectId);
   }
 
   dropTextClickHndlr(e) {
-    // e.preventDefault();
+    e.preventDefault();
     this.onDropQueryText();
   }
 
@@ -45,13 +46,12 @@ export default class FctFilters extends React.Component {
         let rMatch = /\d+/.exec(subjDesc.value);
         let subjIndx = rMatch ? Number(rMatch[0]) : 0;
         let title = `Set focus to ${subjDesc.value}`;
-        // TO DO:
-        // Set class on <a> to highlight which $s<n> has the focus.
-        // The subject has the focus if subjIndx === FctQuery.getViewSubjectIndex()
-        //
         // Equivalent to:
         // /fct/facet.vsp?cmd=set_focus&sid=%d&n=%d
-        return <a href="/" title={title}
+        let ancStyle = {};
+        if (subjIndx === this.state.viewSubjectIndex)
+          ancStyle = { color: 'red', fontWeight: 'bold' }; // FIX ME: Duplicated in objectHtml function
+        return <a style={ancStyle} href="/" title={title}
           onClick={(e) => this.subjectClickHndlr(subjIndx, e)}>{subjDesc.value}</a>
       }
       else
@@ -228,7 +228,10 @@ export default class FctFilters extends React.Component {
         let rMatch = /\d+/.exec(objDesc.value);
         let objIndx = rMatch ? Number(rMatch[0]) : 0;
         let title = `Set focus to ${objDesc.value}`;
-        return <a href="#" title={title}
+        let ancStyle = {};
+        if (objIndx === this.state.viewSubjectIndex)
+          ancStyle = { color: 'red', fontWeight: 'bold' };
+        return <a style={ancStyle} href="/" title={title}
           onClick={(e) => this.subjectClickHndlr(objIndx, e)}>{objDesc.value}</a>
       }
       else if (objDesc.type === 'uri') {
@@ -315,6 +318,10 @@ export default class FctFilters extends React.Component {
       }
     }
     return `${path}${queryString}`;
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    return { viewSubjectIndex: props.viewSubjectIndex };
   }
 
 }

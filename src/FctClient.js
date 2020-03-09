@@ -38,6 +38,7 @@ class FctClient extends React.Component {
       searchText: "",
       fctResult: null,
       viewType: props.viewType || FCT_CLIENT_DFLT_VIEW_TYPE,
+      viewSubjectIndex: 1,
       tripleTerminology: "eav",   // TO DO: Initialize from UI control. spo | eav
       preset: "none",
     };
@@ -59,6 +60,7 @@ class FctClient extends React.Component {
 
     this.fctQuery = new FctQuery();
     this.fctQuery.setViewType(FCT_CLIENT_DFLT_VIEW_TYPE);
+    // this.fctQuery.setViewSubjectIndex(1);
     this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
     this.fctQuery.setViewLimit(this.viewLimit);
   }
@@ -140,13 +142,18 @@ class FctClient extends React.Component {
 
   handleSetSubjectFocus(subjectId) {
     console.log('FctClient#handleSetSubjectFocus: subjectId:', subjectId) // TO DO: Remove
-    // this.fctQuery.setViewSubjectIndex(subjectId); // TO DO: Enable
+    let newView = subjectId == 1 ? 'text-d' : 'list';
+    this.fctQuery.setViewSubjectIndex(subjectId);
+    this.setState({ viewSubjectIndex: subjectId, viewType: newView }); // Async!
+    // this.fctQuery.setViewType(newView);
+    // this.search();
+    this.updateView(newView);
   }
 
   handleDropQueryFilter(filterId) {
     console.log('FctClient#handleDropQueryFilter: filterId:', filterId) // TO DO: Remove
-    this.fctQuery.removeQueryFilter(filterId);
-    this.search();
+    this.fctQuery.removeQueryFilter(filterId); // May change the view type if the removed filter had the subject focus
+    this.updateView(this.fctQuery.getViewType());
   }
 
   handleDropQueryText() {
@@ -159,6 +166,7 @@ class FctClient extends React.Component {
     const dbActivity = this.state.fctResult ? this.state.fctResult.json.facets["db-activity"] : '';
     const qryResult = this.state.fctResult ? this.state.fctResult.json.facets.result : null;
     const qryFilters = this.fctQuery.queryFilterDescriptors();
+    const viewSubjectIndex = this.fctQuery.getViewSubjectIndex();
 
     // TO DO: Build the options names/values from the presets map contents.
 
@@ -215,6 +223,7 @@ class FctClient extends React.Component {
         <p>Component: FctFilters</p>
         <div style={componentContainerStyle}>
           <FctFilters
+            viewSubjectIndex={viewSubjectIndex}
             qryFilters={qryFilters}
             tripleTerminology={this.state.tripleTerminology}
             onSetSubjectFocus={this.handleSetSubjectFocus}
