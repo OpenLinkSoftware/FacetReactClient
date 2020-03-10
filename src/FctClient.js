@@ -49,7 +49,6 @@ class FctClient extends React.Component {
     this.handlePresetChange = this.handlePresetChange.bind(this); // TO DO: Remove once testing complete
     this.handleSetSubjectFocus = this.handleSetSubjectFocus.bind(this);
     this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
-    this.handleDropQueryText = this.handleDropQueryText.bind(this);
 
     // viewLimit may be overridden in the UI.
     // TO DO: Add UI control and intialize to FctQuery default.
@@ -85,16 +84,20 @@ class FctClient extends React.Component {
   }
 
   search() {
-    this.fctQuery.execute()
-      .then(qryResult => {
-        this.setState({ fctResult: qryResult });
-      })
-      .catch(err => {
-        // TO DO: 
-        // Display the error in the UI
-        // Facet does return some error text. e.g. sparql compilation on invalid XML.
-        console.log('FctClient#search: Error: ' + err.message);
-      });
+    if (!this.fctQuery.queryText)
+      this.setState({ fctResult: null });
+    else {
+      this.fctQuery.execute()
+        .then(qryResult => {
+          this.setState({ fctResult: qryResult });
+        })
+        .catch(err => {
+          // TO DO: 
+          // Display the error in the UI
+          // Facet does return some error text. e.g. sparql compilation on invalid XML.
+          console.log('FctClient#search: Error: ' + err.message);
+        });
+    }
   }
   
   handleViewChange(event) {
@@ -153,12 +156,10 @@ class FctClient extends React.Component {
   handleDropQueryFilter(filterId) {
     console.log('FctClient#handleDropQueryFilter: filterId:', filterId) // TO DO: Remove
     this.fctQuery.removeQueryFilter(filterId); // May change the view type if the removed filter had the subject focus
+    // If the removed filter was a <text> element, clear the searchInputEditor input to reflect this.
+    if (!this.fctQuery.queryText)
+      this.handleSearchInputEditorChange("");
     this.updateView(this.fctQuery.getViewType());
-  }
-
-  handleDropQueryText() {
-    console.log('FctClient#handleDropQueryText') // TO DO: Remove
-    // this.fctQuery.removeQueryText(); // TO DO: Enable
   }
 
   render() {
@@ -228,7 +229,6 @@ class FctClient extends React.Component {
             tripleTerminology={this.state.tripleTerminology}
             onSetSubjectFocus={this.handleSetSubjectFocus}
             onDropQueryFilter={this.handleDropQueryFilter}
-            onDropQueryText={this.handleDropQueryText}
           />
         </div>
 

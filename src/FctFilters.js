@@ -11,11 +11,9 @@ export default class FctFilters extends React.Component {
     super(props);
     this.state = { viewSubjectIndex: props.viewSubjectIndex };
     this.onSetSubjectFocus = props.onSetSubjectFocus;
-    this.onDropQueryText = props.onDropQueryText;
     this.onDropQueryFilter = props.onDropQueryFilter;
 
     this.subjectClickHndlr = this.subjectClickHndlr.bind(this);
-    this.dropTextClickHndlr = this.dropTextClickHndlr.bind(this);
     this.dropFilterClickHndlr = this.dropFilterClickHndlr.bind(this);
 
     this.fctUiUtil = new FctUiUtil(this.props.tripleTerminology);
@@ -24,11 +22,6 @@ export default class FctFilters extends React.Component {
   subjectClickHndlr(subjectId, e) {
     e.preventDefault();
     this.onSetSubjectFocus(subjectId);
-  }
-
-  dropTextClickHndlr(e) {
-    e.preventDefault();
-    this.onDropQueryText();
   }
 
   dropFilterClickHndlr(filterId, e) {
