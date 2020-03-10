@@ -162,7 +162,7 @@ export default function MainPage({location}) {
 
   return (
     <div className="container">
-      <h2>Facets Components - Test page</h2>
+      <h5>Facets Components - Test page</h5>
         <FctClient {...action}></FctClient>
     </div>
   )

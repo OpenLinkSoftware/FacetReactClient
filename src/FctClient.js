@@ -17,15 +17,17 @@ presets.set('filters1', fixtureFilters1);
 
 import FctRspDbActvty from './FctRspDbActvty';
 import FctRspRslt from './FctRspRslt';
+import FctRspLimit from './FctRspLimit';
+import FctRspPager from './FctRspPager';
 import FctSearchInputEditor from './FctSearchInputEditor';
 import FctFilters from './FctFilters';
 
 const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
 
 const componentContainerStyle = {
-  padding: '10px',
+  padding: '5px',
   border: 'solid 2px lightgray',
-  marginBottom: '20px'
+  marginBottom: '5px'
 }
 // 
 
@@ -49,19 +51,21 @@ class FctClient extends React.Component {
     this.handlePresetChange = this.handlePresetChange.bind(this); // TO DO: Remove once testing complete
     this.handleSetSubjectFocus = this.handleSetSubjectFocus.bind(this);
     this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
+    this.handleRowLimitChange = this.handleRowLimitChange.bind(this);
 
     // viewLimit may be overridden in the UI.
     // TO DO: Add UI control and intialize to FctQuery default.
-    this.viewLimit = FctQuery.FCT_QRY_DFLT_VIEW_LIMIT; 
+    // this.viewLimit = FctQuery.FCT_QRY_DFLT_VIEW_LIMIT; 
+    this.viewLimit = 50; 
     // serviceEndpoint may be overridden in the UI.
     // TO DO: Add UI control and initialize to FctQuery default.
     this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT; 
 
     this.fctQuery = new FctQuery();
     this.fctQuery.setViewType(FCT_CLIENT_DFLT_VIEW_TYPE);
-    // this.fctQuery.setViewSubjectIndex(1);
     this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
     this.fctQuery.setViewLimit(this.viewLimit);
+    console.log('CMSB68')
   }
 
   handleSearchInputEditorChange(searchInputEditorText) {
@@ -110,7 +114,6 @@ class FctClient extends React.Component {
       this.fctQuery.setViewType(viewType);
     }
     if (this.state.fctResult)
-      // this.handleSearch(this.state.searchText); // Update any existing results to reflect the new view
       this.search(); // Update any existing results to reflect the new view
   }
 
@@ -129,15 +132,12 @@ class FctClient extends React.Component {
 
     // Update the UI:
     // Set the controls holding Facet request inputs to match the preset's settings.
-    // Relevant controls: FctSearchInputEditor, Preset select list, View select list
     this.setState({ 
       searchText: this.fctQuery.queryText, 
       preset: presetKey,  
       fctResult: null, 
       viewType: this.fctQuery.getViewType(), 
     }); // Async!
-
-    // Update the UI:
     // - Perform a new search based on the new search text.
     // - The UI controls holding the Facet response output will be updated automatically.
     this.handleSearch(this.fctQuery.queryText);
@@ -148,8 +148,6 @@ class FctClient extends React.Component {
     let newView = subjectId == 1 ? 'text-d' : 'list';
     this.fctQuery.setViewSubjectIndex(subjectId);
     this.setState({ viewSubjectIndex: subjectId, viewType: newView }); // Async!
-    // this.fctQuery.setViewType(newView);
-    // this.search();
     this.updateView(newView);
   }
 
@@ -162,33 +160,25 @@ class FctClient extends React.Component {
     this.updateView(this.fctQuery.getViewType());
   }
 
+  handleRowLimitChange(limit) {
+    console.log('FctClient#handleRowLimitChange: limit:', limit) // TO DO: Remove
+    this.fctQuery.setViewLimit(limit);
+    this.search();
+  }
+
   render() {
     console.log('FctClient#render: this.props:', this.props);
     const dbActivity = this.state.fctResult ? this.state.fctResult.json.facets["db-activity"] : '';
     const qryResult = this.state.fctResult ? this.state.fctResult.json.facets.result : null;
     const qryFilters = this.fctQuery.queryFilterDescriptors();
     const viewSubjectIndex = this.fctQuery.getViewSubjectIndex();
+    const rowLimit = this.fctQuery.getViewLimit();
 
     // TO DO: Build the options names/values from the presets map contents.
 
     return (
       <div>
-
-        <div className="col-sm-12">
-          <div className="form-group row">
-            <label className="col-sm-1 col-form-label text-right">Preset:</label>
-            <div className="col-sm-3">
-              <select value={this.state.preset} className="custom-select" onChange={this.handlePresetChange}>
-                <option value="none">None</option>
-                <option value="linked_data_tweets">linked data tweets list</option>
-                <option value="ski_resorts_descs">ski resort descriptions</option>
-                <option value="filters1">filters1 (empty resultset)</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <p>Component: FctSearchInputEditor</p>
+        <div>Component: FctSearchInputEditor</div>
         <div style={componentContainerStyle}>
           <FctSearchInputEditor 
             searchText={this.state.searchText} 
@@ -213,15 +203,19 @@ class FctClient extends React.Component {
                 <option value="list">list [vt=list]</option>
               </select>
             </div>
+            <label className="col-sm-1 col-form-label text-right">Preset:</label>
+            <div className="col-sm-3">
+              <select value={this.state.preset} className="custom-select" onChange={this.handlePresetChange}>
+                <option value="none">None</option>
+                <option value="linked_data_tweets">linked data tweets list</option>
+                <option value="ski_resorts_descs">ski resort descriptions</option>
+                <option value="filters1">filters1 (empty resultset)</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <p>Component: FctRspRslt</p>
-        <div style={componentContainerStyle}>
-          <FctRspRslt qryResult={qryResult} />
-        </div>
-
-        <p>Component: FctFilters</p>
+        <div>Component: FctFilters</div>
         <div style={componentContainerStyle}>
           <FctFilters
             viewSubjectIndex={viewSubjectIndex}
@@ -232,7 +226,30 @@ class FctClient extends React.Component {
           />
         </div>
 
-        <p>Component: FctRspDbActivity</p>
+        <div className="col-sm-12">
+          <div className="row">
+            <div className="col-sm-3">
+              <div>Component: FctRspLimit</div>
+              <div style={componentContainerStyle}>
+                <FctRspLimit limit={rowLimit} onChange={this.handleRowLimitChange} />
+              </div>
+            </div>
+            <div className="col-sm-9">
+              <div>Component: FctRspPager</div>
+              <div style={componentContainerStyle}>
+                <FctRspPager qryResult={qryResult} />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>Component: FctRspRslt</div>
+        <div style={componentContainerStyle}>
+          <FctRspRslt qryResult={qryResult} />
+        </div>
+
+
+        <div>Component: FctRspDbActivity</div>
         <div style={componentContainerStyle}>
           <FctRspDbActvty dbActivity={dbActivity} />
         </div>
