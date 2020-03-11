@@ -78,4 +78,61 @@ export default class FctUiUtil {
       .trim();
   }
 
+  /**
+   * @summary
+   * Returns a short description of a Facet view type.
+   * 
+   * @param {string} viewType - the Facet view type.
+   * @param {string} queryText - the current search text.
+   * @param {number} subjectIndex - the index (1-based) of the subject node with the focus.
+   * @returns {string} 
+   * 
+   * @description
+   * Recognised view types are:
+   * classes, entities-list, geo, geo-list, list, list-count, properties, 
+   * properties-in, propval-list, text, text-d, text-properties
+   */
+  fctViewDescription(viewType, queryText, subjectIndex) {
+    let desc;
+    switch (viewType) {
+      case "classes":
+        desc = "types";
+        break;
+      case "entities-list":
+        desc = "matching entities";
+        break;
+      case "geo":
+        desc = "places associated with entities";
+        break;
+      case "geo-list":
+        desc = "entities with geographical location";
+        break;
+      case "list":
+        desc = "list of entities";
+        break;
+      case "list-count":
+        desc = "list of distinct entity names ordered by count";
+        break;
+      case "properties":
+        desc = "properties of entities";
+        break;
+      case "properties-in":
+        desc = "properties referencing entities";
+        break;
+      case "propval-list":
+        desc = "property values";
+        break;
+      case "text":
+      case "text-d":
+        desc = "ranked entity names and text summaries";
+        break;
+      case "text-properties":
+        desc = `properties of ?s${subjectIndex} containing "${queryText}"`;
+        break;
+      default:
+        desc = "";
+    }
+    return desc;
+  }
+
 }

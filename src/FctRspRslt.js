@@ -13,29 +13,40 @@ import FctRspLstRslt from './FctRspLstRslt';
 import FctRspPrpVlLstRslt from './FctRspPrpVlLstRslt';
 
 export default function FctRspRslt(props) {
-  const viewType = props.qryResult ? props.qryResult["@type"] : "empty";
-
+  let viewType = props.qryResult ? props.qryResult["@type"] : "empty";
+  let resultComponent;
   switch (viewType)
   {
     case "text":
-      return <FctRspTxtRslt qryResult={props.qryResult} />;
+      resultComponent = <FctRspTxtRslt qryResult={props.qryResult} />
+      break;
     case "text-d":
-      return <FctRspTxtdRslt qryResult={props.qryResult} />;
+      resultComponent = <FctRspTxtdRslt qryResult={props.qryResult} />
+      break;
     case "text-properties":
-      return <FctRspTxtPrprtsRslt qryResult={props.qryResult} />;
+      resultComponent = <FctRspTxtPrprtsRslt qryResult={props.qryResult} />
+      break;
     case "classes":
-      return <FctRspClssRslt qryResult={props.qryResult} />;
+      resultComponent = <FctRspClssRslt qryResult={props.qryResult} />
+      break;
     case "properties":
-      return <FctRspPrprtsRslt qryResult={props.qryResult} />;
+      resultComponent = <FctRspPrprtsRslt qryResult={props.qryResult} />
+      break;
     case "propval-list":
-      return <FctRspPrpVlLstRslt qryResult={props.qryResult} />;
+      resultComponent = <FctRspPrpVlLstRslt qryResult={props.qryResult} />
+      break;
     case "list":
-      return <FctRspLstRslt qryResult={props.qryResult} />;
+      resultComponent = <FctRspLstRslt qryResult={props.qryResult} />
+      break;
     case "list-count":
-      return <FctRspLstCntRslt qryResult={props.qryResult} />;
+      resultComponent = <FctRspLstCntRslt qryResult={props.qryResult} />
+      break;
     case "empty":
-      return "";
+      resultComponent = "";
+      break;
     default:
       throw new Error(`Unrecognized Facet result view type (${viewType})`);
   }
+
+  return resultComponent;
 }

@@ -1,6 +1,15 @@
 import React from 'react';
 
+import FctUiUtil from './FctUiUtil'; 
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
+import FctRspDbActvty from './FctRspDbActvty';
+import FctRspRslt from './FctRspRslt';
+import FctRspLimit from './FctRspLimit';
+import FctRspPager from './FctRspPager';
+import FctSearchInputEditor from './FctSearchInputEditor';
+import FctFilters from './FctFilters';
+import FctViewHeader from './FctViewHeader';
+
 
 // -- Hardwired test fixtures ----------
 // TO DO: Remove
@@ -14,13 +23,6 @@ presets.set('ski_resorts_descs', fixtureSkiResortsDescs);
 presets.set('filters1', fixtureFilters1);
 
 // -------------------------------------
-
-import FctRspDbActvty from './FctRspDbActvty';
-import FctRspRslt from './FctRspRslt';
-import FctRspLimit from './FctRspLimit';
-import FctRspPager from './FctRspPager';
-import FctSearchInputEditor from './FctSearchInputEditor';
-import FctFilters from './FctFilters';
 
 const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
 
@@ -45,6 +47,8 @@ class FctClient extends React.Component {
       preset: "none",
     };
 
+    this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
+
     this.handleSearchInputEditorChange = this.handleSearchInputEditorChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
@@ -65,7 +69,6 @@ class FctClient extends React.Component {
     this.fctQuery.setViewType(FCT_CLIENT_DFLT_VIEW_TYPE);
     this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
     this.fctQuery.setViewLimit(this.viewLimit);
-    console.log('CMSB68')
   }
 
   handleSearchInputEditorChange(searchInputEditorText) {
@@ -215,12 +218,22 @@ class FctClient extends React.Component {
           </div>
         </div>
 
+        <div>Component: FctViewHeader</div>
+        <div style={componentContainerStyle}>
+          <FctViewHeader 
+            qryResult={qryResult} 
+            fctUiUtil={this.fctUiUtil}
+            queryText={this.fctQuery.queryText}
+            viewSubjectIndex={viewSubjectIndex}
+          />
+        </div>
+
         <div>Component: FctFilters</div>
         <div style={componentContainerStyle}>
           <FctFilters
             viewSubjectIndex={viewSubjectIndex}
             qryFilters={qryFilters}
-            tripleTerminology={this.state.tripleTerminology}
+            fctUiUtil={this.fctUiUtil}
             onSetSubjectFocus={this.handleSetSubjectFocus}
             onDropQueryFilter={this.handleDropQueryFilter}
           />
@@ -247,7 +260,6 @@ class FctClient extends React.Component {
         <div style={componentContainerStyle}>
           <FctRspRslt qryResult={qryResult} />
         </div>
-
 
         <div>Component: FctRspDbActivity</div>
         <div style={componentContainerStyle}>

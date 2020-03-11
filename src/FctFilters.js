@@ -3,8 +3,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import FctUiUtil from './FctUiUtil'; 
-
 export default class FctFilters extends React.Component {
 
   constructor(props) {
@@ -15,8 +13,6 @@ export default class FctFilters extends React.Component {
 
     this.subjectClickHndlr = this.subjectClickHndlr.bind(this);
     this.dropFilterClickHndlr = this.dropFilterClickHndlr.bind(this);
-
-    this.fctUiUtil = new FctUiUtil(this.props.tripleTerminology);
   }
 
   subjectClickHndlr(subjectId, e) {
@@ -129,9 +125,9 @@ export default class FctFilters extends React.Component {
         
         // Replace {{(subject|predicate|object)Term}} placeholders
         let op = predDesc.value;
-        op = op.replace(/\{\{subjectTerm\}\}/g, this.fctUiUtil.fctSubjectTerm());
-        op = op.replace(/\{\{predicateTerm\}\}/g, this.fctUiUtil.fctPredicateTerm());
-        op = op.replace(/\{\{objectTerm\}\}/g, this.fctUiUtil.fctObjectTerm());
+        op = op.replace(/\{\{subjectTerm\}\}/g, this.props.fctUiUtil.fctSubjectTerm());
+        op = op.replace(/\{\{predicateTerm\}\}/g, this.props.fctUiUtil.fctPredicateTerm());
+        op = op.replace(/\{\{objectTerm\}\}/g, this.props.fctUiUtil.fctObjectTerm());
 
         // console.log('op:', op);
 
