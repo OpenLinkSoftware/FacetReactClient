@@ -1,6 +1,7 @@
 // A component to display the <fct:result type="list-count"> element of a Facet service response.
 
 import React from 'react';
+import * as fctUiCommon from './FctUiCommon';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -19,7 +20,7 @@ export default class FctRspLstCntRslt extends React.Component {
   }
 
   render() {
-    let html = "Empty result set";
+    let html = fctUiCommon.emptyResultSetMessage();
     
     if (this.props.qryResult && this.props.qryResult.row)
     {
@@ -28,16 +29,16 @@ export default class FctRspLstCntRslt extends React.Component {
       // Facet list-count result/view column mappings
       const columnHeadings = ['Entity', 'Count'];
 
-      let renderedHeadings = columnHeadings.map(heading => {
-        return `<th>${heading}</th>`;
-      });
-      renderedHeadings = `<thead><tr>${renderedHeadings.join('')}</tr></thead>`;
+      let renderedHeadings = <thead><tr>{
+        columnHeadings.map(heading => {
+          return <th>{heading}</th>;
+        })
+      }</tr></thead>;
 
       let rows = this.props.qryResult.row;
       if (!Array.isArray(rows)) // => a single results row
         rows = [rows];
       let renderedRows = rows.map((row) => {
-        let renderedCols = '';
         let cols = row.column;
         // cols[0]: class URI (@keyValue) + class curie (@shortForm)
         // cols[1]: class label
@@ -51,24 +52,25 @@ export default class FctRspLstCntRslt extends React.Component {
           // typeof cols[1] is 'string' or 'boolean'
           if (typeof cols[1] === 'string') {
             let classLabel = cols[1];
-            typeColVal = `<a href="${classURI}">${classLabel}</a>`;
+            typeColVal = <a href={classURI}>{classLabel}</a>;
           }
           else {
-            typeColVal = `<a href="${classURI}">${classCurie}</a>`;
+            typeColVal = <a href={classURI}>{classCurie}</a>;
           }
         }
-        else
+        else {
           typeColVal = rowCols[0].keyValue.toString();
-        renderedCols += "<td>" + typeColVal + "</td>";
-
+        }
+        
         let countColVal;
         countColVal = Number(cols[2]);
         countColVal = Number.isNaN(countColVal) ? 'NaN' : countColVal;
-        renderedCols += "<td>" + countColVal + "</td>";
 
-        return "<tr>" + renderedCols + "</tr>";
-      })
-      renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
+        let renderedCols = <><td>{typeColVal}</td><td>{countColVal}</td></>;
+        return <tr>{renderedCols}</tr>;
+      });
+
+      renderedRows = <tbody>{renderedRows}</tbody>;
 
       html = `
         <div>
@@ -78,13 +80,18 @@ export default class FctRspLstCntRslt extends React.Component {
         renderedRows +
         `</table>
         </div>`;
+      html = (
+        <div>
+        <span><em>list-count / FctRspLstCntRslt result:</em></span>
+          <table className="table table-sm table-striped">
+          {renderedHeadings}
+          {renderedRows}
+          </table>
+          </div>
+        );    
     }
     
-    return ( 
-      <div 
-      style={componentContainerStyle} 
-      dangerouslySetInnerHTML={{__html: html}}>
-      </div> );
+    return <div style={componentContainerStyle}>{html}</div>;
   }
 
 }

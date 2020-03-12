@@ -1,6 +1,7 @@
 // A component to display the <fct:result type="propval-list"> element of a Facet service response.
 
 import React from 'react';
+import * as fctUiCommon from './FctUiCommon';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -19,7 +20,7 @@ export default class FctRspPrpVlLstRslt extends React.Component {
   }
 
   render() {
-    let html = "Empty result set";
+    let html = fctUiCommon.emptyResultSetMessage();
     
     if (this.props.qryResult && this.props.qryResult.row)
     {
@@ -28,16 +29,16 @@ export default class FctRspPrpVlLstRslt extends React.Component {
       // Facet classes result/view column mappings
       const columnHeadings = ['Entity', 'Entity Label'];
 
-      let renderedHeadings = columnHeadings.map(heading => {
-        return `<th>${heading}</th>`;
-      });
-      renderedHeadings = `<thead><tr>${renderedHeadings.join('')}</tr></thead>`;
+      let renderedHeadings = <thead><tr>{
+        columnHeadings.map(heading => {
+          return <th>{heading}</th>;
+        })
+      }</tr></thead>;
 
       let rows = this.props.qryResult.row;
       if (!Array.isArray(rows)) // => a single results row
       rows = [rows];
       let renderedRows = rows.map((row) => {
-        let renderedCols = '';
         let cols = row.column;
         // cols[0]: entity URI (@keyValue) + entity curie? (@shortForm)
         // cols[1]: entity label
@@ -51,38 +52,34 @@ export default class FctRspPrpVlLstRslt extends React.Component {
           // typeof cols[1] is usually a 'string'. Other types possible? // TO DO
           if (typeof cols[1] === 'string') {
             let itemLabel = cols[1];
-            itemColVal = `<a href="${itemURI}">${itemLabel}</a>`;
+            itemColVal = <a href={itemURI}>{itemLabel}</a>;
           }
           else {
-            itemColVal = `<a href="${itemURI}">${itemCurie}</a>`;
+            itemColVal = <a href={itemURI}>{itemCurie}</a>;
           }
         }
-        else
+        else {
           itemColVal = cols[0].keyValue.toString();
-        renderedCols += "<td>" + itemColVal + "</td>";
+        }
 
-        renderedCols += "<td>" + itemLabel + "</td>";
+        let renderedCols = <><td>{itemColVal}</td><td>{itemLabel}</td></>;
+        return <tr>{renderedCols}</tr>;
+      });
 
-        return "<tr>" + renderedCols + "</tr>";
-      })
-      renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
+      renderedRows = <tbody>{renderedRows}</tbody>;
 
-      html = `
+      html = (
       <div>
-      <span><em>propval-list / FctRspPrpVlLstRslt result:</em></span>` +
-        '<table class="table table-sm table-striped">' + 
-        renderedHeadings + 
-        renderedRows +
-        `</table>
-        </div>`;
-
+      <span><em>propval-list / FctRspPrpVlLstRslt result:</em></span>
+        <table className="table table-sm table-striped">
+        {renderedHeadings}
+        {renderedRows}
+        </table>
+        </div>
+      );
     }
     
-    return ( 
-      <div 
-      style={componentContainerStyle} 
-      dangerouslySetInnerHTML={{__html: html}}>
-      </div> );
+    return <div style={componentContainerStyle}>{html}</div>;
   }
 
 }

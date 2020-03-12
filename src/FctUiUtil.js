@@ -1,9 +1,14 @@
-// FctUiUtil - Utility routines for the Facet UI
-
+/**
+ * @classdesc
+ * A class containing utility methods for the Facet UI.
+ *
+ * @description
+ * None of FctUiUtil's methods return JSX.
+ * @see FctUiCommon which exports functions which return JSX snippets shared by components. 
+ */
 export default class FctUiUtil {
 
   /**
-   * 
    * @param {string} tripleTerminology - 'spo' or 'eav'.
    */
   constructor(triple_terminology = "spo")

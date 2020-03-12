@@ -3,6 +3,7 @@
 // qryResult._resultJson.facets.result // TO DO: Remove
 
 import React from 'react';
+import * as fctUiCommon from './FctUiCommon';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -20,8 +21,8 @@ export default class FctRspTxtdRslt extends React.Component {
   }
 
   render() {
-    let html = <span>Empty result set</span>
-    
+    let html = fctUiCommon.emptyResultSetMessage();
+
     if (this.props.qryResult && this.props.qryResult.row)
     {
       html = "";
@@ -29,10 +30,11 @@ export default class FctRspTxtdRslt extends React.Component {
       // Facet text result/view column mappings
       const columnHeadings = ['trank', 'erank', 'Entity', 'Title', 'Named Graph',  'Matched Text'];
 
-      let renderedHeadings = columnHeadings.map(heading => {
-        return `<th>${heading}</th>`;
-      });
-      renderedHeadings = `<thead><tr>${renderedHeadings.join('')}</tr></thead>`;
+      let renderedHeadings = <thead><tr>{
+        columnHeadings.map(heading => {
+          return <th>{heading}</th>;
+        })
+      }</tr></thead>;
 
       let rows = this.props.qryResult.row;
       if (!Array.isArray(rows)) // => a single results row
@@ -41,32 +43,27 @@ export default class FctRspTxtdRslt extends React.Component {
         let renderedCols = row.column.map((col, iCol) => {
           // colStyle prevents word splitting on an erank with a 
           // negative exponent. (The minus sign is interpreted as a hyphen.)
-          let colStyle  = '';
-          colStyle = iCol === 1 ? 'style="min-width: 8em"' : colStyle;
-          colStyle = iCol === 5 ? 'style="min-width: 20em"' : colStyle;
-          return `<td ${colStyle}>${renderColVal(col, iCol)}</td>`
+          let colStyle  = {};
+          colStyle = iCol === 1 ? { minWidth: '8em' } : colStyle;
+          colStyle = iCol === 5 ? { minWidth: '20em' } : colStyle;
+          return <td style={colStyle}>{renderColVal(col, iCol)}</td>
         })
-        return "<tr>" + renderedCols.join('') + "</tr>";
+        return <tr>{renderedCols}</tr>;
       })
-      renderedRows = `<tbody>${renderedRows.join('')}</tbody>`;
+      renderedRows = <tbody>{renderedRows}</tbody>;
 
-      html = `
+      html = (
       <div>
-      <span><em>text-d / FctRspTxtdRslt result:</em></span>` +
-        '<table class="table table-sm table-striped">' + 
-        renderedHeadings + 
-        renderedRows +
-        `</table>
-        </div>`;
-
+      <span><em>text-d / FctRspTxtdRslt result:</em></span>
+        <table className="table table-sm table-striped">
+        {renderedHeadings} 
+        {renderedRows}
+        </table>
+        </div>
+      );
     }
     
-    // console.log('FctRspTxtRslt#render: html:', html);
-    return ( 
-      <div 
-      style={componentContainerStyle} 
-      dangerouslySetInnerHTML={{__html: html}}>
-      </div> );
+    return <div style={componentContainerStyle}>{html}</div>;
 
     function renderColVal(col, iCol) {
       let val;
@@ -79,21 +76,21 @@ export default class FctRspTxtdRslt extends React.Component {
         case 1: // erank / entity rank
           val = Number(col.keyValue);
           val = Number.isNaN(val) ? 'NaN' : val.toPrecision(5);
-        break;
+          break;
         case 2: // entity URI (urn: or http[s]:)
-        if (col.keyValue.toString().startsWith('http'))
-        val = `<a href="${col.keyValue}">${col["@shortform"]}</a>`;
-        else
-        val = col.keyValue;
-        break;
+          if (col.keyValue.toString().startsWith('http'))
+            val = <a href={col.keyValue}>{col["@shortform"]}</a>;
+          else
+            val = col.keyValue;
+          break;
         case 3: // title
-        val = typeof col === 'string' ? col : '';
-        break;
+          val = typeof col === 'string' ? col : '';
+          break;
         case 4: // g / named graph
           val = col.keyValue;
           break;
         case 5: // matched text / search excerpt
-          val = col.toString().replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+          val = <span dangerouslySetInnerHTML={{ __html: col }}></span>
           break;
       }
       return val;

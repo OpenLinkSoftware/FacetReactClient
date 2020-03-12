@@ -4,6 +4,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import FctView from './FctView';
+import * as fctUiCommon from './FctUiCommon';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -21,7 +22,7 @@ export default class FctRspPrprtsRslt extends React.Component {
   }
 
   render() {
-    let html = "Empty result set";
+    let html = fctUiCommon.emptyResultSetMessage();
     
     if (this.props.qryResult && this.props.qryResult.row)
     {

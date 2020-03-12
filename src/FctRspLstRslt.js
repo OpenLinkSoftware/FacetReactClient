@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FctView from './FctView';
+import * as fctUiCommon from './FctUiCommon';
 
 const componentContainerStyle = {
   overflowX: 'auto',
@@ -21,7 +22,7 @@ export default class FctRspLstRslt extends React.Component {
   }
 
   render() {
-    let html = "Empty result set";
+    let html = fctUiCommon.emptyResultSetMessage();
     
     if (this.props.qryResult && this.props.qryResult.row)
     {
@@ -78,7 +79,7 @@ export default class FctRspLstRslt extends React.Component {
       html = (
         <div>
         <span><em>list / FctRspLstRslt result:</em></span>
-        <table class="table table-sm table-striped">
+        <table className="table table-sm table-striped">
         {renderedHeadings} 
         {renderedRows}
         </table>
