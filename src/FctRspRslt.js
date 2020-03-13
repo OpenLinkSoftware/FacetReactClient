@@ -14,7 +14,7 @@ import FctRspPrpVlLstRslt from './FctRspPrpVlLstRslt';
 
 export default function FctRspRslt(props) {
   let viewType = props.qryResult ? props.qryResult["@type"] : "empty";
-  let resultComponent;
+  let resultComponent, actionPrompt = "";
   switch (viewType)
   {
     case "text":
@@ -36,6 +36,7 @@ export default function FctRspRslt(props) {
       resultComponent = <FctRspPrpVlLstRslt qryResult={props.qryResult} />
       break;
     case "list":
+      actionPrompt = <strong>Select a value or condition:</strong>;
       resultComponent = <FctRspLstRslt qryResult={props.qryResult} />
       break;
     case "list-count":
@@ -48,5 +49,5 @@ export default function FctRspRslt(props) {
       throw new Error(`Unrecognized Facet result view type (${viewType})`);
   }
 
-  return resultComponent;
+  return <>{actionPrompt}{resultComponent}</>;
 }
