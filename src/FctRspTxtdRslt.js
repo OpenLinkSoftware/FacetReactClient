@@ -81,13 +81,13 @@ export default class FctRspTxtdRslt extends React.Component {
           if (col.keyValue.toString().startsWith('http'))
             val = <a href={col.keyValue}>{col["@shortform"]}</a>;
           else
-            val = col.keyValue;
+            val = col.keyValue.toString();
           break;
         case 3: // title
           val = typeof col === 'string' ? col : '';
           break;
         case 4: // g / named graph
-          val = col.keyValue;
+          val = col.keyValue.toString();
           break;
         case 5: // matched text / search excerpt
           val = <span dangerouslySetInnerHTML={{ __html: col }}></span>

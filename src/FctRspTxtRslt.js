@@ -40,8 +40,8 @@ export default class FctRspTxtRslt extends React.Component {
       let rows = this.props.qryResult.row;
       if (!Array.isArray(rows)) // => a single results row
         rows = [rows];
-      let renderedRows = rows.map((row) => {
-        let renderedCols = row.column.map((col, iCol) => {
+        let renderedRows = rows.map((row) => {
+          let renderedCols = row.column.map((col, iCol) => {
           // colStyle prevents word splitting on an erank with a 
           // negative exponent. (The minus sign is interpreted as a hyphen.)
           let colStyle  = {};
@@ -79,13 +79,17 @@ export default class FctRspTxtRslt extends React.Component {
           val = Number.isNaN(val) ? 'NaN' : val.toPrecision(5);
         break;
         case 2: // g / named graph
-          val = col.keyValue;
+          // .toString() applied to protect against garbage in the source data
+          // e.g. linkeddata.uriburner.com sometimes returns a date literal for
+          // this column which JS converts to an object, which React then
+          // rejects as invalid in JSX.
+          val = col.keyValue.toString();
           break;
         case 3: // entity URI (urn: or http[s]:)
           if (col.keyValue.toString().startsWith('http'))
             val = <a href={col.keyValue}>{col["@shortform"]}</a>;
           else
-            val = col.keyValue;
+            val = col.keyValue.toString();
           break;
         case 4: // title
           val = typeof col === 'string' ? col : '';
