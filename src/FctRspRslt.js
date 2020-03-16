@@ -21,7 +21,7 @@ export default function FctRspRslt(props) {
       resultComponent = <FctRspTxtRslt qryResult={props.qryResult} />
       break;
     case "text-d":
-      resultComponent = <FctRspTxtdRslt qryResult={props.qryResult} />
+      resultComponent = <FctRspTxtdRslt qryResult={props.qryResult} describeEndpoint={props.describeEndpoint} />
       break;
     case "text-properties":
       resultComponent = <FctRspTxtPrprtsRslt qryResult={props.qryResult} />

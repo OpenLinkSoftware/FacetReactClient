@@ -61,9 +61,10 @@ class FctClient extends React.Component {
     // TO DO: Add UI control and intialize to FctQuery default.
     // this.viewLimit = FctQuery.FCT_QRY_DFLT_VIEW_LIMIT; 
     this.viewLimit = 50; 
-    // serviceEndpoint may be overridden in the UI.
-    // TO DO: Add UI control and initialize to FctQuery default.
+    // serviceEndpoint and describeEndpoint may be overridden in the UI.
+    // TO DO: Add UI control and initialize to FctQuery defaults.
     this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT; 
+    this.describeEndpoint = FctQuery.DESCRIBE_DFLT_SVC_ENDPOINT;
 
     this.fctQuery = new FctQuery();
     this.fctQuery.setViewType(FCT_CLIENT_DFLT_VIEW_TYPE);
@@ -258,7 +259,7 @@ class FctClient extends React.Component {
 
         <div>Component: FctRspRslt</div>
         <div style={componentContainerStyle}>
-          <FctRspRslt qryResult={qryResult} />
+          <FctRspRslt qryResult={qryResult} describeEndpoint={this.describeEndpoint} />
         </div>
 
         <div>Component: FctRspDbActivity</div>

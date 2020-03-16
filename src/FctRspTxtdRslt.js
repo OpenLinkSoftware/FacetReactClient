@@ -22,6 +22,7 @@ export default class FctRspTxtdRslt extends React.Component {
 
   render() {
     let html = fctUiCommon.emptyResultSetMessage();
+    const describeEndpoint = this.props.describeEndpoint;
 
     if (this.props.qryResult && this.props.qryResult.row)
     {
@@ -67,6 +68,7 @@ export default class FctRspTxtdRslt extends React.Component {
 
     function renderColVal(col, iCol) {
       let val;
+      let href;
 
       switch (iCol) {
         case 0: // trank / text rank
@@ -77,17 +79,18 @@ export default class FctRspTxtdRslt extends React.Component {
           val = Number(col.keyValue);
           val = Number.isNaN(val) ? 'NaN' : val.toPrecision(5);
           break;
-        case 2: // entity URI (urn: or http[s]:)
-          if (col.keyValue.toString().startsWith('http'))
-            val = <a href={col.keyValue}>{col["@shortform"]}</a>;
-          else
-            val = col.keyValue.toString();
+        case 2: // entity URI
+          href = `${describeEndpoint}?url=${encodeURIComponent(col.keyValue.toString())}`;
+          val = <a href={href}>{col["@shortform"].toString()}</a>;
           break;
         case 3: // title
           val = typeof col === 'string' ? col : '';
           break;
         case 4: // g / named graph
-          val = col.keyValue.toString();
+          href = `${describeEndpoint}?url=${encodeURIComponent(col.keyValue.toString())}`;
+          // toString() protects against garbage in the source data.
+          // e.g. a Date string which JS converts to an object.
+          val = <a href={href}>{col["@shortform"].toString()}</a>;
           break;
         case 5: // matched text / search excerpt
           val = <span dangerouslySetInnerHTML={{ __html: col }}></span>
