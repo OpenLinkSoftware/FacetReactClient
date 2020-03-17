@@ -18,7 +18,7 @@ export default function FctRspRslt(props) {
   switch (viewType)
   {
     case "text":
-      resultComponent = <FctRspTxtRslt qryResult={props.qryResult} />
+      resultComponent = <FctRspTxtRslt qryResult={props.qryResult} describeEndpoint={props.describeEndpoint} />
       break;
     case "text-d":
       resultComponent = <FctRspTxtdRslt qryResult={props.qryResult} describeEndpoint={props.describeEndpoint} />

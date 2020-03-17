@@ -22,8 +22,8 @@ export default class FctRspTxtRslt extends React.Component {
 
   render() {
     let html = fctUiCommon.emptyResultSetMessage();
+    const describeEndpoint = this.props.describeEndpoint;
 
-    
     if (this.props.qryResult && this.props.qryResult.row)
     {
       html = "";
@@ -68,6 +68,7 @@ export default class FctRspTxtRslt extends React.Component {
 
     function renderColVal(col, iCol) {
       let val;
+      let href;
 
       switch (iCol) {
         case 0: // trank / text rank
@@ -83,13 +84,13 @@ export default class FctRspTxtRslt extends React.Component {
           // e.g. linkeddata.uriburner.com sometimes returns a date literal for
           // this column which JS converts to an object, which React then
           // rejects as invalid in JSX.
-          val = col.keyValue.toString();
+          href = `${describeEndpoint}?url=${encodeURIComponent(col.keyValue.toString())}`;
+          // col["@shortform"] not present in resultset
+          val = <a href={href}>{col.keyValue.toString()}</a>;
           break;
-        case 3: // entity URI (urn: or http[s]:)
-          if (col.keyValue.toString().startsWith('http'))
-            val = <a href={col.keyValue}>{col["@shortform"]}</a>;
-          else
-            val = col.keyValue.toString();
+        case 3: // entity URI
+          href = `${describeEndpoint}?url=${encodeURIComponent(col.keyValue.toString())}`;
+          val = <a href={href}>{col["@shortform"].toString()}</a>;
           break;
         case 4: // title
           val = typeof col === 'string' ? col : '';
