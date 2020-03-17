@@ -29,7 +29,7 @@ export default class FctRspClssRslt extends React.Component {
       html = "";
       
       // Facet classes result/view column mappings
-      const columnHeadings = ['?s1 instanceOf Type', 'Count']; // TO DO: Should be `?s${pos}`, pos = 1,2,...
+      const columnHeadings = ['?s1 instanceOf Type', '', 'Count']; // TO DO: Should be `?s${pos}`, pos = 1,2,...
 
       let renderedHeadings = <thead><tr>{
         columnHeadings.map(heading => {
@@ -41,6 +41,7 @@ export default class FctRspClssRslt extends React.Component {
       if (!Array.isArray(rows)) // => a single results row
       rows = [rows];
       let renderedRows = rows.map((row) => {
+        let renderedCols;
         let cols = row.column;
         // cols[0]: class URI (@keyValue) + class curie (@shortForm)
         // cols[1]: class label
@@ -48,36 +49,81 @@ export default class FctRspClssRslt extends React.Component {
 
         let classURI = cols[0].keyValue;
         let classCurie = cols[0]["@shortform"];
-        let typeColVal;
         let dataType = cols[0]["@datatype"];
+        let classLabel = cols[1];
 
-        let actionOpts = {
-          action: FctView.fctViewAction('classes'),
-          iri: classURI,
-          dataType,
-          lang: null
-        };
-        let href = FctView.fctBuildAction(actionOpts);
-
-        if (dataType === "uri") {
-          // typeof cols[1] is 'string' or 'boolean'
-          if (typeof cols[1] === 'string') {
-            let classLabel = cols[1];
-            typeColVal = <Link to={href}>{classLabel}</Link>;
-          }
-          else {
-            typeColVal = <Link to={href}>{classCurie}</Link>;
-          }
-        }
-        else {
-          typeColVal = cols[0].keyValue.toString();
-        }
-          
+        // Rendered view columns
+        let typeColVal;
+        let describeLink;
         let countColVal;
-        countColVal = Number(cols[2]);
-        countColVal = Number.isNaN(countColVal) ? 'NaN' : countColVal;
-          
-        let renderedCols = <><td>{typeColVal}</td><td>{countColVal}</td></>;
+
+        /*
+        // Bad data checks
+        //
+        // Examples of bad data from linkeddata.uriburner.com:
+        // classURI a curie - schema:WebSite
+        // classURI, classLabel or classCurie a date object - Sat Jan 01 2000 00:00:00 GMT+0000 (Greenwich Mean Time)
+        // classLabel a boolean - true
+
+        if (classURI && !(typeof classURI === 'string')) 
+          console.log('bad classURI:', classURI.toString(), 
+            `[${typeof classURI}]`, ', dataType:', dataType);
+        if (classCurie && !(typeof classCurie === 'string')) 
+          console.log('bad classCurie:',  
+            classCurie.toString(), `[${typeof classCurie}]`, 
+            ', classURI: ', classURI.toString(), ', dataType:', dataType);
+        if (classLabel && !(typeof classLabel === 'string')) 
+          console.log('bad classLabel:', 
+            classLabel.toString(), `[${typeof classLabel}]`, 
+            ', classURI: ', classURI.toString(), ', dataType:', dataType);
+        */
+
+        // Protect against bad data
+        if (typeof classURI !== 'string')
+          classURI = null;
+        if (classURI && !(classURI.startsWith('http') || classURI.startsWith('urn')))
+          classURI = null;
+        if (classLabel && typeof classLabel !== 'string')
+          classLabel = null;
+          if (classCurie && typeof classCurie !== 'string')
+          classCurie = null;
+        if (dataType && (typeof dataType !== 'string' || dataType !== 'uri'))
+          dataType = null;
+
+        typeColVal = '';
+        describeLink = '';
+        countColVal = '';
+
+        if (classURI)
+        {
+          let actionOpts = {
+            action: FctView.fctViewAction('classes'),
+            iri: classURI,
+            dataType,
+            lang: null
+          };
+          let href = FctView.fctBuildAction(actionOpts);
+
+          if (classLabel)
+            typeColVal = <Link to={href}>{classLabel}</Link>;
+          else if (classCurie)
+            typeColVal = <Link to={href}>{classCurie}</Link>;
+          else
+            typeColVal = <Link to={href}>{classURI}</Link>;
+
+          let describeUrl = `${this.props.describeEndpoint}?url=${encodeURIComponent(classURI)}`;
+          let describeAncText = `Describe ${this.props.fctUiUtil.fctClassTerm()}`;
+          describeLink = <a href={describeUrl} title={classCurie}>{describeAncText}</a>
+  
+          countColVal = Number(cols[2]);
+          countColVal = Number.isNaN(countColVal) ? 'NaN' : countColVal;
+          renderedCols = <><td>{typeColVal}</td><td>{describeLink}</td><td>{countColVal}</td></>;
+        }
+        else
+        {
+          renderedCols = <><td></td><td></td><td></td></>; // Bad source data
+        }
+
         return <tr>{renderedCols}</tr>;
       });
 

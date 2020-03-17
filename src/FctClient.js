@@ -259,7 +259,11 @@ class FctClient extends React.Component {
 
         <div>Component: FctRspRslt</div>
         <div style={componentContainerStyle}>
-          <FctRspRslt qryResult={qryResult} describeEndpoint={this.describeEndpoint} />
+          <FctRspRslt 
+            qryResult={qryResult} 
+            describeEndpoint={this.describeEndpoint} 
+            fctUiUtil={this.fctUiUtil}
+          />
         </div>
 
         <div>Component: FctRspDbActivity</div>

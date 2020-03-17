@@ -27,7 +27,12 @@ export default function FctRspRslt(props) {
       resultComponent = <FctRspTxtPrprtsRslt qryResult={props.qryResult} />
       break;
     case "classes":
-      resultComponent = <FctRspClssRslt qryResult={props.qryResult} />
+      resultComponent = 
+        <FctRspClssRslt 
+          qryResult={props.qryResult} 
+          describeEndpoint={props.describeEndpoint} 
+          fctUiUtil={props.fctUiUtil} 
+        />
       break;
     case "properties":
       resultComponent = <FctRspPrprtsRslt qryResult={props.qryResult} />
