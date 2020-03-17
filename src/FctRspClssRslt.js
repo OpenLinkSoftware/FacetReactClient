@@ -16,7 +16,6 @@ export default class FctRspClssRslt extends React.Component {
 
   constructor(props) {
     super(props);
-    // console.log("FctRspClssRslt#constructor: props:", props);
     if (props.qryResult["@type"] !== "classes")
       throw new Error(`Invalid Facet result type supplied. (${props.qryResult["@type"]})`);
   }
@@ -85,7 +84,7 @@ export default class FctRspClssRslt extends React.Component {
           classURI = null;
         if (classLabel && typeof classLabel !== 'string')
           classLabel = null;
-          if (classCurie && typeof classCurie !== 'string')
+        if (classCurie && typeof classCurie !== 'string')
           classCurie = null;
         if (dataType && (typeof dataType !== 'string' || dataType !== 'uri'))
           dataType = null;

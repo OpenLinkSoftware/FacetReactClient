@@ -29,7 +29,7 @@ export default class FctRspPrprtsRslt extends React.Component {
       html = "";
       
       // Facet properties result/view column mappings
-      const columnHeadings = ['?s1 has Attribute', 'Count'];
+      const columnHeadings = ['?s1 has Attribute', '', 'Count']; // TO DO: Should be `?s${pos}`, pos = 1,2,..
 
       let renderedHeadings = <thead><tr>{
         columnHeadings.map(heading => {
@@ -41,6 +41,7 @@ export default class FctRspPrprtsRslt extends React.Component {
       if (!Array.isArray(rows)) // => a single results row
         rows = [rows];
       let renderedRows = rows.map((row) => {
+        let renderedCols;
         let cols = row.column;
         // cols[0]: property URI (@keyValue) + property curie (@shortForm)
         // cols[1]: property label
@@ -48,32 +49,60 @@ export default class FctRspPrprtsRslt extends React.Component {
 
         let propertyURI = cols[0].keyValue;
         let propertyCurie = cols[0]["@shortform"];
+        let dataType = cols[0]["@datatype"];
+        let propertyLabel = cols[1];
+
+        // Rendered view columns
         let propertyColVal;
+        let describeLink;
+        let countColVal;
 
-        let actionOpts = {
-          action: FctView.fctViewAction('properties'),
-          iri: propertyURI,
-          dataType: cols[0]["@datatype"]
-        };
-        let href = FctView.fctBuildAction(actionOpts);
+        // Protect against bad data
+        if (typeof propertyURI !== 'string')
+          propertyURI = null;
+        if (propertyURI && !(propertyURI.startsWith('http') || propertyURI.startsWith('urn')))
+          propertyURI = null;
+        if (propertyLabel && typeof propertyLabel !== 'string')
+          propertyLabel = null;
+        if (propertyCurie && typeof propertyCurie !== 'string')
+          propertyCurie = null;
+        if (dataType && (typeof dataType !== 'string' || dataType !== 'uri'))
+          dataType = null;
 
-        if (cols[0]["@datatype"] === "uri") {
-          // typeof cols[1] is 'string' or 'boolean'
-          if (typeof cols[1] === 'string') {
-            let propertyLabel = cols[1];
+        propertyColVal = '';
+        describeLink = '';
+        countColVal = '';
+
+        if (propertyURI)
+        {
+          let actionOpts = {
+            action: FctView.fctViewAction('properties'),
+            iri: propertyURI,
+            dataType,
+            lang: null
+          };
+          let href = FctView.fctBuildAction(actionOpts);
+
+          if (propertyLabel)
             propertyColVal = <Link to={href}>{propertyLabel}</Link>;
-          }
-          else {
+          else if (propertyCurie)
             propertyColVal = <Link to={href}>{propertyCurie}</Link>;
-          }
+          else
+            propertyColVal = <Link to={href}>{propertyURI}</Link>;
+
+          let describeUrl = `${this.props.describeEndpoint}?url=${encodeURIComponent(propertyURI)}`;
+          let describeAncText = `Describe ${this.props.fctUiUtil.fctPredicateTerm()}`;
+          describeLink = <a href={describeUrl} title={propertyCurie}>{describeAncText}</a>
+  
+          countColVal = Number(cols[2]);
+          countColVal = Number.isNaN(countColVal) ? 'NaN' : countColVal;  
+          renderedCols = <><td>{propertyColVal}</td><td>{describeLink}</td><td>{countColVal}</td></>
         }
         else
-          propertyColVal = cols[0].keyValue.toString();
+        {
+          renderedCols = <><td></td><td></td><td></td></>; // Bad source data
+        }
 
-        let countColVal = Number(cols[2]);
-        countColVal = Number.isNaN(countColVal) ? 'NaN' : countColVal;
-
-        let renderedCols = <><td>{propertyColVal}</td><td>{countColVal}</td></>
         return <tr>{renderedCols}</tr>;
       });
 
