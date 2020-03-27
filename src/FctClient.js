@@ -196,7 +196,7 @@ class FctClient extends React.Component {
             <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
             <div className="col-sm-4">
               <select value={this.state.viewType} className="custom-select" onChange={this.handleViewChange}>
-                <option value="properties-in">properties-in : TO DO! [vt=properties-in]</option>
+                <option value="properties-in">properties-in : [vt=properties-in]</option>
                 <option value="propval-list">propval-list : [vt=propval-list]</option>
                 <option value="classes">classes [vt=classes]</option>
                 <option value="text">entities [vt=text]</option>
@@ -354,6 +354,30 @@ class FctClient extends React.Component {
         console.log('FctClient#performUiAction: propSubjIndx:', propSubjIndx);
         console.log('FctClient#performUiAction: this.props.viewType:', this.props.viewType);
         this.fctQuery.setViewSubjectIndex(propSubjIndx);
+        this.fctQuery.setViewType(this.props.viewType);
+        this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
+        break;
+      case "openPropertyOf":
+          // - Add filter: ?s[n] is the object of the given property.
+          //     e.g. ?s[n+1] opltw:madeTweet ?s[n]
+          // - Display a list of entities matching ?s[n+1]
+          // Remove existing <view> element.
+          // Create XML element:
+          // <property-of iri="{propertyURI}" [exclude="yes"]>
+          //   <view type="list" limit="{limit}" offset="0" />
+          // </property-of>
+          // The new <view> element automatically shifts the focus from ?s[n] to ?s[n+1].
+        console.log('FctClient#performUiAction: openPropertyOf:', this.props.action.propertyIri);
+        let propOfSubjIndx = this.fctQuery.addPropertyOf(
+          this.props.action.propertyIri,
+          this.fctQuery.getViewSubjectIndex(),
+          this.props.action.excludeProperty
+          // sameAs,
+          // inferenceContext
+          );
+        console.log('FctClient#performUiAction: propOfSubjIndx:', propOfSubjIndx);
+        console.log('FctClient#performUiAction: this.props.viewType:', this.props.viewType);
+        this.fctQuery.setViewSubjectIndex(propOfSubjIndx);
         this.fctQuery.setViewType(this.props.viewType);
         this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
         break;

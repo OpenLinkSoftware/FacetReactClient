@@ -8,25 +8,30 @@ import FctRspTxtdRslt from './FctRspTxtdRslt';
 import FctRspTxtPrprtsRslt from './FctRspTxtPrprtsRslt';
 import FctRspClssRslt from './FctRspClssRslt';
 import FctRspPrprtsRslt from './FctRspPrprtsRslt';
+import FctRspPrprtsInRslt from './FctRspPrprtsInRslt';
 import FctRspLstCntRslt from './FctRspLstCntRslt';
 import FctRspLstRslt from './FctRspLstRslt';
 import FctRspPrpVlLstRslt from './FctRspPrpVlLstRslt';
 
 export default function FctRspRslt(props) {
   let viewType = props.qryResult ? props.qryResult["@type"] : "empty";
-  let resultComponent, actionPrompt = "";
+  let resultComponent, prompt = "";
   switch (viewType)
   {
     case "text":
+      // prompt = <strong>Text match results:</strong>;
       resultComponent = <FctRspTxtRslt qryResult={props.qryResult} describeEndpoint={props.describeEndpoint} />
       break;
     case "text-d":
+      // prompt = <strong>Text match results:</strong>;
       resultComponent = <FctRspTxtdRslt qryResult={props.qryResult} describeEndpoint={props.describeEndpoint} />
       break;
     case "text-properties":
+      // prompt = <strong>List of properties with matching text:</strong>;
       resultComponent = <FctRspTxtPrprtsRslt qryResult={props.qryResult} />
       break;
     case "classes":
+      // prompt = <strong>Types:</strong>;
       resultComponent = 
         <FctRspClssRslt 
           qryResult={props.qryResult} 
@@ -35,6 +40,7 @@ export default function FctRspRslt(props) {
         />
       break;
     case "properties":
+      // prompt = <strong>Properties:</strong>;
       resultComponent = 
         <FctRspPrprtsRslt 
           qryResult={props.qryResult} 
@@ -42,14 +48,25 @@ export default function FctRspRslt(props) {
           fctUiUtil={props.fctUiUtil} 
         />
       break;
+    case "properties-in":
+      // prompt = <strong>Referencing properties:</strong>;
+      resultComponent = 
+       <FctRspPrprtsInRslt 
+         qryResult={props.qryResult} 
+         describeEndpoint={props.describeEndpoint} 
+         fctUiUtil={props.fctUiUtil} 
+       />
+      break;
     case "propval-list":
+      // prompt = <strong>???:</strong>;
       resultComponent = <FctRspPrpVlLstRslt qryResult={props.qryResult} />
       break;
     case "list":
-      actionPrompt = <strong>Select a value or condition:</strong>;
+      prompt = <strong>Select a value or condition:</strong>;
       resultComponent = <FctRspLstRslt qryResult={props.qryResult} />
       break;
     case "list-count":
+      // prompt = <strong>Distinct values:</strong>;
       resultComponent = <FctRspLstCntRslt qryResult={props.qryResult} />
       break;
     case "empty":
@@ -59,5 +76,5 @@ export default function FctRspRslt(props) {
       throw new Error(`Unrecognized Facet result view type (${viewType})`);
   }
 
-  return <>{actionPrompt}{resultComponent}</>;
+  return <>{prompt}{resultComponent}</>;
 }

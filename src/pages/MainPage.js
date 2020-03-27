@@ -80,7 +80,7 @@ export default function MainPage({location}) {
           //   cmd=open_property&
           //   iri=http%3A%2F%2Fwww.openlinksw.com%2Fski_resorts%2Fschema%23advanced_slopes&
           //   lang=&datatype=uri&sid=732828
-          // Equivalent to /fct PL routine fct_open_property()
+          // Equivalent to /fct PL routine fct_open_property(...,'property',)
           //
           // Example XML:
           // <?xml version="1.0" encoding="ISO-8859-1" ?>
@@ -94,7 +94,27 @@ export default function MainPage({location}) {
           action.action = {
             name: qryStrParams.action,
             propertyIri: qryStrParams.iri,
-            excludeProperty: false,
+            excludeProperty: false,         // TO DO: Retrieve from query string
+            };
+          action.ts = new Date().getTime();
+          break;
+        case "openPropertyOf":
+          console.log('MainPage: Action: openPropertyOf');
+          // Example equivalent /fct link:
+          // View shows: ?s1 has [[any Attribute]] with Value "linked+data"
+          // Click on Values in the sidebar
+          // View shows: ?s1 is the Value of [[any Attribute]] where the Entity is associated with "linked+data"
+          // The href under the attribute madeTweet is:
+          // http://linkeddata.uriburner.com/fct/facet.vsp?
+          //   cmd=open_property_of&
+          //   iri=http%3A%2F%2Fwww.openlinksw.com%2Fschemas%2Ftwitter%23madeTweet&
+          //   lang=&datatype=uri&sid=965838
+          // Equivalent to /fct PL routine fct_open_property(...,'property-of',)
+          action.viewType = 'list';
+          action.action = {
+            name: qryStrParams.action,
+            propertyIri: qryStrParams.iri,
+            excludeProperty: false,         // TO DO: Retrieve from query string
             };
           action.ts = new Date().getTime();
           break;
