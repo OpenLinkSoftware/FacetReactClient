@@ -2,6 +2,7 @@ import React from 'react';
 
 import FctUiUtil from './FctUiUtil'; 
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
+import FctErrCntnr from './FctErrCntnr';
 import FctRspDbActvty from './FctRspDbActvty';
 import FctRspRslt from './FctRspRslt';
 import FctRspLimit from './FctRspLimit';
@@ -41,6 +42,7 @@ class FctClient extends React.Component {
     this.state = {
       searchText: "",
       fctResult: null,
+      fctError: null,
       viewType: props.viewType || FCT_CLIENT_DFLT_VIEW_TYPE,
       viewSubjectIndex: 1,
       tripleTerminology: "eav",   // TO DO: Initialize from UI control. spo | eav
@@ -73,9 +75,8 @@ class FctClient extends React.Component {
   }
 
   handleSearchInputEditorChange(searchInputEditorText) {
-    this.setState({ searchText: searchInputEditorText });
+    this.setState({ searchText: searchInputEditorText, fctError: null });
   }
-
 
   handleSearch(searchInputEditorText) {
     console.log('FctClient#handleSearch');
@@ -83,7 +84,7 @@ class FctClient extends React.Component {
     this.setState({ searchText: searchInputEditorText }); // Async!
 
     if (!searchInputEditorText) {
-      this.setState({ fctResult: null });
+      this.setState({ fctResult: null, fctError: null });
     }
     else {
       this.fctQuery.queryText = searchInputEditorText;
@@ -93,17 +94,14 @@ class FctClient extends React.Component {
 
   search() {
     if (!this.fctQuery.queryText)
-      this.setState({ fctResult: null });
+      this.setState({ fctResult: null, fctError: null });
     else {
       this.fctQuery.execute()
         .then(qryResult => {
-          this.setState({ fctResult: qryResult });
+          this.setState({ fctResult: qryResult, fctError: null });
         })
         .catch(err => {
-          // TO DO: 
-          // Display the error in the UI
-          // Facet does return some error text. e.g. sparql compilation on invalid XML.
-          console.log('FctClient#search: Error: ' + err.message);
+          this.setState({ fctResult: null, fctError: err })
         });
     }
   }
@@ -117,8 +115,8 @@ class FctClient extends React.Component {
       this.setState({ viewType }); // Async!
       this.fctQuery.setViewType(viewType);
     }
-    if (this.state.fctResult)
-      this.search(); // Update any existing results to reflect the new view
+    if (this.state.fctResult || this.state.fctError)
+      this.search(); // Update any existing results or failed prior search to reflect the new view
   }
 
   handlePresetChange(event) {
@@ -139,7 +137,8 @@ class FctClient extends React.Component {
     this.setState({ 
       searchText: this.fctQuery.queryText, 
       preset: presetKey,  
-      fctResult: null, 
+      fctResult: null,
+      fctError: null,
       viewType: this.fctQuery.getViewType(), 
     }); // Async!
     // - Perform a new search based on the new search text.
@@ -217,6 +216,13 @@ class FctClient extends React.Component {
               </select>
             </div>
           </div>
+        </div>
+
+        <div>Component: FctErrCntnr</div>
+        <div style={componentContainerStyle}>
+          <FctErrCntnr
+            fctError={this.state.fctError} 
+          />
         </div>
 
         <div>Component: FctViewHeader</div>
