@@ -33,23 +33,23 @@ export default class FctRspTxtRslt extends React.Component {
 
       let renderedHeadings = <thead><tr>{
         columnHeadings.map(heading => {
-          return <th>{heading}</th>;
+          return <th key={heading}>{heading}</th>;
         })
       }</tr></thead>;
 
       let rows = this.props.qryResult.row;
       if (!Array.isArray(rows)) // => a single results row
         rows = [rows];
-        let renderedRows = rows.map((row) => {
+        let renderedRows = rows.map((row, iRow) => {
           let renderedCols = row.column.map((col, iCol) => {
           // colStyle prevents word splitting on an erank with a 
           // negative exponent. (The minus sign is interpreted as a hyphen.)
           let colStyle  = {};
           colStyle = iCol === 1 ? { minWidth: '8em' } : colStyle;
           colStyle = iCol === 5 ? { minWidth: '20em' } : colStyle;
-          return <td style={colStyle}>{renderColVal(col, iCol)}</td>
+          return <td key={iCol} style={colStyle}>{renderColVal(col, iCol)}</td>
         })
-        return <tr>{renderedCols}</tr>;
+        return <tr key={iRow}>{renderedCols}</tr>;
       })
       renderedRows = <tbody>{renderedRows}</tbody>;
 

@@ -263,7 +263,7 @@ export default class FctFilters extends React.Component {
           <span className="oi oi-circle-x" style={dfSpanStyle}></span>
         </a>
       return (
-        <tr key={`filter-${i}`}>
+        <tr key={`filter-${i}0`}>
           <td key={`filter-${i}1`}>{filterHtml}</td>
           <td key={`filter-${i}2`}>{dropFilterHtml}</td>
         </tr>
