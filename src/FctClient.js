@@ -10,7 +10,7 @@ import FctRspPager from './FctRspPager';
 import FctSearchInputEditor from './FctSearchInputEditor';
 import FctFilters from './FctFilters';
 import FctViewHeader from './FctViewHeader';
-
+import FctErrModal from './FctErrModal';
 
 // -- Hardwired test fixtures ----------
 // TO DO: Remove
@@ -25,6 +25,56 @@ presets.set('filters1', fixtureFilters1);
 
 // -------------------------------------
 
+class ErrorBoundary extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false , errorMsg: null };
+    this.cbClearError = this.cbClearError.bind(this);
+  }
+
+  cbClearError() {
+    this.setState({ hasError: false , errorMsg: null });
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, errorMsg: error.message };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    // Keep these console.log calls to aid user error reporting.
+    console.log('ErrorBoundary#componentDidCatch - error:', error);
+    console.log('ErrorBoundary#componentDidCatch - errorInfo:', errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <FctErrModal show={true} cbClearError={this.cbClearError} errorMsg={this.state.errorMsg} />;
+    }
+    return this.props.children;
+  }
+}
+
+// -------------------------------------
+
+class ForcedError extends React.Component
+{
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    if (this.props.forceError)
+    {
+      this.props.cbClearForcedError();
+      throw Error(`Forced error to test error boundary: ${new Date()}`);
+    }
+    return "";
+  }
+}
+
+// -------------------------------------
+
 const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
 
 const componentContainerStyle = {
@@ -33,7 +83,6 @@ const componentContainerStyle = {
   marginBottom: '5px'
 }
 // 
-
 
 class FctClient extends React.Component {
   constructor(props) {
@@ -47,17 +96,20 @@ class FctClient extends React.Component {
       viewSubjectIndex: 1,
       tripleTerminology: "eav",   // TO DO: Initialize from UI control. spo | eav
       preset: "none",
+      forcedError: false,
     };
 
+    
     this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
-
+    
     this.handleSearchInputEditorChange = this.handleSearchInputEditorChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
-    this.handlePresetChange = this.handlePresetChange.bind(this); // TO DO: Remove once testing complete
     this.handleSetSubjectFocus = this.handleSetSubjectFocus.bind(this);
     this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
     this.handleRowLimitChange = this.handleRowLimitChange.bind(this);
+    this.handlePresetChange = this.handlePresetChange.bind(this); // TO DO: Remove once testing complete
+    this.handleForceError = this.handleForceError.bind(this); // TO DO: Remove once testing complete
 
     // viewLimit may be overridden in the UI.
     // TO DO: Add UI control and intialize to FctQuery default.
@@ -90,6 +142,10 @@ class FctClient extends React.Component {
       this.fctQuery.queryText = searchInputEditorText;
       this.search();
     }
+  }
+
+  handleForceError() {
+    this.setState({ forcedError: true });
   }
 
   search() {
@@ -180,104 +236,110 @@ class FctClient extends React.Component {
     // TO DO: Build the options names/values from the presets map contents.
 
     return (
-      <div>
-        <div>Component: FctSearchInputEditor</div>
-        <div style={componentContainerStyle}>
-          <FctSearchInputEditor 
-            searchText={this.state.searchText} 
-            onSearch={this.handleSearch} 
-            onChange={this.handleSearchInputEditorChange}
+      <ErrorBoundary>
+        <ForcedError forceError={this.state.forcedError} cbClearForcedError={() => this.setState({forcedError: false})}/>
+        <div>
+          <div>Component: FctSearchInputEditor</div>
+          <div style={componentContainerStyle}>
+            <FctSearchInputEditor 
+              searchText={this.state.searchText} 
+              onSearch={this.handleSearch} 
+              onChange={this.handleSearchInputEditorChange}
+              />
+          </div>
+
+          <div className="col-sm-12">
+            <div className="form-group row">
+              <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
+              <div className="col-sm-4">
+                <select value={this.state.viewType} className="custom-select" onChange={this.handleViewChange}>
+                  <option value="properties-in">properties-in : [vt=properties-in]</option>
+                  <option value="propval-list">propval-list : [vt=propval-list]</option>
+                  <option value="classes">classes [vt=classes]</option>
+                  <option value="text">entities [vt=text]</option>
+                  <option value="text-d">text-d [vt=text-d]</option>
+                  <option value="text-properties">text-properties [vt=text-properties]</option>
+                  <option value="properties">attributes [vt=properties]</option>
+                  <option value="list-count">distinct (count) [vt=list-count]</option>
+                  <option value="list">list [vt=list]</option>
+                </select>
+              </div>
+              <label className="col-sm-1 col-form-label text-right">Preset:</label>
+              <div className="col-sm-3">
+                <select value={this.state.preset} className="custom-select" onChange={this.handlePresetChange}>
+                  <option value="none">None</option>
+                  <option value="linked_data_tweets">linked data tweets list</option>
+                  <option value="ski_resorts_descs">ski resort descriptions</option>
+                  <option value="filters1">filters1 (empty resultset)</option>
+                </select>
+              </div>
+              <div className="col-sm-2">
+                <button className="btn btn-primary" onClick={this.handleForceError}>Force error</button>
+              </div>
+            </div>
+          </div>
+
+          <div>Component: FctErrCntnr</div>
+          <div style={componentContainerStyle}>
+            <FctErrCntnr
+              fctError={this.state.fctError} 
             />
-        </div>
-
-        <div className="col-sm-12">
-          <div className="form-group row">
-            <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
-            <div className="col-sm-4">
-              <select value={this.state.viewType} className="custom-select" onChange={this.handleViewChange}>
-                <option value="properties-in">properties-in : [vt=properties-in]</option>
-                <option value="propval-list">propval-list : [vt=propval-list]</option>
-                <option value="classes">classes [vt=classes]</option>
-                <option value="text">entities [vt=text]</option>
-                <option value="text-d">text-d [vt=text-d]</option>
-                <option value="text-properties">text-properties [vt=text-properties]</option>
-                <option value="properties">attributes [vt=properties]</option>
-                <option value="list-count">distinct (count) [vt=list-count]</option>
-                <option value="list">list [vt=list]</option>
-              </select>
-            </div>
-            <label className="col-sm-1 col-form-label text-right">Preset:</label>
-            <div className="col-sm-3">
-              <select value={this.state.preset} className="custom-select" onChange={this.handlePresetChange}>
-                <option value="none">None</option>
-                <option value="linked_data_tweets">linked data tweets list</option>
-                <option value="ski_resorts_descs">ski resort descriptions</option>
-                <option value="filters1">filters1 (empty resultset)</option>
-              </select>
-            </div>
           </div>
-        </div>
 
-        <div>Component: FctErrCntnr</div>
-        <div style={componentContainerStyle}>
-          <FctErrCntnr
-            fctError={this.state.fctError} 
-          />
-        </div>
+          <div>Component: FctViewHeader</div>
+          <div style={componentContainerStyle}>
+            <FctViewHeader 
+              qryResult={qryResult} 
+              fctUiUtil={this.fctUiUtil}
+              queryText={this.fctQuery.queryText}
+              viewSubjectIndex={viewSubjectIndex}
+            />
+          </div>
 
-        <div>Component: FctViewHeader</div>
-        <div style={componentContainerStyle}>
-          <FctViewHeader 
-            qryResult={qryResult} 
-            fctUiUtil={this.fctUiUtil}
-            queryText={this.fctQuery.queryText}
-            viewSubjectIndex={viewSubjectIndex}
-          />
-        </div>
+          <div>Component: FctFilters</div>
+          <div style={componentContainerStyle}>
+            <FctFilters
+              viewSubjectIndex={viewSubjectIndex}
+              qryFilters={qryFilters}
+              fctUiUtil={this.fctUiUtil}
+              onSetSubjectFocus={this.handleSetSubjectFocus}
+              onDropQueryFilter={this.handleDropQueryFilter}
+            />
+          </div>
 
-        <div>Component: FctFilters</div>
-        <div style={componentContainerStyle}>
-          <FctFilters
-            viewSubjectIndex={viewSubjectIndex}
-            qryFilters={qryFilters}
-            fctUiUtil={this.fctUiUtil}
-            onSetSubjectFocus={this.handleSetSubjectFocus}
-            onDropQueryFilter={this.handleDropQueryFilter}
-          />
-        </div>
-
-        <div className="col-sm-12">
-          <div className="row">
-            <div className="col-sm-3">
-              <div>Component: FctRspLimit</div>
-              <div style={componentContainerStyle}>
-                <FctRspLimit limit={rowLimit} onChange={this.handleRowLimitChange} />
+          <div className="col-sm-12">
+            <div className="row">
+              <div className="col-sm-3">
+                <div>Component: FctRspLimit</div>
+                <div style={componentContainerStyle}>
+                  <FctRspLimit limit={rowLimit} onChange={this.handleRowLimitChange} />
+                </div>
               </div>
-            </div>
-            <div className="col-sm-9">
-              <div>Component: FctRspPager</div>
-              <div style={componentContainerStyle}>
-                <FctRspPager qryResult={qryResult} />
+              <div className="col-sm-9">
+                <div>Component: FctRspPager</div>
+                <div style={componentContainerStyle}>
+                  <FctRspPager qryResult={qryResult} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div>Component: FctRspRslt</div>
-        <div style={componentContainerStyle}>
-          <FctRspRslt 
-            qryResult={qryResult} 
-            describeEndpoint={this.describeEndpoint} 
-            fctUiUtil={this.fctUiUtil}
-          />
-        </div>
+          <div>Component: FctRspRslt</div>
+          <div style={componentContainerStyle}>
+            <FctRspRslt 
+              qryResult={qryResult} 
+              describeEndpoint={this.describeEndpoint} 
+              fctUiUtil={this.fctUiUtil}
+            />
+          </div>
 
-        <div>Component: FctRspDbActivity</div>
-        <div style={componentContainerStyle}>
-          <FctRspDbActvty dbActivity={dbActivity} />
-        </div>
+          <div>Component: FctRspDbActivity</div>
+          <div style={componentContainerStyle}>
+            <FctRspDbActvty dbActivity={dbActivity} />
+          </div>
 
-      </div>
+        </div>
+      </ErrorBoundary>
     );
   }
 
@@ -415,7 +477,6 @@ class FctClient extends React.Component {
         break;
     }
   }
-
 }
 
 export default FctClient;
