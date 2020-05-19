@@ -69,7 +69,7 @@ class ForcedError extends React.Component
       this.props.cbClearForcedError();
       throw Error(`Forced error to test error boundary: ${new Date()}`);
     }
-    return "";
+    return null;
   }
 }
 
