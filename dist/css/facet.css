@@ -1,0 +1,63 @@
+@import url(palette.css)
+
+body {
+  color: var(--palette-color1) !important;
+}
+
+.opl-navbar-background {
+  background-color: var(--palette-color2) !important;
+}
+
+.opl-filter-summary-background {
+  background-color: var(--palette-color5);
+}
+
+.opl-footer-container {
+  border-top: 1px solid var(--palette-color5);
+  padding-top: 10px;
+}
+
+.oi-cog {
+  font-size: 25px;
+  color: white;
+  padding-right: 5px;
+}
+
+.oi-cog:active {
+  color: var(--palette-color5);
+}
+
+/* results table */
+#result_t {
+  font-size: 0.9em
+} 
+
+#result_info {
+  border-top: 1px solid var(--palette-color5); 
+  line-height: 90%; 
+  padding: 5px 0
+}
+
+nav span {
+  color: var(--palette-color6);
+}
+
+div.about {
+  /* text-align: center; */
+}
+
+div.about h2 {
+  /* color: var(--palette-color2); */
+}
+
+#about_logo_container {
+  background-color: var(--palette-color2); 
+  padding: 10px; width: 140px; 
+  margin-top: 20px;
+  border-radius: 10px 10px; 
+  text-align: left; 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+

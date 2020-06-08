@@ -237,107 +237,114 @@ class FctClient extends React.Component {
 
     return (
       <ErrorBoundary>
-        <ForcedError forceError={this.state.forcedError} cbClearForcedError={() => this.setState({forcedError: false})}/>
-        <div>
-          <div>Component: FctSearchInputEditor</div>
-          <div style={componentContainerStyle}>
-            <FctSearchInputEditor 
-              searchText={this.state.searchText} 
-              onSearch={this.handleSearch} 
-              onChange={this.handleSearchInputEditorChange}
-              />
-          </div>
+        <div className="container">
+          <h5>Facets Components - Test page</h5>
+          <div className="row">
+            <div className="col-sm-12">
+              <ForcedError forceError={this.state.forcedError} cbClearForcedError={() => this.setState({forcedError: false})}/>
+              <div>
+                <div>Component: FctSearchInputEditor</div>
+                <div style={componentContainerStyle}>
+                  <FctSearchInputEditor 
+                    searchText={this.state.searchText} 
+                    onSearch={this.handleSearch} 
+                    onChange={this.handleSearchInputEditorChange}
+                    />
+                </div>
 
-          <div className="col-sm-12">
-            <div className="form-group row">
-              <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
-              <div className="col-sm-4">
-                <select value={this.state.viewType} className="custom-select" onChange={this.handleViewChange}>
-                  <option value="properties-in">properties-in : [vt=properties-in]</option>
-                  <option value="propval-list">propval-list : [vt=propval-list]</option>
-                  <option value="classes">classes [vt=classes]</option>
-                  <option value="text">entities [vt=text]</option>
-                  <option value="text-d">text-d [vt=text-d]</option>
-                  <option value="text-properties">text-properties [vt=text-properties]</option>
-                  <option value="properties">attributes [vt=properties]</option>
-                  <option value="list-count">distinct (count) [vt=list-count]</option>
-                  <option value="list">list [vt=list]</option>
-                </select>
-              </div>
-              <label className="col-sm-1 col-form-label text-right">Preset:</label>
-              <div className="col-sm-3">
-                <select value={this.state.preset} className="custom-select" onChange={this.handlePresetChange}>
-                  <option value="none">None</option>
-                  <option value="linked_data_tweets">linked data tweets list</option>
-                  <option value="ski_resorts_descs">ski resort descriptions</option>
-                  <option value="filters1">filters1 (empty resultset)</option>
-                </select>
-              </div>
-              <div className="col-sm-2">
-                <button className="btn btn-primary" onClick={this.handleForceError}>Force error</button>
+                <div className="col-sm-12">
+                  <div className="form-group row">
+                    <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
+                    <div className="col-sm-4">
+                      <select value={this.state.viewType} className="custom-select" onChange={this.handleViewChange}>
+                        <option value="properties-in">properties-in : [vt=properties-in]</option>
+                        <option value="propval-list">propval-list : [vt=propval-list]</option>
+                        <option value="classes">classes [vt=classes]</option>
+                        <option value="text">entities [vt=text]</option>
+                        <option value="text-d">text-d [vt=text-d]</option>
+                        <option value="text-properties">text-properties [vt=text-properties]</option>
+                        <option value="properties">attributes [vt=properties]</option>
+                        <option value="list-count">distinct (count) [vt=list-count]</option>
+                        <option value="list">list [vt=list]</option>
+                      </select>
+                    </div>
+                    <label className="col-sm-1 col-form-label text-right">Preset:</label>
+                    <div className="col-sm-3">
+                      <select value={this.state.preset} className="custom-select" onChange={this.handlePresetChange}>
+                        <option value="none">None</option>
+                        <option value="linked_data_tweets">linked data tweets list</option>
+                        <option value="ski_resorts_descs">ski resort descriptions</option>
+                        <option value="filters1">filters1 (empty resultset)</option>
+                      </select>
+                    </div>
+                    <div className="col-sm-2">
+                      <button className="btn btn-primary" onClick={this.handleForceError}>Force error</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div>Component: FctErrCntnr</div>
+                <div style={componentContainerStyle}>
+                  <FctErrCntnr
+                    fctError={this.state.fctError} 
+                  />
+                </div>
+
+                <div>Component: FctViewHeader</div>
+                <div style={componentContainerStyle}>
+                  <FctViewHeader 
+                    qryResult={qryResult} 
+                    fctUiUtil={this.fctUiUtil}
+                    queryText={this.fctQuery.queryText}
+                    viewSubjectIndex={viewSubjectIndex}
+                  />
+                </div>
+
+                <div>Component: FctFilters</div>
+                <div style={componentContainerStyle}>
+                  <FctFilters
+                    viewSubjectIndex={viewSubjectIndex}
+                    qryFilters={qryFilters}
+                    fctUiUtil={this.fctUiUtil}
+                    onSetSubjectFocus={this.handleSetSubjectFocus}
+                    onDropQueryFilter={this.handleDropQueryFilter}
+                  />
+                </div>
+
+                <div className="col-sm-12">
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <div>Component: FctRspLimit</div>
+                      <div style={componentContainerStyle}>
+                        <FctRspLimit limit={rowLimit} onChange={this.handleRowLimitChange} />
+                      </div>
+                    </div>
+                    <div className="col-sm-9">
+                      <div>Component: FctRspPager</div>
+                      <div style={componentContainerStyle}>
+                        <FctRspPager qryResult={qryResult} />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>Component: FctRspRslt</div>
+                <div style={componentContainerStyle}>
+                  <FctRspRslt 
+                    qryResult={qryResult} 
+                    describeEndpoint={this.describeEndpoint} 
+                    fctUiUtil={this.fctUiUtil}
+                  />
+                </div>
+
+                <div>Component: FctRspDbActivity</div>
+                <div style={componentContainerStyle}>
+                  <FctRspDbActvty dbActivity={dbActivity} />
+                </div>
+
               </div>
             </div>
           </div>
-
-          <div>Component: FctErrCntnr</div>
-          <div style={componentContainerStyle}>
-            <FctErrCntnr
-              fctError={this.state.fctError} 
-            />
-          </div>
-
-          <div>Component: FctViewHeader</div>
-          <div style={componentContainerStyle}>
-            <FctViewHeader 
-              qryResult={qryResult} 
-              fctUiUtil={this.fctUiUtil}
-              queryText={this.fctQuery.queryText}
-              viewSubjectIndex={viewSubjectIndex}
-            />
-          </div>
-
-          <div>Component: FctFilters</div>
-          <div style={componentContainerStyle}>
-            <FctFilters
-              viewSubjectIndex={viewSubjectIndex}
-              qryFilters={qryFilters}
-              fctUiUtil={this.fctUiUtil}
-              onSetSubjectFocus={this.handleSetSubjectFocus}
-              onDropQueryFilter={this.handleDropQueryFilter}
-            />
-          </div>
-
-          <div className="col-sm-12">
-            <div className="row">
-              <div className="col-sm-3">
-                <div>Component: FctRspLimit</div>
-                <div style={componentContainerStyle}>
-                  <FctRspLimit limit={rowLimit} onChange={this.handleRowLimitChange} />
-                </div>
-              </div>
-              <div className="col-sm-9">
-                <div>Component: FctRspPager</div>
-                <div style={componentContainerStyle}>
-                  <FctRspPager qryResult={qryResult} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>Component: FctRspRslt</div>
-          <div style={componentContainerStyle}>
-            <FctRspRslt 
-              qryResult={qryResult} 
-              describeEndpoint={this.describeEndpoint} 
-              fctUiUtil={this.fctUiUtil}
-            />
-          </div>
-
-          <div>Component: FctRspDbActivity</div>
-          <div style={componentContainerStyle}>
-            <FctRspDbActvty dbActivity={dbActivity} />
-          </div>
-
         </div>
       </ErrorBoundary>
     );
