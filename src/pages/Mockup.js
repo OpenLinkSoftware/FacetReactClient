@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'
 import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Button from 'react-bootstrap/Button'
+import Nav from 'react-bootstrap/Nav'
+import Tabs from 'react-bootstrap/Tabs'
+import Tab from 'react-bootstrap/Tab'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 // import FctClient from '../FctClient';
 
@@ -84,8 +90,96 @@ export default function Mockup() {
           <div className="row justify-content-center mt-3 mb-3">
             <h4>Precision Search &amp; Find</h4>
           </div>
-        </div>
-      </div>
+
+          {/* ------------------------------- */}
+
+          <Tabs defaultActiveKey="entityText" id="uncontrolled-tab-example" className="justify-content-center">
+            <Tab eventKey="entityText" title="rbEntity Text">
+              <Row>
+                <Col md={{span: 6, offset: 3}}>
+                  <Form>
+                    <Form.Group controlId="frmSearchText">
+                      <Form.Row>
+                        <Col>
+                          <Form.Control type="text" placeholder="Search text"/>
+                        </Col>
+                        <Col md="auto">
+                          <Button variant="primary" type="submit">Search</Button>
+                        </Col>
+                      </Form.Row>
+                    </Form.Group>
+                  </Form>
+                </Col>
+              </Row>
+            </Tab>
+            <Tab eventKey="entityLabel" title="rbEntity Label Lookup">
+              <p>ENTITY LABEL!</p>
+            </Tab>
+            <Tab eventKey="entityURI" title="rbEntity URI Lookup">
+              <p>ENTITY URI!</p>
+            </Tab>
+          </Tabs>
+
+          {/* ------------------------------- */}
+
+          <ul className="nav nav-tabs justify-content-center" id="tabSearchType" role="tablist">
+            <li className="nav-item">
+              <a className="nav-link active" href="#textPane" 
+                id="tabTextSearch" data-toggle="tab" role="tab" aria-controls="entityText" aria-selected="true">bEntity Text</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#labelPane" 
+                id="tabEntityLabelSearch" data-toggle="tab" role="tab" aria-controls="entityLabel" aria-selected="false">bEntity Label Lookup</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#uriPane" id="tabEntityUriSearch" 
+                data-toggle="tab" role="tab" aria-controls="entityUri" aria-selected="false">bEntity URI Lookup</a>
+            </li>
+          </ul>
+
+          {/* ------------------------------- */}
+
+          <div className="tab-content" id="searchTabsContent">
+
+            <div className="tab-pane fade show active" id="textPane" role="tabpanel" aria-labelledby="text-pane-tab">
+              <div className="row justify-content-center my-3">
+                <form className="form-inline">
+                  <div className="col" style={{textAlign: "center"}}>
+                    <input type="text" className="form-control" size="50" id="searchText1" name="searchText" placeholder="Search text"/>
+                    <a className="btn btn-primary" href="./entities.html" role="button">Search</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div className="tab-pane fade" id="labelPane" role="tabpanel" aria-labelledby="label-pane-tab">
+              <div className="row justify-content-center my-3">
+                <form className="form-inline">
+                  <div className="col" style={{textAlign: "center"}}>
+                    <input type="text" className="form-control" size="50" id="searchText2" name="searchText" placeholder="Label"/>
+                    <a className="btn btn-primary" href="./entities.html" role="button">Describe</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div className="tab-pane fade" id="uriPane" role="tabpanel" aria-labelledby="uri-pane-tab">
+              <div className="row justify-content-center my-3">
+                <form className="form-inline">
+                  <div className="col" style={{textAlign: "center"}}>
+                    <input type="text" className="form-control" size="50" id="searchText3" name="searchText" placeholder="URI"/>
+                    <a className="btn btn-primary" href="./entities.html" role="button">Describe</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div> {/* searchTabsContent */}
+
+          {/* ------------------------------- */}
+    
+        </div> {/* container-fluid */}
+      </div> {/* container-fluid */}
 
     </div>
   )
