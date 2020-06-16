@@ -3,10 +3,12 @@ import FctFooter from '../FctFooter'
 
 export default function AboutPage(props) {
   return (
-    <div id="content">
-      <FctNavBar />
+    <>
+    <FctNavBar />
+    <div className="container-fluid">
       <h3>About</h3>
       <FctFooter />
     </div>
+    </>
   )
 }
