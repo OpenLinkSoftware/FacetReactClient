@@ -1,3 +1,4 @@
+import React from 'react';
 import FctNavBar from '../FctNavBar'
 import FctFooter from '../FctFooter'
 
