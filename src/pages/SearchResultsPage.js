@@ -6,37 +6,17 @@ import Backdrop from '../Backdrop';
 
 export default class SearchResultsPage extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { sideDrawerOpen: false };
-    this.drawerToggleClickHandler = this.drawerToggleClickHandler.bind(this);
-    this.backdropClickHandler = this.backdropClickHandler.bind(this);
-  }
-
-  drawerToggleClickHandler(e) {
-    e.preventDefault();
-    this.setState((prevState) => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
-    });
-  }
-
-  backdropClickHandler(e) {
-    this.setState({ sideDrawerOpen: false });
-  }
-
-
   render() {
     let backdrop;
 
-    if (this.state.sideDrawerOpen) {
-      backdrop = <Backdrop clickHndlr={this.backdropClickHandler}/>;
+    if (this.props.sideDrawerOpen) {
+      backdrop = <Backdrop clickHndlr={this.props.backdropClickHandler} />;
     }
 
-    console.log('SearchResultsPage: render')
     return (
       <div style={{ height: '100%' }}>
-        <FctNavBar drawerToggleClickHandler={this.drawerToggleClickHandler} />
-        <FctSideDrawer show={this.state.sideDrawerOpen} />
+        <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
+        <FctSideDrawer show={this.props.sideDrawerOpen} />
         {backdrop}
         <div className="container-fluid">
           <h3>Search Results Page</h3>

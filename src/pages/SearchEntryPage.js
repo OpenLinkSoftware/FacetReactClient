@@ -12,6 +12,8 @@ import Row from 'react-bootstrap/Row'
 
 import FctNavBar from '../FctNavBar'
 import FctFooter from '../FctFooter'
+import FctSideDrawer from '../FctSideDrawer';
+import Backdrop from '../Backdrop';
 
 const OpenSearchLinkAndPopover = () => {
   return (
@@ -32,96 +34,107 @@ const OpenSearchLinkAndPopover = () => {
   );
 };
 
-export default function SearchEntryPage(props) {
+export default class SearchResultsPage extends React.Component {
 
-  const handleSearchEntityText = (e) => {
-    e.preventDefault();
-    props.history.push('/searchResults')
-  };
+  render() {
+    const handleSearchEntityText = (e) => {
+      e.preventDefault();
+      this.props.history.push('/searchResults')
+    };
 
-  const handleSearchEntityLabel = (e) => {
-    e.preventDefault();
-    props.history.push('/searchResults')
-  };
+    const handleSearchEntityLabel = (e) => {
+      e.preventDefault();
+      this.props.history.push('/searchResults')
+    };
 
-  const handleSearchEntityUri = (e) => {
-    e.preventDefault();
-    props.history.push('/searchResults')
-  };
+    const handleSearchEntityUri = (e) => {
+      e.preventDefault();
+      this.props.history.push('/searchResults')
+    };
 
-  return (
-    <>
-      <FctNavBar />
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col text-right pt-2">
-            <Link to="#" className="btn btn-outline-secondary" role="button">Featured</Link>
-            <Link to="#" className="btn btn-outline-secondary" role="button">Demo Queries</Link>
-            <OpenSearchLinkAndPopover />
+    let backdrop;
+
+    if (this.props.sideDrawerOpen) {
+      backdrop = <Backdrop clickHndlr={this.props.backdropClickHandler} />;
+    }
+
+    return (
+      <div style={{ height: '100%' }}>
+        <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
+        <FctSideDrawer show={this.props.sideDrawerOpen} />
+        {backdrop}
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col text-right pt-2">
+              <Link to="#" className="btn btn-outline-secondary" role="button">Featured</Link>
+              <Link to="#" className="btn btn-outline-secondary" role="button">Demo Queries</Link>
+              <OpenSearchLinkAndPopover />
+            </div>
           </div>
-        </div>
-        <div className="row justify-content-center mt-3 mb-3">
-          <h4>Precision Search &amp; Find</h4>
-        </div>
+          <div className="row justify-content-center mt-3 mb-3">
+            <h4>Precision Search &amp; Find</h4>
+          </div>
 
-        <Tabs defaultActiveKey="entityText" id="searchInputTabs" className="justify-content-center">
-          <Tab eventKey="entityText" title="Entity Text">
-            <Row>
-              <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
-                <Form>
-                  <Form.Group controlId="frmSearchText">
-                    <Form.Row>
-                      <Col>
-                        <Form.Control type="text" placeholder="Search text" />
-                      </Col>
-                      <Col md="auto">
-                        <Button variant="primary" type="submit" onClick={handleSearchEntityText}>Search</Button>
-                      </Col>
-                    </Form.Row>
-                  </Form.Group>
-                </Form>
-              </Col>
-            </Row>
-          </Tab>
-          <Tab eventKey="entityLabel" title="Entity Label Lookup">
-            <Row>
-              <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
-                <Form>
-                  <Form.Group controlId="frmSearchLabel">
-                    <Form.Row>
-                      <Col>
-                        <Form.Control type="text" placeholder="Label" />
-                      </Col>
-                      <Col md="auto">
-                        <Button variant="primary" type="submit" onClick={handleSearchEntityLabel}>Describe</Button>
-                      </Col>
-                    </Form.Row>
-                  </Form.Group>
-                </Form>
-              </Col>
-            </Row>
-          </Tab>
-          <Tab eventKey="entityURI" title="Entity URI Lookup">
-            <Row>
-              <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
-                <Form>
-                  <Form.Group controlId="frmSearchURI">
-                    <Form.Row>
-                      <Col>
-                        <Form.Control type="text" placeholder="URI" />
-                      </Col>
-                      <Col md="auto">
-                        <Button variant="primary" type="submit" onClick={handleSearchEntityUri}>Describe</Button>
-                      </Col>
-                    </Form.Row>
-                  </Form.Group>
-                </Form>
-              </Col>
-            </Row>
-          </Tab>
-        </Tabs>
-        <FctFooter />
+          <Tabs defaultActiveKey="entityText" id="searchInputTabs" className="justify-content-center">
+            <Tab eventKey="entityText" title="Entity Text">
+              <Row>
+                <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
+                  <Form>
+                    <Form.Group controlId="frmSearchText">
+                      <Form.Row>
+                        <Col>
+                          <Form.Control type="text" placeholder="Search text" />
+                        </Col>
+                        <Col md="auto">
+                          <Button variant="primary" type="submit" onClick={handleSearchEntityText}>Search</Button>
+                        </Col>
+                      </Form.Row>
+                    </Form.Group>
+                  </Form>
+                </Col>
+              </Row>
+            </Tab>
+            <Tab eventKey="entityLabel" title="Entity Label Lookup">
+              <Row>
+                <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
+                  <Form>
+                    <Form.Group controlId="frmSearchLabel">
+                      <Form.Row>
+                        <Col>
+                          <Form.Control type="text" placeholder="Label" />
+                        </Col>
+                        <Col md="auto">
+                          <Button variant="primary" type="submit" onClick={handleSearchEntityLabel}>Describe</Button>
+                        </Col>
+                      </Form.Row>
+                    </Form.Group>
+                  </Form>
+                </Col>
+              </Row>
+            </Tab>
+            <Tab eventKey="entityURI" title="Entity URI Lookup">
+              <Row>
+                <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
+                  <Form>
+                    <Form.Group controlId="frmSearchURI">
+                      <Form.Row>
+                        <Col>
+                          <Form.Control type="text" placeholder="URI" />
+                        </Col>
+                        <Col md="auto">
+                          <Button variant="primary" type="submit" onClick={handleSearchEntityUri}>Describe</Button>
+                        </Col>
+                      </Form.Row>
+                    </Form.Group>
+                  </Form>
+                </Col>
+              </Row>
+            </Tab>
+          </Tabs>
+          <FctFooter />
+        </div>
       </div>
-    </>
-  )
+    )
+  }
+
 }
