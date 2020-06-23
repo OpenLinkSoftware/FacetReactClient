@@ -27,7 +27,7 @@ export default class FctNavBar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link className="nav-link" to="/searchEntry" title="New Search" data-toggle="tooltip" data-placement="bottom"><span
+              <Link className="nav-link" to="/" title="New Search" data-toggle="tooltip" data-placement="bottom"><span
                 className="oi oi-magnifying-glass" style={{ color: 'white' }}></span></Link>
             </li>
             <li className="nav-item">
@@ -35,6 +35,9 @@ export default class FctNavBar extends React.Component {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/help">Help</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/plain_components">Plain components</Link>
             </li>
           </ul>
 

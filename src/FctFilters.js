@@ -299,7 +299,8 @@ export default class FctFilters extends React.Component {
     //   queryString = queryString.slice(0, -1);
     // }
 
-    const path = '/';
+    // const path = '/';
+    const path = '/plain_components';
     let queryString = `?action=${actionDesc.action}`;
     if (actionDesc.args) {
       for (const arg in actionDesc.args) {

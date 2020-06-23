@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import FctUiUtil from './FctUiUtil'; 
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
@@ -239,6 +240,7 @@ class FctClient extends React.Component {
       <ErrorBoundary>
         <div className="container">
           <h5>Facets Components - Test page</h5>
+          <Link to="/">Facet home</Link>
           <div className="row">
             <div className="col-sm-12">
               <ForcedError forceError={this.state.forcedError} cbClearForcedError={() => this.setState({forcedError: false})}/>

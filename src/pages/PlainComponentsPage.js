@@ -11,14 +11,14 @@ import FctClient from '../FctClient';
 // open_property_of, drop, drop_cond, drop_text_prop, drop_text, set_class, open,
 // refresh, set_inf, set_agg, select_value, cond, save, save_init, featured, set_loc
 
-export default function MainPage({location}) {
+export default function PlainComponentsPage({location}) {
   let action = {};
   let qryStrParams;
-  console.log('MainPage#location: ', JSON.stringify(location, null, 2));
+  console.log('PlainComponentsPage#location: ', JSON.stringify(location, null, 2));
   if (location.search) {
     qryStrParams = qs.parse(location.search, { ignoreQueryPrefix: true });
   }
-  console.log(`MainPage#path: ${location.pathname} qs params object:`, qryStrParams);
+  console.log(`PlainComponentsPage#path: ${location.pathname} qs params object:`, qryStrParams);
 
   if (qryStrParams) { // Update the UI in response to user interaction
     if (qryStrParams.action) {
@@ -34,7 +34,7 @@ export default function MainPage({location}) {
 
       switch (qryStrParams.action) {
         case "setView":
-          console.log('MainPage: Action: setView');
+          console.log('PlainComponentsPage: Action: setView');
           // Example equivalent /fct link
           // View shows: ?s1 has <any Attribute> with Value "skiing" 
           // The <any Attribute> link is:
@@ -47,7 +47,7 @@ export default function MainPage({location}) {
           // TO DO: Act on limit, offset and cno query string params
           break;
         case "setTextProperty":
-          console.log('MainPage: Action: setTextProperty');
+          console.log('PlainComponentsPage: Action: setTextProperty');
           // Example equivalent /fct link:
           // View shows: ?s1 has any Attribute with Value "skiing"
           // The href under the first attribute (http://www.openlinks.../schema#description) is:
@@ -68,7 +68,7 @@ export default function MainPage({location}) {
           action.ts = new Date().getTime(); 
           break;
         case "openProperty":
-          console.log('MainPage: Action: openProperty');
+          console.log('PlainComponentsPage: Action: openProperty');
           // Example equivalent /fct link:
           // View shows: ?s1 has [[any Attribute]] with Value "skiing"
           // Click on the above [[any Attribute]] link
@@ -99,7 +99,7 @@ export default function MainPage({location}) {
           action.ts = new Date().getTime();
           break;
         case "openPropertyOf":
-          console.log('MainPage: Action: openPropertyOf');
+          console.log('PlainComponentsPage: Action: openPropertyOf');
           // Example equivalent /fct link:
           // View shows: ?s1 has [[any Attribute]] with Value "linked+data"
           // Click on Values in the sidebar
@@ -119,7 +119,7 @@ export default function MainPage({location}) {
           action.ts = new Date().getTime();
           break;
         case "cond":
-          console.log('MainPage: Action: cond');
+          console.log('PlainComponentsPage: Action: cond');
           // Example equivalent /fct link:
           // http://linkeddata.uriburner.com/fct/facet.vsp?
           //   cmd=cond&cond_t=eq&val=2&lang=&
@@ -155,7 +155,7 @@ export default function MainPage({location}) {
           }
           break;
         case "setClass":
-          console.log('MainPage: Action: setClass');
+          console.log('PlainComponentsPage: Action: setClass');
           // Example equivalent /fct link
           // http://linkeddata.uriburner.com/fct/facet.vsp?
           //   cmd=set_class&

@@ -52,6 +52,7 @@ export default class FctRspLstRslt extends React.Component {
         let dataType = cols[0]["@datatype"];
 
         let actionOpts = {
+          path: '/plain_components',
           action: FctView.fctViewAction('cond'),
           cond_t: 'eq', // TO DO: Need UI control to set the condition: ==, !==, >, >=, <, <=, between, not between, contains, in, not in
           val: item,

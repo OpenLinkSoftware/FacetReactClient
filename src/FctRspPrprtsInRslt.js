@@ -76,6 +76,7 @@ export default class FctRspPrprtsInRslt extends React.Component {
         if (propertyURI)
         {
           let actionOpts = {
+            path: '/plain_components',
             action: FctView.fctViewAction('properties-in'),
             iri: propertyURI,
             dataType,

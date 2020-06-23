@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom'
-import MainPage from './pages/MainPage'
+import PlainComponentsPage from './pages/PlainComponentsPage'
 import SearchEntryPage from './pages/SearchEntryPage'
 import SearchResultsPage from './pages/SearchResultsPage'
 import AboutPage from './pages/AboutPage'
@@ -30,11 +30,12 @@ class App extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/" component={MainPage} exact={true} />
+        <Route path="/plain_components" component={PlainComponentsPage} exact={true} />
         <Route
-          path="/searchEntry"
-          render={(props) => <SearchEntryPage 
-            history={props.history} 
+          path="/"
+          exact={true}
+          render={(props) => <SearchEntryPage
+            history={props.history}
             drawerToggleClickHandler={this.drawerToggleClickHandler}
             backdropClickHandler={this.backdropClickHandler}
             sideDrawerOpen={this.state.sideDrawerOpen}
@@ -42,14 +43,28 @@ class App extends React.Component {
         />
         <Route
           path="/searchResults"
-          render={(props) => <SearchResultsPage 
+          render={(props) => <SearchResultsPage
             drawerToggleClickHandler={this.drawerToggleClickHandler}
             backdropClickHandler={this.backdropClickHandler}
             sideDrawerOpen={this.state.sideDrawerOpen}
           />}
         />
-        <Route path="/about" component={AboutPage} />
-        <Route path="/help" component={HelpPage} />
+        <Route
+          path="/about"
+          render={(props) => <AboutPage
+            drawerToggleClickHandler={this.drawerToggleClickHandler}
+            backdropClickHandler={this.backdropClickHandler}
+            sideDrawerOpen={this.state.sideDrawerOpen}
+          />}
+        />
+        <Route
+          path="/help"
+          render={(props) => <HelpPage
+            drawerToggleClickHandler={this.drawerToggleClickHandler}
+            backdropClickHandler={this.backdropClickHandler}
+            sideDrawerOpen={this.state.sideDrawerOpen}
+          />}
+        />
       </Switch>
     );
   }
