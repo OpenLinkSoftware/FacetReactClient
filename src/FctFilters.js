@@ -185,7 +185,7 @@ export default class FctFilters extends React.Component {
                 
                 // TO DO: Build action URI from action[actionId] descriptor.
                 let actionDesc = rActionDesc[actionId];
-                let actionUri = this.buildActionUri(actionDesc);
+                let actionUri = this.buildActionUri(actionDesc, this.props.location.pathname);
                 
                 // actionLinks.push(<a href={actionUri}>{actionLabel}</a>);
                 actionLinks.push(<Link to={actionUri}>{actionLabel}</Link>);
@@ -286,28 +286,15 @@ export default class FctFilters extends React.Component {
    * The URI is built from a generic action descriptor which
    * is independent of the UI implementation.
    */
-  buildActionUri(actionDesc)
+  buildActionUri(actionDesc, targetPath)
   {
-    // const rootPath = '/facet/';
-    // let path = `${rootPath}${actionDesc.action}`;
-    // let queryString = '';
-    // if (actionDesc.args) {
-    //   queryString = '?';
-    //   for (const arg in actionDesc.args) {
-    //     queryString += `${arg}=${actionDesc.args[arg]}&`;
-    //   }
-    //   queryString = queryString.slice(0, -1);
-    // }
-
-    // const path = '/';
-    const path = '/plain_components';
     let queryString = `?action=${actionDesc.action}`;
     if (actionDesc.args) {
       for (const arg in actionDesc.args) {
         queryString += `&${arg}=${actionDesc.args[arg]}`;
       }
     }
-    return `${path}${queryString}`;
+    return `${targetPath}${queryString}`;
   }
 
   static getDerivedStateFromProps(props, state) {

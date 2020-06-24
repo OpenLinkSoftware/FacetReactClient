@@ -181,6 +181,6 @@ export default function PlainComponentsPage({location}) {
   }
 
   return (
-    <FctClient {...action}></FctClient>
+    <FctClient location={location} {...action}></FctClient>
   )
 }

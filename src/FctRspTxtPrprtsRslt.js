@@ -53,7 +53,7 @@ export default class FctRspTxtPrprtsRslt extends React.Component {
         let typeColVal;
 
         let actionOpts = {
-          path: '/plain_components',
+          path: this.props.location.pathname,
           action: FctView.fctViewAction('text-properties'),
           iri: classURI,
           dataType: cols[0]["@datatype"]

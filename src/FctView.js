@@ -35,7 +35,6 @@ export default class FctView
   }
 
   static fctBuildAction(actionOpts) {
-    // let path = '/';
     let path = actionOpts.path;
     let qs = '?';
     let qsSep = '';

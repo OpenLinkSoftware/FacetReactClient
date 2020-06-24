@@ -96,7 +96,7 @@ export default class FctRspClssRslt extends React.Component {
         if (classURI)
         {
           let actionOpts = {
-            path: '/plain_components',
+            path: this.props.location.pathname,
             action: FctView.fctViewAction('classes'),
             iri: classURI,
             dataType,

@@ -310,6 +310,7 @@ class FctClient extends React.Component {
                     fctUiUtil={this.fctUiUtil}
                     onSetSubjectFocus={this.handleSetSubjectFocus}
                     onDropQueryFilter={this.handleDropQueryFilter}
+                    location={location}
                   />
                 </div>
 
@@ -336,6 +337,7 @@ class FctClient extends React.Component {
                     qryResult={qryResult} 
                     describeEndpoint={this.describeEndpoint} 
                     fctUiUtil={this.fctUiUtil}
+                    location={this.props.location}
                   />
                 </div>
 

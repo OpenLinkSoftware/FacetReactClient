@@ -28,7 +28,7 @@ export default function FctRspRslt(props) {
       break;
     case "text-properties":
       // prompt = <strong>List of properties with matching text:</strong>;
-      resultComponent = <FctRspTxtPrprtsRslt qryResult={props.qryResult} />
+      resultComponent = <FctRspTxtPrprtsRslt qryResult={props.qryResult} location={props.location} />
       break;
     case "classes":
       // prompt = <strong>Types:</strong>;
@@ -36,7 +36,8 @@ export default function FctRspRslt(props) {
         <FctRspClssRslt 
           qryResult={props.qryResult} 
           describeEndpoint={props.describeEndpoint} 
-          fctUiUtil={props.fctUiUtil} 
+          fctUiUtil={props.fctUiUtil}
+          location={props.location}
         />
       break;
     case "properties":
@@ -46,6 +47,7 @@ export default function FctRspRslt(props) {
           qryResult={props.qryResult} 
           describeEndpoint={props.describeEndpoint} 
           fctUiUtil={props.fctUiUtil} 
+          location={props.location}
         />
       break;
     case "properties-in":
@@ -55,6 +57,7 @@ export default function FctRspRslt(props) {
          qryResult={props.qryResult} 
          describeEndpoint={props.describeEndpoint} 
          fctUiUtil={props.fctUiUtil} 
+         location={props.location}
        />
       break;
     case "propval-list":
@@ -63,7 +66,7 @@ export default function FctRspRslt(props) {
       break;
     case "list":
       prompt = <strong>Select a value or condition:</strong>;
-      resultComponent = <FctRspLstRslt qryResult={props.qryResult} />
+      resultComponent = <FctRspLstRslt qryResult={props.qryResult} location={props.location} />
       break;
     case "list-count":
       // prompt = <strong>Distinct values:</strong>;
