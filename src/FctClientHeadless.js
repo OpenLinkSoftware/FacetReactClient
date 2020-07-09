@@ -2,8 +2,26 @@ import { FctQuery, FctResult } from '../lib/facet-js-client.js';
 
 const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
 
-// TO DO: Remove
-// NOTE: NOT A COMPONENT
+//
+// FctClientHeadless is a bridge which converts UI events into
+// actions on a FctQuery instance. It is responsible for 
+// triggering new Facet searches and handling Facet results.
+//
+// FctClientHeadless is NOT a React component. It is a class
+// which provides a means of sharing FctQuery state and data
+// across pages via a React context. It intentionally UIless,
+// aka headless, and doesn't render anything. 
+//
+// In contrast, FctClient performs a similar function, but IS
+// a React Component. FctClient predates FctClientHeadless.
+// It requires that all the FctXXX components be its children.
+// For this reason, FctClient is only used in PlainComponentsPage
+// which contains all the FctXXX components in a single page
+// acting as a test rig. It doesn't allow splitting of the
+// FctXXX components across more than one page.
+//
+// The intention is to replace FctClient by FctClientHeadless.
+//
 class FctClientHeadless {
   constructor(contextStateChangeListener) {
     this.contextStateChangeListener = contextStateChangeListener;
