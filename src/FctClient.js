@@ -100,11 +100,10 @@ class FctClient extends React.Component {
       forcedError: false,
     };
 
-    
     this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
     
-    this.handleSearchInputEditorChange = this.handleSearchInputEditorChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+    this.handleChangeSearchEntityText = this.handleChangeSearchEntityText.bind(this);
+    this.handleSearchOnEntityText = this.handleSearchOnEntityText.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleSetSubjectFocus = this.handleSetSubjectFocus.bind(this);
     this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
@@ -127,20 +126,20 @@ class FctClient extends React.Component {
     this.fctQuery.setViewLimit(this.viewLimit);
   }
 
-  handleSearchInputEditorChange(searchInputEditorText) {
-    this.setState({ searchText: searchInputEditorText, fctError: null });
+  handleChangeSearchEntityText(searchText) {
+    this.setState({ searchText: searchText, fctError: null });
   }
 
-  handleSearch(searchInputEditorText) {
-    console.log('FctClient#handleSearch');
-    searchInputEditorText = searchInputEditorText.trim();
-    this.setState({ searchText: searchInputEditorText }); // Async!
+  handleSearchOnEntityText(searchText) {
+    console.log('FctClient#handleSearchOnEntityText');
+    searchText = searchText.trim();
+    this.setState({ searchText: searchText }); // Async!
 
-    if (!searchInputEditorText) {
+    if (!searchText) {
       this.setState({ fctResult: null, fctError: null });
     }
     else {
-      this.fctQuery.queryText = searchInputEditorText;
+      this.fctQuery.queryText = searchText;
       this.search();
     }
   }
@@ -200,7 +199,7 @@ class FctClient extends React.Component {
     }); // Async!
     // - Perform a new search based on the new search text.
     // - The UI controls holding the Facet response output will be updated automatically.
-    this.handleSearch(this.fctQuery.queryText);
+    this.handleSearchOnEntityText(this.fctQuery.queryText);
   }
 
   handleSetSubjectFocus(subjectId) {
@@ -216,7 +215,7 @@ class FctClient extends React.Component {
     this.fctQuery.removeQueryFilter(filterId); // May change the view type if the removed filter had the subject focus
     // If the removed filter was a <text> element, clear the searchInputEditor input to reflect this.
     if (!this.fctQuery.queryText)
-      this.handleSearchInputEditorChange("");
+      this.handleChangeSearchEntityText("");
     this.updateView(this.fctQuery.getViewType());
   }
 
@@ -240,7 +239,7 @@ class FctClient extends React.Component {
       <ErrorBoundary>
         <div className="container">
           <h5>Facets Components - Test page</h5>
-          <Link to="/">Facet home</Link>
+          <Link to="/">Full UI</Link>
           <div className="row">
             <div className="col-sm-12">
               <ForcedError forceError={this.state.forcedError} cbClearForcedError={() => this.setState({forcedError: false})}/>
@@ -249,8 +248,8 @@ class FctClient extends React.Component {
                 <div style={componentContainerStyle}>
                   <FctSearchInputEditor 
                     searchText={this.state.searchText} 
-                    onSearch={this.handleSearch} 
-                    onChange={this.handleSearchInputEditorChange}
+                    onSearch={this.handleSearchOnEntityText} 
+                    onChange={this.handleChangeSearchEntityText}
                     />
                 </div>
 

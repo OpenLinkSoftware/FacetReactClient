@@ -37,7 +37,7 @@ export default class FctNavBar extends React.Component {
               <Link className="nav-link" to="/help">Help</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/plain_components">Raw components</Link>
+              <Link className="nav-link" to="/plain_components">Minimal UI</Link>
             </li>
           </ul>
 

@@ -4,12 +4,33 @@ import qs from 'qs'
 
 import FctClient from '../FctClient';
 
-// Acts as a basic controller performing input URL deconstruction
 //
-// Equivalent /fct cmd query string parameter values:
+// PlainComponentsPage
+// 
+// The FacetReactClient essentially allows a user to refine successive
+// views of a query result, iteratively narrowing the scope of the search
+// and the result set.
+//
+// User interaction with FacetReactClient is through UI (HTML form) controls
+// or through HTML links in the displayed Facet view. Interaction through the
+// UI controls is managed by handler functions exposed by FctClient. Interaction 
+// through Facet view links is managed here by PlainComponentsPage.
+//
+// The view links mainly identify Facet actions to be executed. An action is
+// specified through a query string attached to the link URL. PlainComponentsPage 
+// acts as a basic controller, deconstructing the link URL received through the
+// location property, identifying any action parameters in the query string and
+// building an action descriptor object. The action descriptor is then passed 
+// destructured to FctClient for it to act on.
+//
+// The query string parameters used by FacetReactClient to describe actions are 
+// equivalent to those used by the original /fct service. 
+//
+// Equivalent /fct service query string parameter values:
 // set_view, set_focus, text, next, previous, go_to, set_text_property, open_property
 // open_property_of, drop, drop_cond, drop_text_prop, drop_text, set_class, open,
 // refresh, set_inf, set_agg, select_value, cond, save, save_init, featured, set_loc
+//
 
 export default function PlainComponentsPage({location}) {
   let action = {};

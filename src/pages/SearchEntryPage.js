@@ -15,6 +15,8 @@ import FctFooter from '../FctFooter'
 import FctSideDrawer from '../FctSideDrawer';
 import Backdrop from '../Backdrop';
 
+import  FctClientContext  from '../FctClientContext';
+
 const OpenSearchLinkAndPopover = () => {
   return (
     <OverlayTrigger trigger="click" placement='bottom'
@@ -34,23 +36,69 @@ const OpenSearchLinkAndPopover = () => {
   );
 };
 
-export default class SearchResultsPage extends React.Component {
+export default class SearchEntryPage extends React.Component {
+  // TO DO: Newer syntax:
+  // static contextType = FctClientContext;
+
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = { 
+      searchText: this.context.fctClient.state.searchText,
+      searchLabel: this.context.fctClient.state.searchLabel,
+      searchUri: this.context.fctClient.state.searchUri,
+    };
+    
+    // Merge these handlers
+    this.onChangeEntityText = this.context.fctClient.handleChangeSearchEntityText;
+    this.onSearchOnEntityText = this.context.fctClient.handleSearchOnEntityText;
+    this.onChangeEntityLabel = this.context.fctClient.handleChangeSearchEntityLabel;
+    this.onSearchOnEntityLabel = this.context.fctClient.handleSearchOnEntityLabel;
+    this.onChangeEntityUri = this.context.fctClient.handleChangeSearchEntityUri;
+    this.onSearchOnEntityUri = this.context.fctClient.handleSearchOnEntityUri;
+
+    this.handleChangeEntityText = this.handleChangeEntityText.bind(this);
+    this.handleSearchOnEntityText = this.handleSearchOnEntityText.bind(this);
+    this.handleChangeEntityLabel = this.handleChangeEntityLabel.bind(this);
+    this.handleSearchOnEntityLabel = this.handleSearchOnEntityLabel.bind(this);
+    this.handleChangeEntityUri = this.handleChangeEntityUri.bind(this);
+    this.handleSearchOnEntityUri = this.handleSearchOnEntityUri.bind(this);
+  }
+
+  handleChangeEntityText(event) {
+    this.setState({ searchText: event.target.value });
+    this.onChangeEntityText(event.target.value);
+  }
+
+  handleSearchOnEntityText(event) {
+    event.preventDefault();
+    this.onSearchOnEntityText(this.state.searchText);
+    this.props.history.push('/searchResults');
+  }
+
+  handleChangeEntityLabel(event) {
+    this.setState({ searchLabel: event.target.value });
+    this.onChangeEntityLabel(event.target.value);
+  }
+
+  handleSearchOnEntityLabel(event) {
+    event.preventDefault();
+    this.onSearchOnEntityLabel(this.state.searchLabel);
+    // this.props.history.push('/searchResults')
+  }
+
+  handleChangeEntityUri(event) {
+    this.setState({ searchUri: event.target.value });
+    this.onChangeEntityUri(event.target.value);
+  }
+
+  handleSearchOnEntityUri(event) {
+    event.preventDefault();
+    this.onSearchOnEntityUri(this.state.searchUri);
+    // this.props.history.push('/searchResults')
+  }
 
   render() {
-    const handleSearchEntityText = (e) => {
-      e.preventDefault();
-      this.props.history.push('/searchResults')
-    };
-
-    const handleSearchEntityLabel = (e) => {
-      e.preventDefault();
-      this.props.history.push('/searchResults')
-    };
-
-    const handleSearchEntityUri = (e) => {
-      e.preventDefault();
-      this.props.history.push('/searchResults')
-    };
 
     let backdrop;
 
@@ -79,14 +127,18 @@ export default class SearchResultsPage extends React.Component {
             <Tab eventKey="entityText" title="Entity Text">
               <Row>
                 <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
+                  {/* This Form is the equivalent of component FctSearchInputEditor */}
                   <Form>
                     <Form.Group controlId="frmSearchText">
                       <Form.Row>
                         <Col>
-                          <Form.Control type="text" placeholder="Search text" />
+                          <Form.Control 
+                            type="text" placeholder="Search text" 
+                            value={this.state.searchText} onChange={this.handleChangeEntityText}
+                          />
                         </Col>
                         <Col md="auto">
-                          <Button variant="primary" type="submit" onClick={handleSearchEntityText}>Search</Button>
+                          <Button variant="primary" type="submit" onClick={this.handleSearchOnEntityText}>Search</Button>
                         </Col>
                       </Form.Row>
                     </Form.Group>
@@ -101,10 +153,13 @@ export default class SearchResultsPage extends React.Component {
                     <Form.Group controlId="frmSearchLabel">
                       <Form.Row>
                         <Col>
-                          <Form.Control type="text" placeholder="Label" />
+                          <Form.Control 
+                            type="text" placeholder="Label" 
+                            value={this.state.searchLabel} onChange={this.handleChangeEntityLabel}
+                          />
                         </Col>
                         <Col md="auto">
-                          <Button variant="primary" type="submit" onClick={handleSearchEntityLabel}>Describe</Button>
+                          <Button variant="primary" type="submit" onClick={this.handleSearchOnEntityLabel}>Describe</Button>
                         </Col>
                       </Form.Row>
                     </Form.Group>
@@ -119,10 +174,13 @@ export default class SearchResultsPage extends React.Component {
                     <Form.Group controlId="frmSearchURI">
                       <Form.Row>
                         <Col>
-                          <Form.Control type="text" placeholder="URI" />
+                          <Form.Control 
+                            type="text" placeholder="URI" 
+                            value={this.state.searchUri} onChange={this.handleChangeEntityUri}
+                          />
                         </Col>
                         <Col md="auto">
-                          <Button variant="primary" type="submit" onClick={handleSearchEntityUri}>Describe</Button>
+                          <Button variant="primary" type="submit" onClick={this.handleSearchOnEntityUri}>Describe</Button>
                         </Col>
                       </Form.Row>
                     </Form.Group>
@@ -138,3 +196,5 @@ export default class SearchResultsPage extends React.Component {
   }
 
 }
+
+SearchEntryPage.contextType = FctClientContext;

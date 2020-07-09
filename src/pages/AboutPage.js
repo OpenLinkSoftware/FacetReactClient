@@ -4,7 +4,11 @@ import FctFooter from '../FctFooter'
 import FctSideDrawer from '../FctSideDrawer';
 import Backdrop from '../Backdrop';
 
+import  FctClientContext  from '../FctClientContext';
+
 export default class AboutPage extends React.Component {
+  // TO DO: Newer syntax:
+  // static contextType = FctClientContext;
 
   render() {
     let backdrop;
@@ -26,3 +30,6 @@ export default class AboutPage extends React.Component {
   }
 
 }
+
+AboutPage.contextType = FctClientContext;
+
