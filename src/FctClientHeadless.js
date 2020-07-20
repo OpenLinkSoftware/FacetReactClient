@@ -1,3 +1,4 @@
+import FctUiUtil from './FctUiUtil'; 
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
 
 const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
@@ -45,6 +46,7 @@ class FctClientHeadless {
     // TO DO: Add UI control and initialize to FctQuery defaults.
     this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT; 
     this.describeEndpoint = FctQuery.DESCRIBE_DFLT_SVC_ENDPOINT;
+    this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
 
     this.fctQuery = new FctQuery();
     this.fctQuery.setViewType(FCT_CLIENT_DFLT_VIEW_TYPE);
@@ -73,7 +75,6 @@ class FctClientHeadless {
   }
 
   handleChangeSearchEntityText(searchText) {
-    console.log('FctClientHeadless#handleChangeSearchEntityText: searchText:', searchText);
     this.setState({ searchText: searchText, fctError: null });
   }
 
@@ -145,6 +146,7 @@ class FctClientHeadless {
   }
 
   handleDropQueryFilter(filterId) {
+    console.log('FctClientHeadless#handleDropQueryFilter: filterId:', filterId);
     this.fctQuery.removeQueryFilter(filterId); // May change the view type if the removed filter had the subject focus
     // If the removed filter was a <text> element, clear the searchInputEditor input to reflect this.
     if (!this.fctQuery.queryText)

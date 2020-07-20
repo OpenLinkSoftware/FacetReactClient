@@ -56,6 +56,7 @@ export class FctClientFullUiController extends React.Component {
           <FctClientProvider value={this.fctClientContext}>
             <SearchEntryPage
               history={this.props.history}
+              location={this.props.location}
               drawerToggleClickHandler={this.drawerToggleClickHandler}
               backdropClickHandler={this.backdropClickHandler}
               sideDrawerOpen={this.state.sideDrawerOpen}
@@ -67,6 +68,7 @@ export class FctClientFullUiController extends React.Component {
           <FctClientProvider value={this.fctClientContext}>
             <SearchResultsPage
               history={this.props.history}
+              location={this.props.location}
               drawerToggleClickHandler={this.drawerToggleClickHandler}
               backdropClickHandler={this.backdropClickHandler}
               sideDrawerOpen={this.state.sideDrawerOpen}
@@ -78,6 +80,7 @@ export class FctClientFullUiController extends React.Component {
           <FctClientProvider value={this.fctClientContext}>
             <AboutPage
               history={this.props.history}
+              location={this.props.location}
               drawerToggleClickHandler={this.drawerToggleClickHandler}
               backdropClickHandler={this.backdropClickHandler}
               sideDrawerOpen={this.state.sideDrawerOpen}
@@ -88,7 +91,8 @@ export class FctClientFullUiController extends React.Component {
         return (
           <FctClientProvider value={this.fctClientContext}>
             <HelpPage
-              history={this.props.history}
+              history={this.props.history}              
+              location={this.props.location}
               drawerToggleClickHandler={this.drawerToggleClickHandler}
               backdropClickHandler={this.backdropClickHandler}
               sideDrawerOpen={this.state.sideDrawerOpen}

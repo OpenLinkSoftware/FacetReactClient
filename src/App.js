@@ -22,6 +22,7 @@ class App extends React.Component {
           render={(props) => <FctClientFullUiController
             pageName='SearchEntryPage'
             history={props.history}
+            location={props.location}
           />}
         />
         <Route
@@ -29,6 +30,7 @@ class App extends React.Component {
           render={(props) => <FctClientFullUiController
             pageName='SearchResultsPage'
             history={props.history}
+            location={props.location}
           />}
         />
         <Route
@@ -36,6 +38,7 @@ class App extends React.Component {
           render={(props) => <FctClientFullUiController
             pageName='AboutPage'
             history={props.history}
+            location={props.location}
           />}
         />
         <Route
@@ -43,6 +46,7 @@ class App extends React.Component {
           render={(props) => <FctClientFullUiController
             pageName='HelpPage'
             history={props.history}
+            location={props.location}
           />}
         />
       </Switch>
