@@ -1,4 +1,6 @@
 import React from 'react';
+import qs from 'qs'
+
 import FctNavBar from '../FctNavBar';
 import FctFooter from '../FctFooter';
 import FctSideDrawer from '../FctSideDrawer';
@@ -42,6 +44,28 @@ export default class SearchResultsPage extends React.Component {
         <div className="container-fluid">
           <h3>Search Results Page</h3>
           <div className="row">
+
+            {/* TEMPORARY - REMOVE ONCE SIDEPANEL EQUIV IN PLACE */}
+            <div className="col-sm-12">
+                  <div className="form-group row">
+                    <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
+                    <div className="col-sm-4">
+                      <select value={fctClient.state.viewType} className="custom-select" onChange={fctClient.handleViewChange}>
+                        <option value="properties-in">properties-in : [vt=properties-in]</option>
+                        <option value="propval-list">propval-list : [vt=propval-list]</option>
+                        <option value="classes">classes [vt=classes]</option>
+                        <option value="text">entities [vt=text]</option>
+                        <option value="text-d">text-d [vt=text-d]</option>
+                        <option value="text-properties">text-properties [vt=text-properties]</option>
+                        <option value="properties">attributes [vt=properties]</option>
+                        <option value="list-count">distinct (count) [vt=list-count]</option>
+                        <option value="list">list [vt=list]</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+            {/* --^^^------------------------------------------- */}
             <div className="col-sm-12">
 
               <div>Component: FctViewHeader</div>

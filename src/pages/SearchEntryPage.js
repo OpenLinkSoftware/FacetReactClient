@@ -194,7 +194,6 @@ export default class SearchEntryPage extends React.Component {
       </div>
     )
   }
-
 }
 
 SearchEntryPage.contextType = FctClientContext;

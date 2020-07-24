@@ -1,5 +1,9 @@
 /**
  * @module FctUiCommon 
+ * 
+ * @description
+ * Exports functions which return JSX snippets shared by components.
+ * @see FctUiUtil for utility methods which don't return JSX.
  */
 
 import React from 'react';

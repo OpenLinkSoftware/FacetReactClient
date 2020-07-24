@@ -132,7 +132,7 @@ export default class FctRspClssRslt extends React.Component {
       html = (
         <div>
         <span><em>classes / FctRspClssRslt result:</em></span>
-        <table class="table table-sm table-striped">
+        <table className="table table-sm table-striped">
         {renderedHeadings}
         {renderedRows}
         </table>

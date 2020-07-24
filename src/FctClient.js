@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-import FctUiUtil from './FctUiUtil'; 
+import FctUiUtil from './FctUiUtil';
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
 import FctErrCntnr from './FctErrCntnr';
 import FctRspDbActvty from './FctRspDbActvty';
@@ -30,12 +30,12 @@ class ErrorBoundary extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { hasError: false , errorMsg: null };
+    this.state = { hasError: false, errorMsg: null };
     this.cbClearError = this.cbClearError.bind(this);
   }
 
   cbClearError() {
-    this.setState({ hasError: false , errorMsg: null });
+    this.setState({ hasError: false, errorMsg: null });
   }
 
   static getDerivedStateFromError(error) {
@@ -58,15 +58,13 @@ class ErrorBoundary extends React.Component {
 
 // -------------------------------------
 
-class ForcedError extends React.Component
-{
+class ForcedError extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    if (this.props.forceError)
-    {
+    if (this.props.forceError) {
       this.props.cbClearForcedError();
       throw Error(`Forced error to test error boundary: ${new Date()}`);
     }
@@ -101,7 +99,7 @@ class FctClient extends React.Component {
     };
 
     this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
-    
+
     this.handleChangeSearchEntityText = this.handleChangeSearchEntityText.bind(this);
     this.handleSearchOnEntityText = this.handleSearchOnEntityText.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
@@ -114,10 +112,10 @@ class FctClient extends React.Component {
     // viewLimit may be overridden in the UI.
     // TO DO: Add UI control and intialize to FctQuery default.
     // this.viewLimit = FctQuery.FCT_QRY_DFLT_VIEW_LIMIT; 
-    this.viewLimit = 50; 
+    this.viewLimit = 50;
     // serviceEndpoint and describeEndpoint may be overridden in the UI.
     // TO DO: Add UI control and initialize to FctQuery defaults.
-    this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT; 
+    this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT;
     this.describeEndpoint = FctQuery.DESCRIBE_DFLT_SVC_ENDPOINT;
 
     this.fctQuery = new FctQuery();
@@ -161,11 +159,14 @@ class FctClient extends React.Component {
         });
     }
   }
-  
+
   handleViewChange(event) {
     this.updateView(event.target.value);
   }
 
+  // updateView 
+  // - optionally updates the view type in the Facet input XML.
+  // - executes a new Facet search and updates the Facet search results.
   updateView(viewType) {
     if (viewType) {
       this.setState({ viewType }); // Async!
@@ -190,12 +191,12 @@ class FctClient extends React.Component {
 
     // Update the UI:
     // Set the controls holding Facet request inputs to match the preset's settings.
-    this.setState({ 
-      searchText: this.fctQuery.queryText, 
-      preset: presetKey,  
+    this.setState({
+      searchText: this.fctQuery.queryText,
+      preset: presetKey,
       fctResult: null,
       fctError: null,
-      viewType: this.fctQuery.getViewType(), 
+      viewType: this.fctQuery.getViewType(),
     }); // Async!
     // - Perform a new search based on the new search text.
     // - The UI controls holding the Facet response output will be updated automatically.
@@ -242,15 +243,15 @@ class FctClient extends React.Component {
           <Link to="/">Full UI</Link>
           <div className="row">
             <div className="col-sm-12">
-              <ForcedError forceError={this.state.forcedError} cbClearForcedError={() => this.setState({forcedError: false})}/>
+              <ForcedError forceError={this.state.forcedError} cbClearForcedError={() => this.setState({ forcedError: false })} />
               <div>
                 <div>Component: FctSearchInputEditor</div>
                 <div style={componentContainerStyle}>
-                  <FctSearchInputEditor 
-                    searchText={this.state.searchText} 
-                    onSearch={this.handleSearchOnEntityText} 
+                  <FctSearchInputEditor
+                    searchText={this.state.searchText}
+                    onSearch={this.handleSearchOnEntityText}
                     onChange={this.handleChangeSearchEntityText}
-                    />
+                  />
                 </div>
 
                 <div className="col-sm-12">
@@ -287,14 +288,14 @@ class FctClient extends React.Component {
                 <div>Component: FctErrCntnr</div>
                 <div style={componentContainerStyle}>
                   <FctErrCntnr
-                    fctError={this.state.fctError} 
+                    fctError={this.state.fctError}
                   />
                 </div>
 
                 <div>Component: FctViewHeader</div>
                 <div style={componentContainerStyle}>
-                  <FctViewHeader 
-                    qryResult={qryResult} 
+                  <FctViewHeader
+                    qryResult={qryResult}
                     fctUiUtil={this.fctUiUtil}
                     queryText={this.fctQuery.queryText}
                     viewSubjectIndex={viewSubjectIndex}
@@ -332,9 +333,9 @@ class FctClient extends React.Component {
 
                 <div>Component: FctRspRslt</div>
                 <div style={componentContainerStyle}>
-                  <FctRspRslt 
-                    qryResult={qryResult} 
-                    describeEndpoint={this.describeEndpoint} 
+                  <FctRspRslt
+                    qryResult={qryResult}
+                    describeEndpoint={this.describeEndpoint}
                     fctUiUtil={this.fctUiUtil}
                     location={this.props.location}
                   />
@@ -354,13 +355,22 @@ class FctClient extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('FctClient#componentDidUpdate: prevProps.viewType: ', prevProps.viewType);
-    console.log('FctClient#componentDidUpdate: this.props.viewType: ', this.props.viewType);
-    console.log('FctClient#componentDidUpdate: prevProps.ts: ', prevProps.ts);
-    console.log('FctClient#componentDidUpdate: this.props.ts: ', this.props.ts);
-    console.log('FctClient#componentDidUpdate: prevState.viewType: ', prevState.viewType);
-    console.log('FctClient#componentDidUpdate: this.state.viewType: ', this.state.viewType);
+    // console.log('FctClient#componentDidUpdate: prevProps.viewType: ', prevProps.viewType);
+    // console.log('FctClient#componentDidUpdate: this.props.viewType: ', this.props.viewType);
+    // console.log('FctClient#componentDidUpdate: prevProps.ts: ', prevProps.ts);
+    // console.log('FctClient#componentDidUpdate: this.props.ts: ', this.props.ts);
+    // console.log('FctClient#componentDidUpdate: prevState.viewType: ', prevState.viewType);
+    // console.log('FctClient#componentDidUpdate: this.state.viewType: ', this.state.viewType);
 
+    // Check for a pending Facet action to be performed.
+    //
+    // props.action may relate to a previously executed action. (It may persist across renders,
+    // even though already executed, until another action is specified in a URL query string.)
+    //
+    // props.ts acts as a refresh flag and is only used when an action has been specified in 
+    // the query string. A difference in prevProps.ts/props.ts signifies this is a new action
+    // to execute, not a previously executed action.
+    //
     // props.viewType !== undefined indicates that the viewType is being set via a URL query string.
     // e.g. http://localhost:8600/?action=setView&viewType=text-properties&...
     // This is the only occasion where props.viewType should override state.viewType.
@@ -370,96 +380,73 @@ class FctClient extends React.Component {
     // this would ignore any update to viewType made through UI controls.
     //
     // We cannot use static method getDerivedStateFromProps(props, state), as props will then always override state.
-    //
-    // props.ts acts as a refresh flag and is only used when setting the view via a URL querystring 
-    // or performing some other action specified in the query string.
 
-    let newView = undefined; // undefined => don't change the current viewType.
-    let refreshSearchResults = false;
-
-    // Check for changes in props.ts
-    if (prevProps.ts !== this.props.ts)
-      refreshSearchResults = true;
-
-    // Check for changes in props.viewType
-    if (prevProps.viewType !== this.props.viewType)
-    {
-      if (this.props.viewType !== this.state.viewType)
-      {
-        newView = this.props.viewType;
-        refreshSearchResults = true;
-      }
-    }
-
-    // Check for changes in props.action 
     if (this.props.action && prevProps.ts !== this.props.ts) {
-      newView = this.props.viewType; // Redundant? Done above?
-      this.performUiAction();
-      refreshSearchResults = true;
-    }
-
-    if (refreshSearchResults) {
-      console.log('FctClient#componentDidUpdate: #updateView:', newView);
-      // updateView 
-      // - optionally updates this.state.viewType
-      // - updates any existing Facet search results 
-      this.updateView(newView); 
+      this.performFctAction();
+      console.log('FctClient#componentDidUpdate: #updateView:', this.props.viewType);
+      this.updateView(this.props.viewType);
     }
   }
 
-  performUiAction() {
+  // Performs a Facet action extracted from a query string.
+  // A Facet action is one that manipulates the Facet service
+  // input XML.
+  // 
+  // Subsequently, in updateView(), the new input XML is
+  // submitted to the Facet service and the new search results handled.
+  performFctAction() {
     switch (this.props.action.name) {
-      case "setTextProperty": 
-        console.log('FctClient#performUiAction: setTextProperty:', this.props.action.propertyIri);
+      case "setTextProperty":
+        console.log('FctClient#performFctAction: setTextProperty:', this.props.action.propertyIri);
         this.fctQuery.queryTextProperty = this.props.action.propertyIri;
         break;
       case "openProperty":
-          // - Add filter: ?s[n] has the given property.
-          //     e.g. ?s1 skiresorts:advanced_slopes ?s2
-          // - Display a list of values (instances of values) for the property
-          // Create XML element:
-          // <property iri="{propertyURI}" [exclude="yes"]>
-          //   <view type="list" limit="{limit}" offset="0" />
-          // </property>
-        console.log('FctClient#performUiAction: openProperty:', this.props.action.propertyIri);
+        // - Add filter: ?s[n] has the given property.
+        //     e.g. ?s1 skiresorts:advanced_slopes ?s2
+        // - Display a list of values (instances of values) for the property
+        // Create XML element:
+        // <property iri="{propertyURI}" [exclude="yes"]>
+        //   <view type="list" limit="{limit}" offset="0" />
+        // </property>
+        console.log('FctClient#performFctAction: openProperty:', this.props.action.propertyIri);
         let propSubjIndx = this.fctQuery.addProperty(
           this.props.action.propertyIri,
           this.fctQuery.getViewSubjectIndex(),
           this.props.action.excludeProperty
           // sameAs,
           // inferenceContext
-          );
-        console.log('FctClient#performUiAction: propSubjIndx:', propSubjIndx);
-        console.log('FctClient#performUiAction: this.props.viewType:', this.props.viewType);
+        );
+        console.log('FctClient#performFctAction: propSubjIndx:', propSubjIndx);
+        console.log('FctClient#performFctAction: this.props.viewType:', this.props.viewType);
         this.fctQuery.setViewSubjectIndex(propSubjIndx);
         this.fctQuery.setViewType(this.props.viewType);
         this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
         break;
       case "openPropertyOf":
-          // - Add filter: ?s[n] is the object of the given property.
-          //     e.g. ?s[n+1] opltw:madeTweet ?s[n]
-          // - Display a list of entities matching ?s[n+1]
-          // Remove existing <view> element.
-          // Create XML element:
-          // <property-of iri="{propertyURI}" [exclude="yes"]>
-          //   <view type="list" limit="{limit}" offset="0" />
-          // </property-of>
-          // The new <view> element automatically shifts the focus from ?s[n] to ?s[n+1].
-        console.log('FctClient#performUiAction: openPropertyOf:', this.props.action.propertyIri);
+        // - Add filter: ?s[n] is the object of the given property.
+        //     e.g. ?s[n+1] opltw:madeTweet ?s[n]
+        // - Display a list of entities matching ?s[n+1]
+        // Remove existing <view> element.
+        // Create XML element:
+        // <property-of iri="{propertyURI}" [exclude="yes"]>
+        //   <view type="list" limit="{limit}" offset="0" />
+        // </property-of>
+        // The new <view> element automatically shifts the focus from ?s[n] to ?s[n+1].
+        console.log('FctClient#performFctAction: openPropertyOf:', this.props.action.propertyIri);
         let propOfSubjIndx = this.fctQuery.addPropertyOf(
           this.props.action.propertyIri,
           this.fctQuery.getViewSubjectIndex(),
           this.props.action.excludeProperty
           // sameAs,
           // inferenceContext
-          );
-        console.log('FctClient#performUiAction: propOfSubjIndx:', propOfSubjIndx);
-        console.log('FctClient#performUiAction: this.props.viewType:', this.props.viewType);
+        );
+        console.log('FctClient#performFctAction: propOfSubjIndx:', propOfSubjIndx);
+        console.log('FctClient#performFctAction: this.props.viewType:', this.props.viewType);
         this.fctQuery.setViewSubjectIndex(propOfSubjIndx);
         this.fctQuery.setViewType(this.props.viewType);
         this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
         break;
-      case "cond": 
+      case "cond":
         // Set a condition on a subject node
         // Create an XML <cond> element, e.g.:
         // <property iri="http://www.openlinksw.com/ski_resorts/schema#advanced_slopes">
@@ -470,7 +457,7 @@ class FctClient extends React.Component {
         // the view type to 'text-d' and the view offset set to 0.
         this.fctQuery.setSubjectCondition(
           this.props.action.conditionType,
-          this.props.action.value, 
+          this.props.action.value,
           this.props.action.valueDataType,
           this.props.action.valueLang,
           this.props.action.negate
@@ -481,7 +468,7 @@ class FctClient extends React.Component {
         //     e.g. ?s1 is a skiresort:SkiResort 
         // Create XML element:
         // <class>
-        console.log('FctClient#performUiAction: setClass:', this.props.action.classIri);
+        console.log('FctClient#performFctAction: setClass:', this.props.action.classIri);
         this.fctQuery.setSubjectClass(this.props.action.classIri);
         this.fctQuery.setViewType(this.props.viewType);
         break;

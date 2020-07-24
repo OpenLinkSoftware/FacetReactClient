@@ -1,4 +1,4 @@
-import FctUiUtil from './FctUiUtil'; 
+import FctUiUtil from './FctUiUtil';
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
 
 const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
@@ -24,9 +24,9 @@ const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
 // The intention is to replace FctClient by FctClientHeadless.
 //
 class FctClientHeadless {
-  constructor(contextStateChangeListener) {
-    this.contextStateChangeListener = contextStateChangeListener;
-    
+  constructor(contextChangeListener) {
+    this.contextChangeListener = contextChangeListener;
+
     this.state = {
       searchText: "",
       searchLabel: "",
@@ -37,14 +37,14 @@ class FctClientHeadless {
       viewSubjectIndex: 1,
       tripleTerminology: "eav",   // spo | eav
     };
-    
+
     // viewLimit may be overridden in the UI.
     // TO DO: Add UI control and intialize to FctQuery default.
     // this.viewLimit = FctQuery.FCT_QRY_DFLT_VIEW_LIMIT; 
-    this.viewLimit = 50; 
+    this.viewLimit = 50;
     // serviceEndpoint and describeEndpoint may be overridden in the UI.
     // TO DO: Add UI control and initialize to FctQuery defaults.
-    this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT; 
+    this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT;
     this.describeEndpoint = FctQuery.DESCRIBE_DFLT_SVC_ENDPOINT;
     this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
 
@@ -67,11 +67,11 @@ class FctClientHeadless {
     this.handleRowLimitChange = this.handleRowLimitChange.bind(this);
   }
 
-  // !!! NOTE !!!
-  // Provided because FctClientHeadless isn't a component
+  // setState:
+  // Provided because FctClientHeadless isn't a component.
   setState(state) {
     this.state = { ...this.state, ...state };
-    this.contextStateChangeListener();
+    this.contextChangeListener();
   }
 
   handleChangeSearchEntityText(searchText) {
@@ -95,7 +95,7 @@ class FctClientHeadless {
     console.log('FctClientHeadless#handleChangeSearchEntityLabel: searchLabel:', searchLabel);
     this.setState({ searchLabel: searchLabel, fctError: null });
   }
-  
+
   handleSearchOnEntityLabel(searchLabel) {
     alert(`FctClientHeadless#handleSearchOnEntityLabel("${searchLabel}") - Not Implemented`);
   }
@@ -124,11 +124,14 @@ class FctClientHeadless {
         });
     }
   }
-  
+
   handleViewChange(event) {
     this.updateView(event.target.value);
   }
 
+  // updateView 
+  // - optionally updates the view type in the Facet input XML.
+  // - executes a new Facet search and updates the Facet search results.
   updateView(viewType) {
     if (viewType) {
       this.setState({ viewType }); // Async!
@@ -159,98 +162,59 @@ class FctClientHeadless {
     this.search();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    // props.viewType !== undefined indicates that the viewType is being set via a URL query string.
-    // e.g. http://localhost:8600/?action=setView&viewType=text-properties&...
-    // This is the only occasion where props.viewType should override state.viewType.
-    // Changes of the viewType via UI controls, rather than via a querystring, change state.viewType directly,
-    // and don't change props.viewType.
-    // We cannot simply always set state.viewType from props.viewType (other than in the constructor) because
-    // this would ignore any update to viewType made through UI controls.
-    //
-    // We cannot use static method getDerivedStateFromProps(props, state), as props will then always override state.
-    //
-    // props.ts acts as a refresh flag and is only used when setting the view via a URL querystring 
-    // or performing some other action specified in the query string.
-
-    let newView = undefined; // undefined => don't change the current viewType.
-    let refreshSearchResults = false;
-
-    // Check for changes in props.ts
-    if (prevProps.ts !== this.props.ts)
-      refreshSearchResults = true;
-
-    // Check for changes in props.viewType
-    if (prevProps.viewType !== this.props.viewType)
-    {
-      if (this.props.viewType !== this.state.viewType)
-      {
-        newView = this.props.viewType;
-        refreshSearchResults = true;
-      }
-    }
-
-    // Check for changes in props.action 
-    if (this.props.action && prevProps.ts !== this.props.ts) {
-      newView = this.props.viewType; // Redundant? Done above?
-      this.performUiAction();
-      refreshSearchResults = true;
-    }
-
-    if (refreshSearchResults) {
-      // updateView 
-      // - optionally updates this.state.viewType
-      // - updates any existing Facet search results 
-      this.updateView(newView); 
-    }
-  }
-
-  performUiAction() {
-    switch (this.props.action.name) {
-      case "setTextProperty": 
-        this.fctQuery.queryTextProperty = this.props.action.propertyIri;
+  // Performs a Facet action extracted from a query string.
+  // A Facet action is one that manipulates the Facet service
+  // input XML.
+  // 
+  // Subsequently, in updateView(), the new input XML is
+  // submitted to the Facet service and the new search results handled.
+  performFctAction(action) {
+    console.log('FctClientHeadless#performFctAction: action:', action)
+    switch (action.action.name) {
+      case "setTextProperty":
+        this.fctQuery.queryTextProperty = action.action.propertyIri;
         break;
       case "openProperty":
-          // - Add filter: ?s[n] has the given property.
-          //     e.g. ?s1 skiresorts:advanced_slopes ?s2
-          // - Display a list of values (instances of values) for the property
-          // Create XML element:
-          // <property iri="{propertyURI}" [exclude="yes"]>
-          //   <view type="list" limit="{limit}" offset="0" />
-          // </property>
+        // - Add filter: ?s[n] has the given property.
+        //     e.g. ?s1 skiresorts:advanced_slopes ?s2
+        // - Display a list of values (instances of values) for the property
+        // Create XML element:
+        // <property iri="{propertyURI}" [exclude="yes"]>
+        //   <view type="list" limit="{limit}" offset="0" />
+        // </property>
         let propSubjIndx = this.fctQuery.addProperty(
-          this.props.action.propertyIri,
+          action.action.propertyIri,
           this.fctQuery.getViewSubjectIndex(),
-          this.props.action.excludeProperty
+          action.action.excludeProperty
           // sameAs,
           // inferenceContext
-          );
+        );
         this.fctQuery.setViewSubjectIndex(propSubjIndx);
-        this.fctQuery.setViewType(this.props.viewType);
+        this.fctQuery.setViewType(action.viewType);
         this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
         break;
       case "openPropertyOf":
-          // - Add filter: ?s[n] is the object of the given property.
-          //     e.g. ?s[n+1] opltw:madeTweet ?s[n]
-          // - Display a list of entities matching ?s[n+1]
-          // Remove existing <view> element.
-          // Create XML element:
-          // <property-of iri="{propertyURI}" [exclude="yes"]>
-          //   <view type="list" limit="{limit}" offset="0" />
-          // </property-of>
-          // The new <view> element automatically shifts the focus from ?s[n] to ?s[n+1].
+        // - Add filter: ?s[n] is the object of the given property.
+        //     e.g. ?s[n+1] opltw:madeTweet ?s[n]
+        // - Display a list of entities matching ?s[n+1]
+        // Remove existing <view> element.
+        // Create XML element:
+        // <property-of iri="{propertyURI}" [exclude="yes"]>
+        //   <view type="list" limit="{limit}" offset="0" />
+        // </property-of>
+        // The new <view> element automatically shifts the focus from ?s[n] to ?s[n+1].
         let propOfSubjIndx = this.fctQuery.addPropertyOf(
-          this.props.action.propertyIri,
+          action.action.propertyIri,
           this.fctQuery.getViewSubjectIndex(),
-          this.props.action.excludeProperty
+          action.action.excludeProperty
           // sameAs,
           // inferenceContext
-          );
+        );
         this.fctQuery.setViewSubjectIndex(propOfSubjIndx);
-        this.fctQuery.setViewType(this.props.viewType);
+        this.fctQuery.setViewType(action.viewType);
         this.fctQuery.setViewOffset(0); // The existing view limit should be retained.
         break;
-      case "cond": 
+      case "cond":
         // Set a condition on a subject node
         // Create an XML <cond> element, e.g.:
         // <property iri="http://www.openlinksw.com/ski_resorts/schema#advanced_slopes">
@@ -259,11 +223,11 @@ class FctClientHeadless {
         // After setting a condition, FctQuery#setSubjectCondition sets subject node to 1, 
         // the view type to 'text-d' and the view offset set to 0.
         this.fctQuery.setSubjectCondition(
-          this.props.action.conditionType,
-          this.props.action.value, 
-          this.props.action.valueDataType,
-          this.props.action.valueLang,
-          this.props.action.negate
+          action.action.conditionType,
+          action.action.value,
+          action.action.valueDataType,
+          action.action.valueLang,
+          action.action.negate
         );
         break;
       case "setClass":
@@ -271,7 +235,8 @@ class FctClientHeadless {
         //     e.g. ?s1 is a skiresort:SkiResort 
         // Create XML element:
         // <class>
-        this.fctQuery.setViewType(this.props.viewType);
+        this.fctQuery.setSubjectClass(action.action.classIri);
+        this.fctQuery.setViewType(action.viewType);
         break;
     }
   }
