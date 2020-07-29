@@ -54,9 +54,9 @@ export default class FctRspTxtdRslt extends React.Component {
       renderedRows = <tbody>{renderedRows}</tbody>;
 
       html = (
-      <div>
-      <span><em>text-d / FctRspTxtdRslt result:</em></span>
-        <table className="table table-sm table-striped">
+      <div className="table-responsive">
+      {/* <span><em>text-d / FctRspTxtdRslt result:</em></span> */}
+        <table className="table table-borderless table-hover table-sm">
         {renderedHeadings} 
         {renderedRows}
         </table>

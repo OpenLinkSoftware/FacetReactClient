@@ -19,7 +19,7 @@ export default class FctRspLimit extends React.Component {
 
   render() {
     return (
-      <select value={this.state.limit} className="custom-select" onChange={this.handleChange}>
+      <select value={this.state.limit} className="custom-select" style={{width: "auto"}} onChange={this.handleChange}>
         <option value="0">0 (No limit)</option>
         <option value="5">5</option>
         <option value="10">10</option>

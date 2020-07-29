@@ -1,6 +1,6 @@
-import React  from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 
 export default class FctNavBar extends React.Component {
   constructor(props) {
@@ -27,8 +27,14 @@ export default class FctNavBar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <Link className="nav-link" to="/" title="New Search" data-toggle="tooltip" data-placement="bottom"><span
+            <OverlayTrigger
+                placement={'bottom'}
+                overlay={<Tooltip>New search</Tooltip>}
+              >
+              <Link className="nav-link" to="/"><span
                 className="oi oi-magnifying-glass" style={{ color: 'white' }}></span></Link>
+                            </OverlayTrigger>
+
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/about">About</Link>
@@ -43,19 +49,34 @@ export default class FctNavBar extends React.Component {
 
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link active" to="#" title="Login">
-                <span className="oi oi-account-login" style={{ position: 'relative', top: '-2px' }} title="Login" aria-hidden="true"
-                  data-toggle="tooltip" data-placement="left"></span></Link>
+              <OverlayTrigger
+                placement={'left'}
+                overlay={<Tooltip>Login</Tooltip>}
+              >
+                <Link className="nav-link active" to="#" title="Login">
+                  <span className="oi oi-account-login" style={{ position: 'relative', top: '-2px' }} aria-hidden="true"></span></Link>
+              </OverlayTrigger>
             </li>
             <li className="nav-item" style={{ display: 'none' }}>
-              <Link className="nav-link active" to="#">
-                <span className="oi oi-account-logout" title="Logout" style={{ position: 'relative', top: '-2px' }} aria-hidden="true"
-                  data-toggle="tooltip" data-placement="left"></span></Link>
+              <OverlayTrigger
+                placement={'left'}
+                overlay={<Tooltip>Logout</Tooltip>}
+              >
+                <Link className="nav-link active" to="#">
+                  <span className="oi oi-account-logout" title="Logout" style={{ position: 'relative', top: '-2px' }} aria-hidden="true">
+                  </span></Link>
+              </OverlayTrigger>
+
             </li>
           </ul>
+          <OverlayTrigger
+                placement={'left'}
+                overlay={<Tooltip>Settings</Tooltip>}
+              >
           <button type="button" className="btn btn-default shadow-none" id="sidebarToggle" onClick={this.drawerToggleClickHndlr} >
-            <span className="oi oi-cog" title="Settings" aria-hidden="true" data-toggle="tooltip" data-placement="left"></span>
+            <span className="oi oi-cog" aria-hidden="true"></span>
           </button>
+          </OverlayTrigger>
         </div>
       </nav>
     )
