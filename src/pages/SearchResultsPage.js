@@ -78,17 +78,17 @@ export default class SearchResultsPage extends React.Component {
                     placement={'left'}
                     overlay={<Tooltip>Facet permalink</Tooltip>}
                   >
-                  <Link to="" className="px-1">
-                    <span className="oi oi-link-intact" style={{ color: "white" }}></span>
-                  </Link>
+                    <Link to="" className="px-1">
+                      <span className="oi oi-link-intact" style={{ color: "white" }}></span>
+                    </Link>
                   </OverlayTrigger>
                   <OverlayTrigger
                     placement={'left'}
                     overlay={<Tooltip>View as Pivot collection (edit query)</Tooltip>}
                   >
-                  <Link to="" className="px-1">
-                    <span className="oi oi-grid-three-up" style={{ color: "white" }}></span>
-                  </Link>
+                    <Link to="" className="px-1">
+                      <span className="oi oi-grid-three-up" style={{ color: "white" }}></span>
+                    </Link>
                   </OverlayTrigger>
                 </div>
                 <div className="d-flex flex-row justify-content-end">

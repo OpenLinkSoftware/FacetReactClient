@@ -23,7 +23,7 @@ export default class HelpPage extends React.Component {
         <FctSideDrawer show={this.props.sideDrawerOpen} />
         {backdrop}
         <div className="container-fluid">
-          <h3>Help</h3>
+          <h2>Help</h2>
           <FctFooter />
         </div>
       </div>
