@@ -64,7 +64,7 @@ export default class AboutPage extends React.Component {
               <div>
                 <span className="small">
                   <a href="http://www.openlinksw.com/virtuoso/">OpenLink Virtuoso</a> 
-                  version 08.03.3315 as of Jul 29 2020, on OS X
+                  &nbsp;version 08.03.3315 as of Jul 29 2020, on OS X
                   (i686-apple-darwin16.3.0), Single-Server Edition (16 GB total memory)
                 </span>
               </div>

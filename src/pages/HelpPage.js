@@ -23,7 +23,23 @@ export default class HelpPage extends React.Component {
         <FctSideDrawer show={this.props.sideDrawerOpen} />
         {backdrop}
         <div className="container-fluid">
-          <h2>Help</h2>
+          <div className="row justify-content-center mt-4 mb-3">
+            <div className="col-8">
+              <h2>Facet Help</h2>
+              <h4>FAQ</h4>
+              <p>
+                Ifway ouyay otedvay orfay Exitbray, ouryay optimismway ightmay ebay averingway
+                ightray ownay. Iway ancay oposepray ustjay ethay emedyray: Avidday Ameroncay’say
+                emoirmay. Itway isway, unintentionallyway, ethay ostmay onvincingcay asecay orfay
+                Exitbray atthay ouyay illway everway eadray.
+              </p>
+              <p>
+                Orfay Ethay Ecordray asway ittenwray asway oliticalpay agedytray , away 700-agepay
+                apologyway otay ethay ationnay orfay ethay ormerfay imepray inistermay’say oleray
+                inway atwhay ehay egardsray asway away alamitycay.
+              </p>
+            </div>
+          </div>
           <FctFooter />
         </div>
       </div>
