@@ -84,7 +84,7 @@ export default class SearchResultsPage extends React.Component {
                   </OverlayTrigger>
                   <OverlayTrigger
                     placement={'left'}
-                    overlay={<Tooltip>View as Pivot collection (edit query)</Tooltip>}
+                    overlay={<Tooltip>View as Pivot collection</Tooltip>}
                   >
                     <Link to="" className="px-1">
                       <span className="oi oi-grid-three-up" style={{ color: "white" }}></span>

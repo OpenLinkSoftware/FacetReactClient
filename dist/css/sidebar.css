@@ -70,7 +70,7 @@ a:focus {
     background: var(--palette-color4);
     color: var(--palette-color6);
     transition: all 0.3s;
-    box-shadow: 0px 0 10px 10px var(--palette-color5) !important;
+    /* box-shadow: 0px 0 10px 10px var(--palette-color5) !important; */
   }
   
   #sidebar.hidden {

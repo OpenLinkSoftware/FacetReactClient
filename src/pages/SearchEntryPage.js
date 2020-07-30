@@ -114,7 +114,7 @@ export default class SearchEntryPage extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col text-right pt-2">
-              <Link to="#" className="btn btn-outline-secondary" role="button">Featured</Link>
+              <Link to="#" className="btn btn-outline-secondary" role="button">Featured Queries</Link>
               <Link to="#" className="btn btn-outline-secondary" role="button">Demo Queries</Link>
               <OpenSearchLinkAndPopover />
             </div>
