@@ -15,7 +15,7 @@ import FctFooter from '../FctFooter'
 import FctSideDrawer from '../FctSideDrawer';
 import Backdrop from '../Backdrop';
 
-import  FctClientContext  from '../FctClientContext';
+import FctClientContext from '../FctClientContext';
 
 const OpenSearchLinkAndPopover = () => {
   return (
@@ -43,12 +43,12 @@ export default class SearchEntryPage extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { 
-      searchText: this.context.fctClient.state.searchText,
-      searchLabel: this.context.fctClient.state.searchLabel,
-      searchUri: this.context.fctClient.state.searchUri,
+    this.state = {
+      searchText: "",
+      searchLabel: "",
+      searchUri: "",
     };
-    
+
     // Merge these handlers
     this.onChangeEntityText = this.context.fctClient.handleChangeSearchEntityText;
     this.onSearchOnEntityText = this.context.fctClient.handleSearchOnEntityText;
@@ -98,8 +98,20 @@ export default class SearchEntryPage extends React.Component {
     // this.props.history.push('/searchResults')
   }
 
-  render() {
+  componentDidUpdate() {
+    // If a new search has been triggered from the nav bar on this page,
+    // we need to reflect changes back from FctClientContext to this component's state.
+    // If a new search is triggered from a different page, this component should be
+    // remounted. searchText, searchLabel and searchUri are then cleared in the constructor instead.
+    if (this.state.searchText !== this.context.fctClient.state.searchText && !this.context.fctClient.state.searchText)
+      this.setState({ searchText: this.context.fctClient.state.searchText })
+    if (this.state.searchLabel !== this.context.fctClient.state.searchLabel && !this.context.fctClient.state.searchLabel)
+      this.setState({ searchLabel: this.context.fctClient.state.searchLabel })
+    if (this.state.searchUri !== this.context.fctClient.state.searchUri && !this.context.fctClient.state.searchUri)
+      this.setState({ searchUri: this.context.fctClient.state.searchUri })
+  }
 
+  render() {
     let backdrop;
 
     if (this.props.sideDrawerOpen) {
@@ -132,8 +144,8 @@ export default class SearchEntryPage extends React.Component {
                     <Form.Group controlId="frmSearchText">
                       <Form.Row>
                         <Col>
-                          <Form.Control 
-                            type="text" placeholder="Search text" 
+                          <Form.Control
+                            type="text" placeholder="Search text"
                             value={this.state.searchText} onChange={this.handleChangeEntityText}
                           />
                         </Col>
@@ -153,8 +165,8 @@ export default class SearchEntryPage extends React.Component {
                     <Form.Group controlId="frmSearchLabel">
                       <Form.Row>
                         <Col>
-                          <Form.Control 
-                            type="text" placeholder="Label" 
+                          <Form.Control
+                            type="text" placeholder="Label"
                             value={this.state.searchLabel} onChange={this.handleChangeEntityLabel}
                           />
                         </Col>
@@ -174,8 +186,8 @@ export default class SearchEntryPage extends React.Component {
                     <Form.Group controlId="frmSearchURI">
                       <Form.Row>
                         <Col>
-                          <Form.Control 
-                            type="text" placeholder="URI" 
+                          <Form.Control
+                            type="text" placeholder="URI"
                             value={this.state.searchUri} onChange={this.handleChangeEntityUri}
                           />
                         </Col>

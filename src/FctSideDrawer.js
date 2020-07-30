@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { FctClientConsumer } from './FctClientContext'
 
 const FctSideDrawer = props => {
   let drawerClasses = 'side-drawer';
@@ -14,9 +15,12 @@ const FctSideDrawer = props => {
       </div>
       <div>
         <ul className="list-unstyled components">
-          <div className="sidebar-headerX">
-            <span className="subheader"><strong>Entity Relationship Filters</strong></span>
-          </div>
+          <li style={{ borderTop: "solid 1px white", clear: "both" }}>
+
+            <div className="sidebar-headerX">
+              <span className="subheader"><strong>Entity Relationship Filters</strong></span>
+            </div>
+          </li>
           <li>
             <OverlayTrigger
               placement={'right'}
@@ -65,10 +69,15 @@ const FctSideDrawer = props => {
               <Link to="#">Places</Link>
             </OverlayTrigger>
           </li>
-          <li style={{ borderTop: "solid 1px white", clear: "both" }}><Link to="/">Options</Link></li>
-          <li><Link to="#">Save</Link></li>
+          <li style={{ borderTop: "solid 1px white", clear: "both" }}><Link to="#">Save</Link></li>
+          <li>
+            <FctClientConsumer>
+              {({fctClient}) => ( <Link to="/" onClick={() => fctClient.handleNewSearchRequest()}>New Search</Link> )}
+            </FctClientConsumer>
+          </li>
+          <li style={{ borderTop: "solid 1px white", clear: "both" }}><Link to="#">Options</Link></li>
           <li><Link to="#">Featured Queries</Link></li>
-          <li><Link to="#">New Search</Link></li>
+          <li><Link to="#">Demo Queries</Link></li>
         </ul>
       </div>
     </nav>

@@ -54,6 +54,7 @@ class FctClientHeadless {
     this.fctQuery.setViewLimit(this.viewLimit);
 
     // Merge these handlers
+    this.handleNewSearchRequest = this.handleNewSearchRequest.bind(this);
     this.handleChangeSearchEntityText = this.handleChangeSearchEntityText.bind(this);
     this.handleSearchOnEntityText = this.handleSearchOnEntityText.bind(this);
     this.handleChangeSearchEntityLabel = this.handleChangeSearchEntityLabel.bind(this);
@@ -75,6 +76,7 @@ class FctClientHeadless {
   }
 
   handleChangeSearchEntityText(searchText) {
+    console.log('FctClientHeadless#handleChangeSearchEntityText: searchText:', searchText);
     this.setState({ searchText: searchText, fctError: null });
   }
 
@@ -107,6 +109,10 @@ class FctClientHeadless {
 
   handleSearchOnEntityUri(searchUri) {
     alert(`FctClientHeadless#handleSearchOnEntityUri("${searchUri}") - Not Implemented`);
+  }
+
+  handleNewSearchRequest() {
+    this.setState({ searchText: "", searchLabel: "", searchUri: "", fctError: null });
   }
 
   search() {

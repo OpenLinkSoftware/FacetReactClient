@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
+import { FctClientConsumer } from './FctClientContext'
 
 export default class FctNavBar extends React.Component {
   constructor(props) {
@@ -20,11 +21,11 @@ export default class FctNavBar extends React.Component {
           <img src="./img/diamond.svg" className="d-inline-block align-top" alt="diamond logo" height="35" />
         </Link> 
         */}
-        <img 
-          src="./img/diamond.svg" 
-          className="d-inline-block align-top" 
-          alt="diamond logo" height="35" 
-          style={{paddingRight: "15px"}}
+        <img
+          src="./img/diamond.svg"
+          className="d-inline-block align-top"
+          alt="diamond logo" height="35"
+          style={{ paddingRight: "15px" }}
         />
         <h2>Facet</h2>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -35,14 +36,25 @@ export default class FctNavBar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-            <OverlayTrigger
+              <OverlayTrigger
                 placement={'bottom'}
                 overlay={<Tooltip>New search</Tooltip>}
               >
-              <Link className="nav-link" to="/"><span
-                className="oi oi-magnifying-glass" style={{ color: 'white' }}></span></Link>
-                            </OverlayTrigger>
-
+                <FctClientConsumer>
+                  {
+                    // See https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
+                    ({fctClient}) => 
+                      (
+                      <Link 
+                        className="nav-link" to="/"
+                        onClick={() => fctClient.handleNewSearchRequest()}
+                      >
+                        <span className="oi oi-magnifying-glass" style={{ color: 'white' }}></span>
+                      </Link>
+                      )
+                  }
+                </FctClientConsumer>
+              </OverlayTrigger>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/about">About</Link>
@@ -78,12 +90,12 @@ export default class FctNavBar extends React.Component {
             </li>
           </ul>
           <OverlayTrigger
-                placement={'left'}
-                overlay={<Tooltip>Settings</Tooltip>}
-              >
-          <button type="button" className="btn btn-default shadow-none" id="sidebarToggle" onClick={this.drawerToggleClickHndlr} >
-            <span className="oi oi-cog" aria-hidden="true"></span>
-          </button>
+            placement={'left'}
+            overlay={<Tooltip>Settings</Tooltip>}
+          >
+            <button type="button" className="btn btn-default shadow-none" id="sidebarToggle" onClick={this.drawerToggleClickHndlr} >
+              <span className="oi oi-cog" aria-hidden="true"></span>
+            </button>
           </OverlayTrigger>
         </div>
       </nav>
