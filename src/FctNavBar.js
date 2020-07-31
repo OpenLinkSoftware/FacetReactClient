@@ -36,25 +36,25 @@ export default class FctNavBar extends React.Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
-              <OverlayTrigger
-                placement={'bottom'}
-                overlay={<Tooltip>New search</Tooltip>}
-              >
-                <FctClientConsumer>
-                  {
-                    // See https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
-                    ({fctClient}) => 
-                      (
-                      <Link 
-                        className="nav-link" to="/"
-                        onClick={() => fctClient.handleNewSearchRequest()}
+              <FctClientConsumer>
+                {
+                  // See https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
+                  ({ fctClient }) =>
+                    (
+                      <OverlayTrigger
+                        placement={'bottom'}
+                        overlay={<Tooltip>New search</Tooltip>}
                       >
-                        <span className="oi oi-magnifying-glass" style={{ color: 'white' }}></span>
-                      </Link>
-                      )
-                  }
-                </FctClientConsumer>
-              </OverlayTrigger>
+                        <Link
+                          className="nav-link" to="/"
+                          onClick={() => fctClient.handleNewSearchRequest()}
+                        >
+                          <span className="oi oi-magnifying-glass" style={{ color: 'white' }}></span>
+                        </Link>
+                      </OverlayTrigger>
+                    )
+                }
+              </FctClientConsumer>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/about">About</Link>
