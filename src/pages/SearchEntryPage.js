@@ -13,6 +13,7 @@ import Row from 'react-bootstrap/Row'
 import FctNavBar from '../FctNavBar'
 import FctFooter from '../FctFooter'
 import FctSideDrawer from '../FctSideDrawer';
+import { fctConfig } from '../FctConfig'
 import Backdrop from '../Backdrop';
 
 import FctClientContext from '../FctClientContext';
@@ -30,7 +31,7 @@ const OpenSearchLinkAndPopover = () => {
       }
     >
       <Link to="#" className="btn btn-outline-secondary" role="button">
-        <img src="/facet/img/opensearch.svg" height="16" width="16" style={{ position: "relative", top: "-2px" }} />
+        <img src={`${fctConfig.getDeploymentBasePath()}/img/opensearch.svg`} height="16" width="16" style={{ position: "relative", top: "-2px" }} />
       </Link>
     </OverlayTrigger>
   );

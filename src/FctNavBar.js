@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { FctClientConsumer } from './FctClientContext'
+import { fctConfig } from './FctConfig'
 
 export default class FctNavBar extends React.Component {
   constructor(props) {
@@ -18,11 +19,11 @@ export default class FctNavBar extends React.Component {
       <nav className="navbar navbar-expand-lg navbar-dark opl-navbar-background">
         {/* 
         <Link className="navbar-brand" to="https://www.flaticon.com/authors/freepik">
-          <img src="/facet/img/diamond.svg" className="d-inline-block align-top" alt="diamond logo" height="35" />
+          <img src={`${fctConfig.getDeploymentBasePath()}/img/diamond.svg`} className="d-inline-block align-top" alt="diamond logo" height="35" />
         </Link> 
         */}
         <img
-          src="/facet/img/diamond.svg"
+          src={`${fctConfig.getDeploymentBasePath()}/img/diamond.svg`}
           className="d-inline-block align-top"
           alt="diamond logo" height="35"
           style={{ paddingRight: "15px" }}

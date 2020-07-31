@@ -1,10 +1,11 @@
-import React from 'react';
+import React from 'react'
 import FctNavBar from '../FctNavBar'
 import FctFooter from '../FctFooter'
-import FctSideDrawer from '../FctSideDrawer';
-import Backdrop from '../Backdrop';
+import FctSideDrawer from '../FctSideDrawer'
+import { fctConfig } from '../FctConfig'
+import Backdrop from '../Backdrop'
 
-import FctClientContext from '../FctClientContext';
+import FctClientContext from '../FctClientContext'
 
 export default class AboutPage extends React.Component {
   // TO DO: Newer syntax:
@@ -41,7 +42,7 @@ export default class AboutPage extends React.Component {
                 </p>
               </div>
               <div id="about_logo_container">
-                <img src="/facet/img/openlink_site_logo.png"
+                <img src={`${fctConfig.getDeploymentBasePath()}/img/openlink_site_logo.png`}
                   className="d-inline-block align-top" alt=""
                   style={{ position: "relative", top: "-3px", left: "5px", height: "40px" }}
                 />
@@ -55,10 +56,10 @@ export default class AboutPage extends React.Component {
               </div>
               <div>
                 <a href="http://virtuoso.openlinksw.com/">
-                  <img src="/facet/img/virt_power_no_border.png" alt="Powered by OpenLink Virtuoso" />
+                  <img src={`${fctConfig.getDeploymentBasePath()}/img/virt_power_no_border.png`} alt="Powered by OpenLink Virtuoso" />
                 </a>
                 <a href="http://linkeddata.org">
-                  <img src="/facet/img/LoDLogo.gif" alt="Linked Data" />
+                  <img src={`${fctConfig.getDeploymentBasePath()}/img/LoDLogo.gif`} alt="Linked Data" />
                 </a>
               </div>
               <div>
