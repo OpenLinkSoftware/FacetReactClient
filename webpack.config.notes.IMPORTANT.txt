@@ -1,0 +1,50 @@
+webpack output is served from devServer.publicPath
+Content not from webpack is served from devServer.contentBase
+
+devServer.publicPath - determines where a BUNDLES (i.e. webpack output) is served from
+devServer.contentBase - determines where STATIC FILES are served from
+
+
+
+
+===================================
+StackOverflow
+See:
+https://stackoverflow.com/questions/42712054/content-not-from-webpack-is-served-from-foo
+https://stackoverflow.com/questions/46260851/webpack-dev-server-cannot-get
+https://stackoverflow.com/questions/28846814/what-does-publicpath-in-webpack-do	<--	IMPORTANT
+	See comments including https://stackoverflow.com/a/57491576
+
+output.path = Local disk directory to store all your webpack-generated output files (Absolute path).
+
+output.publicPath = Where you uploaded your bundled files. (Relative to web server root)
+Example: /assets/
+Assumed you deployed the app at server root http://server/.
+By using /assets/, the app will find webpack assets at: http://server/assets/. Under the hood, every urls that webpack encounters will be re-written to begin with "/assets/".
+e.g. src="picture.jpg", Re-written as: src="/assets/picture.jpg", Accessed by: http://server/assets/picture.jpg
+
+
+1) output.publicPath: must exist
+
+2) output.publicPath: "/" - effectively disables publicPath.
+
+3) output.publicPath: is used as the search location when looking for a bundle
+e.g. if index.html includes assets/bundle.js, the server will look for {publicPath}/assets/bundle.js
+
+
+
+devServer.contentBase - set to folder containing index.html.
+	e.g. contentBase: __dirname + "/public/",
+
+devServer.contentBase
+- tells webpack dev server where to serve only *static* files from (not the URL they will be served as). 
+- when you are working with webpack-dev-server, it generates dynamic output (a bundle) in memory, so you don't have static content to serve.
+
+- It must be a relative or absolute path. The server doesn't automatially use your project as the root directory, so 
+  contentBase: "/dist" - won't resolve
+  contentBase: __dirname + '/dist' - should resolve
+
+devServer.publicPath - only relevant to bundled files, not static content.
+
+webpack-dev-server only serves from memory if the correct path is hit.
+
