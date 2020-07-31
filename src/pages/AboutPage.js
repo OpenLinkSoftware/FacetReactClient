@@ -41,7 +41,7 @@ export default class AboutPage extends React.Component {
                 </p>
               </div>
               <div id="about_logo_container">
-                <img src="/img/openlink_site_logo.png"
+                <img src="/facet/img/openlink_site_logo.png"
                   className="d-inline-block align-top" alt=""
                   style={{ position: "relative", top: "-3px", left: "5px", height: "40px" }}
                 />
@@ -55,10 +55,10 @@ export default class AboutPage extends React.Component {
               </div>
               <div>
                 <a href="http://virtuoso.openlinksw.com/">
-                  <img src="/img/virt_power_no_border.png" alt="Powered by OpenLink Virtuoso" />
+                  <img src="/facet/img/virt_power_no_border.png" alt="Powered by OpenLink Virtuoso" />
                 </a>
                 <a href="http://linkeddata.org">
-                  <img src="/img/LoDLogo.gif" alt="Linked Data" />
+                  <img src="/facet/img/LoDLogo.gif" alt="Linked Data" />
                 </a>
               </div>
               <div>

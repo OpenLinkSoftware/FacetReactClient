@@ -8,7 +8,7 @@ const title = 'Facet React Client - Bare Component List';
 
 ReactDOM.render(
   
-  <BrowserRouter>
+  <BrowserRouter basename="/facet">
     <App title={title} />
   </BrowserRouter>,
   document.getElementById('app')

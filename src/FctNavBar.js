@@ -18,11 +18,11 @@ export default class FctNavBar extends React.Component {
       <nav className="navbar navbar-expand-lg navbar-dark opl-navbar-background">
         {/* 
         <Link className="navbar-brand" to="https://www.flaticon.com/authors/freepik">
-          <img src="./img/diamond.svg" className="d-inline-block align-top" alt="diamond logo" height="35" />
+          <img src="/facet/img/diamond.svg" className="d-inline-block align-top" alt="diamond logo" height="35" />
         </Link> 
         */}
         <img
-          src="./img/diamond.svg"
+          src="/facet/img/diamond.svg"
           className="d-inline-block align-top"
           alt="diamond logo" height="35"
           style={{ paddingRight: "15px" }}

@@ -30,7 +30,7 @@ const OpenSearchLinkAndPopover = () => {
       }
     >
       <Link to="#" className="btn btn-outline-secondary" role="button">
-        <img src="img/opensearch.svg" height="16" width="16" style={{ position: "relative", top: "-2px" }} />
+        <img src="/facet/img/opensearch.svg" height="16" width="16" style={{ position: "relative", top: "-2px" }} />
       </Link>
     </OverlayTrigger>
   );
