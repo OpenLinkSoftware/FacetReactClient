@@ -43,7 +43,10 @@ export default class SearchResultsPage extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer show={this.props.sideDrawerOpen} />
+        <FctSideDrawer 
+          show={this.props.sideDrawerOpen}
+          drawerToggleClickHandler={this.props.drawerToggleClickHandler}
+        />
         {backdrop}
         <div className="container-fluid">
           <div className="row opl-filter-summary-background pr-3 pt-2">
@@ -118,7 +121,7 @@ export default class SearchResultsPage extends React.Component {
                 />
               </div>
 
-              <div>
+              <div className="mt-3 py-1 border-top">
                 <FctRspDbActvty dbActivity={dbActivity} />
               </div>
             </div>
@@ -126,28 +129,6 @@ export default class SearchResultsPage extends React.Component {
           </div>
 
           <FctFooter />
-
-          {/* TEMPORARY - REMOVE ONCE SIDEPANEL EQUIV IN PLACE */}
-          <div className="col-sm-12">
-            <div className="form-group row">
-              <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
-              <div className="col-sm-4">
-                <select value={fctClient.state.viewType} className="custom-select" onChange={fctClient.handleViewChange}>
-                  <option value="properties-in">properties-in : [vt=properties-in]</option>
-                  <option value="propval-list">propval-list : [vt=propval-list]</option>
-                  <option value="classes">classes [vt=classes]</option>
-                  <option value="text">entities [vt=text]</option>
-                  <option value="text-d">text-d [vt=text-d]</option>
-                  <option value="text-properties">text-properties [vt=text-properties]</option>
-                  <option value="properties">attributes [vt=properties]</option>
-                  <option value="list-count">distinct (count) [vt=list-count]</option>
-                  <option value="list">list [vt=list]</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {/* --^^^------------------------------------------- */}
 
         </div>
       </div>

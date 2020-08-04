@@ -102,7 +102,7 @@ class FctClient extends React.Component {
 
     this.handleChangeSearchEntityText = this.handleChangeSearchEntityText.bind(this);
     this.handleSearchOnEntityText = this.handleSearchOnEntityText.bind(this);
-    this.handleViewChange = this.handleViewChange.bind(this);
+    this.handleViewListChange = this.handleViewListChange.bind(this);
     this.handleSetSubjectFocus = this.handleSetSubjectFocus.bind(this);
     this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
     this.handleRowLimitChange = this.handleRowLimitChange.bind(this);
@@ -117,6 +117,9 @@ class FctClient extends React.Component {
     // TO DO: Add UI control and initialize to FctQuery defaults.
     this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT;
     this.describeEndpoint = FctQuery.DESCRIBE_DFLT_SVC_ENDPOINT;
+    // TO DO: Remove
+    // this.serviceEndpoint = "http://localhost:8896/fct/service";
+    // this.describeEndpoint = "http://localhost:8896/describe/";
 
     this.fctQuery = new FctQuery();
     this.fctQuery.setViewType(FCT_CLIENT_DFLT_VIEW_TYPE);
@@ -160,7 +163,7 @@ class FctClient extends React.Component {
     }
   }
 
-  handleViewChange(event) {
+  handleViewListChange(event) {
     this.updateView(event.target.value);
   }
 
@@ -258,7 +261,7 @@ class FctClient extends React.Component {
                   <div className="form-group row">
                     <label htmlFor="frmViewType" className="col-sm-1 col-form-label text-right">View:</label>
                     <div className="col-sm-4">
-                      <select value={this.state.viewType} className="custom-select" onChange={this.handleViewChange}>
+                      <select value={this.state.viewType} className="custom-select" onChange={this.handleViewListChange}>
                         <option value="properties-in">properties-in : [vt=properties-in]</option>
                         <option value="propval-list">propval-list : [vt=propval-list]</option>
                         <option value="classes">classes [vt=classes]</option>

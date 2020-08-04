@@ -46,6 +46,10 @@ class FctClientHeadless {
     // TO DO: Add UI control and initialize to FctQuery defaults.
     this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT;
     this.describeEndpoint = FctQuery.DESCRIBE_DFLT_SVC_ENDPOINT;
+    // TO DO: Remove
+    // this.serviceEndpoint = "http://localhost:8896/fct/service";
+    // this.describeEndpoint = "http://localhost:8896/describe/";
+
     this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
 
     this.fctQuery = new FctQuery();
@@ -62,6 +66,7 @@ class FctClientHeadless {
     this.handleChangeSearchEntityUri = this.handleChangeSearchEntityUri.bind(this);
     this.handleSearchOnEntityUri = this.handleSearchOnEntityUri.bind(this);
 
+    this.handleViewListChange = this.handleViewListChange.bind(this);
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleSetSubjectFocus = this.handleSetSubjectFocus.bind(this);
     this.handleDropQueryFilter = this.handleDropQueryFilter.bind(this);
@@ -131,8 +136,12 @@ class FctClientHeadless {
     }
   }
 
-  handleViewChange(event) {
+  handleViewListChange(event) {
     this.updateView(event.target.value);
+  }
+
+  handleViewChange(viewType) {
+    this.updateView(viewType);
   }
 
   // updateView 

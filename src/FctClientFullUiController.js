@@ -38,7 +38,8 @@ export class FctClientFullUiController extends React.Component {
   }
 
   drawerToggleClickHandler(e) {
-    e.preventDefault();
+    if (e)
+      e.preventDefault();
     this.setState((prevState) => {
       return { sideDrawerOpen: !prevState.sideDrawerOpen };
     });
@@ -74,6 +75,7 @@ export class FctClientFullUiController extends React.Component {
         );
       case "SearchResultsPage":
         return (
+          <>
           <FctClientProvider value={this.fctClientContext}>
             <SearchResultsPage
               history={this.props.history}
@@ -83,6 +85,7 @@ export class FctClientFullUiController extends React.Component {
               sideDrawerOpen={this.state.sideDrawerOpen}
             />
           </FctClientProvider>
+          </>
         );
       case "AboutPage":
         return (

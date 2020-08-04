@@ -9,7 +9,7 @@ class FctRspDbActvty extends React.Component {
 //  }
 
   render() {
-    return ( <div>{this.props.dbActivity}</div> );
+    return ( <div><small>Resource utilization: {this.props.dbActivity}</small></div> );
   }
 
 }

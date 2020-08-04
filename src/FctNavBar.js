@@ -40,7 +40,7 @@ export default class FctNavBar extends React.Component {
               <FctClientConsumer>
                 {
                   // See https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
-                  ({ fctClient }) =>
+                  ({fctClient}) =>
                     (
                       <OverlayTrigger
                         placement={'bottom'}
