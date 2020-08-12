@@ -22,6 +22,18 @@ const FctSideDrawer = props => {
   //    - Places
   //  - Save
   //  - New Search
+
+  // Note - Tooltip implementation:
+  //
+  // Wrapping a Link with OverlayTrigger to provide a tooltip
+  // resulted in the tooltip still being visible when the
+  // sidebar was closed, at least until a mouse move. 
+  //
+  // As a workaround, OverlayTrigger instead wraps a
+  // question mark icon, so the user is forced to move the
+  // focus to the adjacent Link to trigger a sidebar action.
+  // Shifting the focus hides the tooltip.
+
   return (
     <nav className={drawerClasses}>
       <div className="sidebar-header">
