@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
-import { fctConfig } from './FctConfig'
+import { BrowserRouter } from 'react-router-dom';
+import { fctConfig } from './FctConfig';
+import './css/facet.css';
+import './css/sidebar.css';
 
 import App from './App';
 
