@@ -140,7 +140,7 @@ class FctClient extends React.Component {
       this.setState({ fctResult: null, fctError: null });
     }
     else {
-      this.fctQuery.queryText = searchText;
+      this.fctQuery.setQueryText(searchText);
       this.search();
     }
   }
@@ -150,7 +150,7 @@ class FctClient extends React.Component {
   }
 
   search() {
-    if (!this.fctQuery.queryText)
+    if (!this.fctQuery.getQueryText())
       this.setState({ fctResult: null, fctError: null });
     else {
       this.fctQuery.execute()
@@ -195,7 +195,7 @@ class FctClient extends React.Component {
     // Update the UI:
     // Set the controls holding Facet request inputs to match the preset's settings.
     this.setState({
-      searchText: this.fctQuery.queryText,
+      searchText: this.fctQuery.getQueryText(),
       preset: presetKey,
       fctResult: null,
       fctError: null,
@@ -203,7 +203,7 @@ class FctClient extends React.Component {
     }); // Async!
     // - Perform a new search based on the new search text.
     // - The UI controls holding the Facet response output will be updated automatically.
-    this.handleSearchOnEntityText(this.fctQuery.queryText);
+    this.handleSearchOnEntityText(this.fctQuery.getQueryText());
   }
 
   handleSetSubjectFocus(subjectId) {
@@ -218,7 +218,7 @@ class FctClient extends React.Component {
     console.log('FctClient#handleDropQueryFilter: filterId:', filterId) // TO DO: Remove
     this.fctQuery.removeQueryFilter(filterId); // May change the view type if the removed filter had the subject focus
     // If the removed filter was a <text> element, clear the searchInputEditor input to reflect this.
-    if (!this.fctQuery.queryText)
+    if (!this.fctQuery.getQueryText())
       this.handleChangeSearchEntityText("");
     this.updateView(this.fctQuery.getViewType());
   }
@@ -300,7 +300,7 @@ class FctClient extends React.Component {
                   <FctViewHeader
                     qryResult={qryResult}
                     fctUiUtil={this.fctUiUtil}
-                    queryText={this.fctQuery.queryText}
+                    queryText={this.fctQuery.getQueryText()}
                     viewSubjectIndex={viewSubjectIndex}
                   />
                 </div>
@@ -401,7 +401,7 @@ class FctClient extends React.Component {
     switch (this.props.action.name) {
       case "setTextProperty":
         console.log('FctClient#performFctAction: setTextProperty:', this.props.action.propertyIri);
-        this.fctQuery.queryTextProperty = this.props.action.propertyIri;
+        this.fctQuery.setQueryTextProperty(this.props.action.propertyIri);
         break;
       case "openProperty":
         // - Add filter: ?s[n] has the given property.

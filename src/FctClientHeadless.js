@@ -93,7 +93,7 @@ class FctClientHeadless {
       this.setState({ fctResult: null, fctError: null });
     }
     else {
-      this.fctQuery.queryText = searchText;
+      this.fctQuery.setQueryText(searchText);
       this.search();
     }
   }
@@ -122,7 +122,7 @@ class FctClientHeadless {
 
   search() {
     console.log('FctClientHeadless#search');
-    if (!this.fctQuery.queryText)
+    if (!this.fctQuery.getQueryText())
       this.setState({ fctResult: null, fctError: null });
     else {
       this.fctQuery.execute()
@@ -167,7 +167,7 @@ class FctClientHeadless {
     console.log('FctClientHeadless#handleDropQueryFilter: filterId:', filterId);
     this.fctQuery.removeQueryFilter(filterId); // May change the view type if the removed filter had the subject focus
     // If the removed filter was a <text> element, clear the searchInputEditor input to reflect this.
-    if (!this.fctQuery.queryText)
+    if (!this.fctQuery.getQueryText())
       this.handleChangeSearchEntityText("");
     this.updateView(this.fctQuery.getViewType());
   }
@@ -187,7 +187,7 @@ class FctClientHeadless {
     console.log('FctClientHeadless#performFctAction: action:', action)
     switch (action.action.name) {
       case "setTextProperty":
-        this.fctQuery.queryTextProperty = action.action.propertyIri;
+        this.fctQuery.setQueryTextProperty(action.action.propertyIri);
         break;
       case "openProperty":
         // - Add filter: ?s[n] has the given property.
