@@ -74,7 +74,14 @@ class ForcedError extends React.Component {
 
 // -------------------------------------
 
-const FCT_CLIENT_DFLT_VIEW_TYPE = "text";
+// const DFLT_DESCRIBE_ENDPOINT = 'http://linkeddata.uriburner.com/describe/';
+const DFLT_DESCRIBE_ENDPOINT = 'http://localhost:8896/describe/';
+
+// Disabled - Use the defaults in FctJsClient instead
+//
+// const DFLT_SERVICE_ENDPOINT = 'http://linkeddata.uriburner.com/fct/service';
+// const DFLT_VIEW_LIMIT = 50;
+// const DFLT_VIEW_TYPE = "text";
 
 const componentContainerStyle = {
   padding: '5px',
@@ -87,18 +94,6 @@ class FctClient extends React.Component {
   constructor(props) {
     super(props);
     console.log('FctClient#constructor: props:', props)
-    this.state = {
-      searchText: "",
-      fctResult: null,
-      fctError: null,
-      viewType: props.viewType || FCT_CLIENT_DFLT_VIEW_TYPE,
-      viewSubjectIndex: 1,
-      tripleTerminology: "eav",   // TO DO: Initialize from UI control. spo | eav
-      preset: "none",
-      forcedError: false,
-    };
-
-    this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
 
     this.handleChangeSearchEntityText = this.handleChangeSearchEntityText.bind(this);
     this.handleSearchOnEntityText = this.handleSearchOnEntityText.bind(this);
@@ -109,22 +104,37 @@ class FctClient extends React.Component {
     this.handlePresetChange = this.handlePresetChange.bind(this); // TO DO: Remove once testing complete
     this.handleForceError = this.handleForceError.bind(this); // TO DO: Remove once testing complete
 
-    // viewLimit may be overridden in the UI.
-    // TO DO: Add UI control and intialize to FctQuery default.
-    // this.viewLimit = FctQuery.FCT_QRY_DFLT_VIEW_LIMIT; 
-    this.viewLimit = 50;
-    // serviceEndpoint and describeEndpoint may be overridden in the UI.
-    // TO DO: Add UI control and initialize to FctQuery defaults.
-    this.serviceEndpoint = FctQuery.FCT_QRY_DFLT_SVC_ENDPOINT;
-    this.describeEndpoint = FctQuery.DESCRIBE_DFLT_SVC_ENDPOINT;
-    // TO DO: Remove
-    // this.serviceEndpoint = "http://localhost:8896/fct/service";
-    // this.describeEndpoint = "http://localhost:8896/describe/";
-
+    this.describeEndpoint = DFLT_DESCRIBE_ENDPOINT;
+    
     this.fctQuery = new FctQuery();
-    this.fctQuery.setViewType(FCT_CLIENT_DFLT_VIEW_TYPE);
-    this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
-    this.fctQuery.setViewLimit(this.viewLimit);
+    this.serviceEndpoint = this.fctQuery.getDefaultServiceEndpoint();
+    this.viewLimit = this.fctQuery.getDefaultViewLimit();
+
+    // Override the FctJsClient defaults
+    //
+    // this.serviceEndpoint = DFLT_SERVICE_ENDPOINT;
+    // this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
+    //
+    // this.viewLimit = DFLT_VIEW_LIMIT;
+    // this.fctQuery.setViewLimit(this.viewLimit);
+    //
+    // this.fctQuery.setViewType(DFLT_VIEW_TYPE);
+
+    // viewLimit may be overridden in the UI.
+    // TO DO: Add UI controls to allow setting of serviceEndpoint and describeEndpoint.
+
+    this.state = {
+      searchText: "",
+      fctResult: null,
+      fctError: null,
+      viewType: props.viewType || this.fctQuery.getViewType(),
+      viewSubjectIndex: 1,
+      tripleTerminology: "eav",   // TO DO: Initialize from UI control. spo | eav
+      preset: "none",
+      forcedError: false,
+    };
+
+    this.fctUiUtil = new FctUiUtil(this.state.tripleTerminology);
   }
 
   handleChangeSearchEntityText(searchText) {
