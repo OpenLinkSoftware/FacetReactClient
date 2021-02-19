@@ -54,7 +54,7 @@ export default class SearchResultsPage extends React.Component {
               <FctViewHeader
                 qryResult={qryResult}
                 fctUiUtil={fctClient.fctUiUtil}
-                queryText={fctClient.fctQuery.getQueryText()}
+                queryText={fctClient.fctQuery.getText()}
                 viewSubjectIndex={viewSubjectIndex}
               />
               <FctFilters

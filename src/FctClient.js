@@ -150,7 +150,7 @@ class FctClient extends React.Component {
       this.setState({ fctResult: null, fctError: null });
     }
     else {
-      this.fctQuery.setQueryText(searchText);
+      this.fctQuery.addText(searchText);
       this.search();
     }
   }
@@ -160,7 +160,7 @@ class FctClient extends React.Component {
   }
 
   search() {
-    if (!this.fctQuery.getQueryText())
+    if (!this.fctQuery.getText())
       this.setState({ fctResult: null, fctError: null });
     else {
       this.fctQuery.execute()
@@ -205,7 +205,7 @@ class FctClient extends React.Component {
     // Update the UI:
     // Set the controls holding Facet request inputs to match the preset's settings.
     this.setState({
-      searchText: this.fctQuery.getQueryText(),
+      searchText: this.fctQuery.getText(),
       preset: presetKey,
       fctResult: null,
       fctError: null,
@@ -213,7 +213,7 @@ class FctClient extends React.Component {
     }); // Async!
     // - Perform a new search based on the new search text.
     // - The UI controls holding the Facet response output will be updated automatically.
-    this.handleSearchOnEntityText(this.fctQuery.getQueryText());
+    this.handleSearchOnEntityText(this.fctQuery.getText());
   }
 
   handleSetSubjectFocus(subjectId) {
@@ -226,9 +226,9 @@ class FctClient extends React.Component {
 
   handleDropQueryFilter(filterId) {
     console.log('FctClient#handleDropQueryFilter: filterId:', filterId) // TO DO: Remove
-    this.fctQuery.removeQueryFilter(filterId); // May change the view type if the removed filter had the subject focus
+    this.fctQuery.removeFilter(filterId); // May change the view type if the removed filter had the subject focus
     // If the removed filter was a <text> element, clear the searchInputEditor input to reflect this.
-    if (!this.fctQuery.getQueryText())
+    if (!this.fctQuery.getText())
       this.handleChangeSearchEntityText("");
     this.updateView(this.fctQuery.getViewType());
   }
@@ -310,7 +310,7 @@ class FctClient extends React.Component {
                   <FctViewHeader
                     qryResult={qryResult}
                     fctUiUtil={this.fctUiUtil}
-                    queryText={this.fctQuery.getQueryText()}
+                    queryText={this.fctQuery.getText()}
                     viewSubjectIndex={viewSubjectIndex}
                   />
                 </div>
@@ -411,7 +411,7 @@ class FctClient extends React.Component {
     switch (this.props.action.name) {
       case "setTextProperty":
         console.log('FctClient#performFctAction: setTextProperty:', this.props.action.propertyIri);
-        this.fctQuery.setQueryTextProperty(this.props.action.propertyIri);
+        this.fctQuery.setTextProperty(this.props.action.propertyIri);
         break;
       case "openProperty":
         // - Add filter: ?s[n] has the given property.
@@ -466,9 +466,9 @@ class FctClient extends React.Component {
         //   <cond type="eq" neg="" xml:lang="" datatype="http://www.w3.org/2001/XMLSchema#integer">27</cond>
         // </property>
         console.log('FctClient#permformUiAction: cond:', this.props.action.conditionType);
-        // After setting a condition, FctQuery#setSubjectCondition sets subject node to 1, 
+        // After setting a condition, FctQuery#addCondition sets subject node to 1, 
         // the view type to 'text-d' and the view offset set to 0.
-        this.fctQuery.setSubjectCondition(
+        this.fctQuery.addCondition(
           this.props.action.conditionType,
           this.props.action.value,
           this.props.action.valueDataType,
@@ -482,7 +482,7 @@ class FctClient extends React.Component {
         // Create XML element:
         // <class>
         console.log('FctClient#performFctAction: setClass:', this.props.action.classIri);
-        this.fctQuery.setSubjectClass(this.props.action.classIri);
+        this.fctQuery.addClass(this.props.action.classIri);
         this.fctQuery.setViewType(this.props.viewType);
         break;
     }

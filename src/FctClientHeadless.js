@@ -100,7 +100,7 @@ class FctClientHeadless {
       this.setState({ fctResult: null, fctError: null });
     }
     else {
-      this.fctQuery.setQueryText(searchText);
+      this.fctQuery.addText(searchText);
       this.search();
     }
   }
@@ -129,7 +129,7 @@ class FctClientHeadless {
 
   search() {
     console.log('FctClientHeadless#search');
-    if (!this.fctQuery.getQueryText())
+    if (!this.fctQuery.getText())
       this.setState({ fctResult: null, fctError: null });
     else {
       this.fctQuery.execute()
@@ -172,9 +172,9 @@ class FctClientHeadless {
 
   handleDropQueryFilter(filterId) {
     console.log('FctClientHeadless#handleDropQueryFilter: filterId:', filterId);
-    this.fctQuery.removeQueryFilter(filterId); // May change the view type if the removed filter had the subject focus
+    this.fctQuery.removeFilter(filterId); // May change the view type if the removed filter had the subject focus
     // If the removed filter was a <text> element, clear the searchInputEditor input to reflect this.
-    if (!this.fctQuery.getQueryText())
+    if (!this.fctQuery.getText())
       this.handleChangeSearchEntityText("");
     this.updateView(this.fctQuery.getViewType());
   }
@@ -194,7 +194,7 @@ class FctClientHeadless {
     console.log('FctClientHeadless#performFctAction: action:', action)
     switch (action.action.name) {
       case "setTextProperty":
-        this.fctQuery.setQueryTextProperty(action.action.propertyIri);
+        this.fctQuery.setTextProperty(action.action.propertyIri);
         break;
       case "openProperty":
         // - Add filter: ?s[n] has the given property.
@@ -242,9 +242,9 @@ class FctClientHeadless {
         // <property iri="http://www.openlinksw.com/ski_resorts/schema#advanced_slopes">
         //   <cond type="eq" neg="" xml:lang="" datatype="http://www.w3.org/2001/XMLSchema#integer">27</cond>
         // </property>
-        // After setting a condition, FctQuery#setSubjectCondition sets subject node to 1, 
+        // After setting a condition, FctQuery#addCondition sets subject node to 1, 
         // the view type to 'text-d' and the view offset set to 0.
-        this.fctQuery.setSubjectCondition(
+        this.fctQuery.addCondition(
           action.action.conditionType,
           action.action.value,
           action.action.valueDataType,
@@ -257,7 +257,7 @@ class FctClientHeadless {
         //     e.g. ?s1 is a skiresort:SkiResort 
         // Create XML element:
         // <class>
-        this.fctQuery.setSubjectClass(action.action.classIri);
+        this.fctQuery.addClass(action.action.classIri);
         this.fctQuery.setViewType(action.viewType);
         break;
     }
