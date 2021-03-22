@@ -45,6 +45,7 @@ export default class SearchResultsPage extends React.Component {
         <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
         <FctSideDrawer 
           show={this.props.sideDrawerOpen}
+          currentPageName="SearchResultsPage"
           drawerToggleClickHandler={this.props.drawerToggleClickHandler}
         />
         {backdrop}

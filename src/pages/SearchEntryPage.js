@@ -122,7 +122,7 @@ export default class SearchEntryPage extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer show={this.props.sideDrawerOpen} />
+        <FctSideDrawer show={this.props.sideDrawerOpen} currentPageName="SearchEntryPage" />
         {backdrop}
         <div className="container-fluid">
           <div className="row">

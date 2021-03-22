@@ -20,7 +20,7 @@ export default class AboutPage extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer show={this.props.sideDrawerOpen} />
+        <FctSideDrawer show={this.props.sideDrawerOpen} currentPageName="AboutPage" />
         {backdrop}
         <div className="container-fluid">
           <div className="row justify-content-center mt-4 mb-3">
