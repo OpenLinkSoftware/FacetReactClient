@@ -124,6 +124,7 @@ class FctClientHeadless {
   }
 
   handleNewSearchRequest() {
+    this.fctQuery.removeFilters();
     this.setState({ searchText: "", searchLabel: "", searchUri: "", fctError: null });
   }
 
