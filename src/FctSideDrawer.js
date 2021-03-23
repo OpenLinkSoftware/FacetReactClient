@@ -4,9 +4,13 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { FctClientConsumer } from './FctClientContext'
 
 const FctSideDrawer = props => {
+  const side_drawer_is_static = props.staticSideDrawer;
   let drawerClasses = 'sidebar side-drawer';
+  if (!side_drawer_is_static) {
+    drawerClasses += ' side-drawer-dynamic';
+  }
   if (props.show) {
-    drawerClasses = 'sidebar side-drawer open';
+    drawerClasses += ' open';
   }
   
   // Only display the following sidebar links when on the search results page.
@@ -16,7 +20,7 @@ const FctSideDrawer = props => {
   //    - Attributes
   //    - Values
   //    - Distinct (Count)
-  //    - Show Matching Entities
+  //    - Matching Entities
   //    - Places
   //  - Save
   //  - New Search
@@ -37,7 +41,7 @@ const FctSideDrawer = props => {
       <li style={{ borderTop: "solid 1px white", clear: "both" }}>
 
         <div className="sidebar-headerX">
-          <span className="subheader"><strong>Entity Relationship Filters</strong></span>
+          <span className="subheader"><strong>Entity Filters</strong></span>
         </div>
       </li>
       <li>
@@ -142,7 +146,7 @@ const FctSideDrawer = props => {
                     onClick={() => {
                       fctClient.handleViewChange("text-d")
                       props.drawerToggleClickHandler()
-                    }}>Show Matching Entities</Link>
+                    }}>Matching Entities</Link>
                   <OverlayTrigger
                     placement={'right'}
                     overlay={<Tooltip>Display ranked entity names and text summaries</Tooltip>}

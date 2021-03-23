@@ -17,14 +17,22 @@ export default class AboutPage extends React.Component {
       backdrop = <Backdrop clickHndlr={this.props.backdropClickHandler} />;
     }
 
+    let side_drawer_is_static = this.props.staticSideDrawer;
+
     return (
       <div style={{ height: '100%' }}>
         <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer show={this.props.sideDrawerOpen} currentPageName="AboutPage" />
+        <FctSideDrawer 
+          show={this.props.sideDrawerOpen} 
+          staticSideDrawer={this.props.staticSideDrawer}
+          currentPageName="AboutPage" />
         {backdrop}
         <div className="container-fluid">
-          <div className="row justify-content-center mt-4 mb-3">
-            <div className="col-8">
+          <div className="row">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
+            <div className="col mt-4 mb-3">
               <div>
                 <h2>About Facet</h2>
                 <p>
@@ -33,13 +41,13 @@ export default class AboutPage extends React.Component {
                   emedyray: Avidday Ameroncay’say emoirmay. Itway isway,
                   unintentionallyway, ethay ostmay onvincingcay asecay orfay
                   Exitbray atthay ouyay illway everway eadray.
-                </p>
+                  </p>
                 <p>
                   Orfay Ethay Ecordray asway ittenwray asway oliticalpay agedytray
                   , away 700-agepay apologyway otay ethay ationnay orfay ethay
                   ormerfay imepray inistermay’say oleray inway atwhay ehay
                   egardsray asway away alamitycay.
-                </p>
+                  </p>
               </div>
               <div id="about_logo_container">
                 <img src={`${fctConfig.getDeploymentBasePath()}/img/openlink_site_logo.png`}
@@ -50,7 +58,10 @@ export default class AboutPage extends React.Component {
             </div>
           </div>
           <div className="row justify-content-center">
-            <div className="col text-center">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
+            <div className="text-center">
               <div>
                 <span className="small">Faceted Search & Find service v1.17_git38 as of Jul 29 2020</span>
               </div>
@@ -64,18 +75,24 @@ export default class AboutPage extends React.Component {
               </div>
               <div>
                 <span className="small">
-                  <a href="http://www.openlinksw.com/virtuoso/">OpenLink Virtuoso</a> 
-                  &nbsp;version 08.03.3315 as of Jul 29 2020, on OS X
-                  (i686-apple-darwin16.3.0), Single-Server Edition (16 GB total memory)
-                </span>
+                  <a href="http://www.openlinksw.com/virtuoso/">OpenLink Virtuoso</a>
+                      &nbsp;version 08.03.3315 as of Jul 29 2020, on OS X
+                      (i686-apple-darwin16.3.0), Single-Server Edition (16 GB total memory)
+                    </span>
               </div>
-
               <div className="font-weight-light mb-4" style={{ fontSize: "0.7rem" }}>
                 Data on these pages is owned by its respective rights holders.
               </div>
             </div>
           </div>
-          <FctFooter />
+          <div className="row justify-content-center">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
+            <div className="flex-grow-1">
+              <FctFooter />
+            </div>
+          </div>
         </div>
       </div>
     )

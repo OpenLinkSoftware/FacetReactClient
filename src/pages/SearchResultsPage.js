@@ -33,6 +33,8 @@ export default class SearchResultsPage extends React.Component {
       backdrop = <Backdrop clickHndlr={this.props.backdropClickHandler} />;
     }
 
+    let side_drawer_is_static = this.props.staticSideDrawer;
+
     const fctClient = this.context.fctClient;
     const dbActivity = fctClient.state.fctResult ? fctClient.state.fctResult.json.facets["db-activity"] : '';
     const qryResult = fctClient.state.fctResult ? fctClient.state.fctResult.json.facets.result : null;
@@ -45,12 +47,16 @@ export default class SearchResultsPage extends React.Component {
         <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
         <FctSideDrawer 
           show={this.props.sideDrawerOpen}
+          staticSideDrawer={this.props.staticSideDrawer}
           currentPageName="SearchResultsPage"
           drawerToggleClickHandler={this.props.drawerToggleClickHandler}
         />
         {backdrop}
         <div className="container-fluid">
           <div className="row opl-filter-summary-background pr-3 pt-2">
+          {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
             <div className="col">
               <FctViewHeader
                 qryResult={qryResult}
@@ -112,7 +118,10 @@ export default class SearchResultsPage extends React.Component {
           </div>
 
           <div className="row">
-            <div className="col-sm-12">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
+            <div className="col">
               <div>
                 <FctRspRslt
                   qryResult={qryResult}
@@ -129,8 +138,14 @@ export default class SearchResultsPage extends React.Component {
 
           </div>
 
-          <FctFooter />
-
+          <div className="row justify-content-center">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
+            <div className="flex-grow-1">
+              <FctFooter />
+            </div>
+          </div>
         </div>
       </div>
     )

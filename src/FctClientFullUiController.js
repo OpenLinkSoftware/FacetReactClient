@@ -14,6 +14,7 @@ export class FctClientFullUiController extends React.Component {
     this.drawerToggleClickHandler = this.drawerToggleClickHandler.bind(this);
     this.backdropClickHandler = this.backdropClickHandler.bind(this);
     this.contextChangeListener = this.contextChangeListener.bind(this);
+    this.staticSideDrawer = false;
 
     this.fctClientContext = {
       fctClient: new FctClientHeadless(this.contextChangeListener),
@@ -40,9 +41,11 @@ export class FctClientFullUiController extends React.Component {
   drawerToggleClickHandler(e) {
     if (e)
       e.preventDefault();
-    this.setState((prevState) => {
-      return { sideDrawerOpen: !prevState.sideDrawerOpen };
-    });
+    if (!this.staticSideDrawer) {
+      this.setState((prevState) => {
+        return { sideDrawerOpen: !prevState.sideDrawerOpen };
+      });
+    }
   }
 
   backdropClickHandler(e) {
@@ -51,6 +54,7 @@ export class FctClientFullUiController extends React.Component {
 
   render() {
     let pageName = this.props.pageName;
+    const sideDrawerIsStatic = this.staticSideDrawer;
 
     // Guard against client starting on /searchResults.
     if (pageName === "SearchResultsPage" && 
@@ -70,6 +74,7 @@ export class FctClientFullUiController extends React.Component {
               drawerToggleClickHandler={this.drawerToggleClickHandler}
               backdropClickHandler={this.backdropClickHandler}
               sideDrawerOpen={this.state.sideDrawerOpen}
+              staticSideDrawer={sideDrawerIsStatic}
             />
           </FctClientProvider>
         );
@@ -83,6 +88,7 @@ export class FctClientFullUiController extends React.Component {
               drawerToggleClickHandler={this.drawerToggleClickHandler}
               backdropClickHandler={this.backdropClickHandler}
               sideDrawerOpen={this.state.sideDrawerOpen}
+              staticSideDrawer={sideDrawerIsStatic}
             />
           </FctClientProvider>
           </>
@@ -96,6 +102,7 @@ export class FctClientFullUiController extends React.Component {
               drawerToggleClickHandler={this.drawerToggleClickHandler}
               backdropClickHandler={this.backdropClickHandler}
               sideDrawerOpen={this.state.sideDrawerOpen}
+              staticSideDrawer={sideDrawerIsStatic}
             />
           </FctClientProvider>
         );
@@ -108,6 +115,7 @@ export class FctClientFullUiController extends React.Component {
               drawerToggleClickHandler={this.drawerToggleClickHandler}
               backdropClickHandler={this.backdropClickHandler}
               sideDrawerOpen={this.state.sideDrawerOpen}
+              staticSideDrawer={sideDrawerIsStatic}
             />
           </FctClientProvider>
         );

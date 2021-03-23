@@ -43,6 +43,10 @@ body {
   padding: 5px 0
 }
 
+.navbar {
+  height: 50px;
+}
+
 nav span {
   color: var(--palette-color6);
 }
@@ -72,19 +76,30 @@ div.about h2 {
 .side-drawer {
   height: 100%;
   background: white;
-  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
   position: fixed;
-  top: 0;
+  top: 50px;
   left: 0;
   width: 70%;
-  max-width: 400px;
+  max-width: 200px;
+}
+
+.side-drawer-dynamic {
   z-index: 200;
   transform: translateX(-102%);
-  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out; 
+  box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.5);
 }
 
 .side-drawer.open {
   transform: translateX(0);
+}
+
+.side-drawer-static-spacer {
+  width: 180px; /* matches .sidebar min-width/max-width */
+}
+
+.side-drawer-static-tab-margin {
+  margin-left: 180px;
 }
 
 .backdrop {

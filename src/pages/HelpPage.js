@@ -11,20 +11,27 @@ export default class HelpPage extends React.Component {
   // static contextType = FctClientContext;
 
   render() {
-
     let backdrop;
     if (this.props.sideDrawerOpen) {
       backdrop = <Backdrop clickHndlr={this.props.backdropClickHandler} />;
     }
 
+    let side_drawer_is_static = this.props.staticSideDrawer;
+
     return (
       <div style={{ height: '100%' }}>
         <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer show={this.props.sideDrawerOpen} currentPageName="HelpPage" />
+        <FctSideDrawer 
+          show={this.props.sideDrawerOpen} 
+          staticSideDrawer={this.props.staticSideDrawer}
+          currentPageName="HelpPage" />
         {backdrop}
         <div className="container-fluid">
-          <div className="row justify-content-center mt-4 mb-3">
-            <div className="col-8">
+          <div className="row">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
+            <div className="col mt-4 mb-3">
               <h2>Facet Help</h2>
               <h4>FAQ</h4>
               <p>
@@ -40,7 +47,14 @@ export default class HelpPage extends React.Component {
               </p>
             </div>
           </div>
-          <FctFooter />
+          <div className="row justify-content-center">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
+            <div className="flex-grow-1">
+              <FctFooter />
+            </div>
+          </div>
         </div>
       </div>
     )

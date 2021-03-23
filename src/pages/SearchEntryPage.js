@@ -113,7 +113,16 @@ export default class SearchEntryPage extends React.Component {
   }
 
   render() {
+    let side_drawer_is_static = this.props.staticSideDrawer;
+    let tab_col_offset = side_drawer_is_static ? 4 : 3;
     let backdrop;
+    let tabs_classname;
+
+    if (side_drawer_is_static) {
+      tabs_classname = "justify-content-center side-drawer-static-tab-margin";
+    } else {
+      tabs_classname = "justify-content-center";
+    }
 
     if (this.props.sideDrawerOpen) {
       backdrop = <Backdrop clickHndlr={this.props.backdropClickHandler} />;
@@ -122,7 +131,10 @@ export default class SearchEntryPage extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer show={this.props.sideDrawerOpen} currentPageName="SearchEntryPage" />
+        <FctSideDrawer 
+        show={this.props.sideDrawerOpen} 
+        staticSideDrawer={this.props.staticSideDrawer}
+        currentPageName="SearchEntryPage" />
         {backdrop}
         <div className="container-fluid">
           <div className="row">
@@ -133,13 +145,18 @@ export default class SearchEntryPage extends React.Component {
             </div>
           </div>
           <div className="row justify-content-center mt-3 mb-3">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
             <h4>Precision Search &amp; Find</h4>
           </div>
 
-          <Tabs defaultActiveKey="entityText" id="searchInputTabs" className="justify-content-center">
+          <Tabs defaultActiveKey="entityText" id="searchInputTabs" 
+            className={tabs_classname}
+            >
             <Tab eventKey="entityText" title="Entity Text">
               <Row>
-                <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
+                <Col md={{ span: 6, offset: tab_col_offset }} className="opl-search-tab-content">
                   {/* This Form is the equivalent of component FctSearchInputEditor */}
                   <Form>
                     <Form.Group controlId="frmSearchText">
@@ -161,7 +178,7 @@ export default class SearchEntryPage extends React.Component {
             </Tab>
             <Tab eventKey="entityLabel" title="Entity Label Lookup">
               <Row>
-                <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
+                <Col md={{ span: 6, offset: tab_col_offset }} className="opl-search-tab-content">
                   <Form>
                     <Form.Group controlId="frmSearchLabel">
                       <Form.Row>
@@ -182,7 +199,7 @@ export default class SearchEntryPage extends React.Component {
             </Tab>
             <Tab eventKey="entityURI" title="Entity URI Lookup">
               <Row>
-                <Col md={{ span: 6, offset: 3 }} className="opl-search-tab-content">
+                <Col md={{ span: 6, offset: tab_col_offset }} className="opl-search-tab-content">
                   <Form>
                     <Form.Group controlId="frmSearchURI">
                       <Form.Row>
@@ -202,7 +219,16 @@ export default class SearchEntryPage extends React.Component {
               </Row>
             </Tab>
           </Tabs>
-          <FctFooter />
+
+          <div className="row justify-content-center">
+            {side_drawer_is_static &&
+              <div className="side-drawer-static-spacer"></div>
+            }
+            <div className="flex-grow-1">
+              <FctFooter />
+            </div>
+          </div>
+
         </div>
       </div>
     )
