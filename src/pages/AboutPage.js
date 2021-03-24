@@ -21,9 +21,14 @@ export default class AboutPage extends React.Component {
 
     return (
       <div style={{ height: '100%' }}>
-        <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer 
-          show={this.props.sideDrawerOpen} 
+        <FctNavBar
+          drawerToggleClickHandler={this.props.drawerToggleClickHandler}
+          sideDrawerOpen={this.props.sideDrawerOpen}
+          staticSideDrawer={this.props.staticSideDrawer}
+        />
+        <FctSideDrawer
+          show={this.props.sideDrawerOpen}
+          drawerPinClickHandler={this.props.drawerPinClickHandler}
           staticSideDrawer={this.props.staticSideDrawer}
           currentPageName="AboutPage" />
         {backdrop}

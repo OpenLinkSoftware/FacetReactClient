@@ -15,6 +15,9 @@ export default class FctNavBar extends React.Component {
   }
 
   render() {
+    let sidebarToggleIcon = this.props.sideDrawerOpen ? 'oi oi-collapse-left' : 'oi oi-expand-left';
+    let sidebarToggleIconColour = this.props.staticSideDrawer ? '#999' : '#fff'; // = enabled : disabled
+
     return (
       <nav className="navbar navbar-expand-lg navbar-dark opl-navbar-background">
         {/* 
@@ -40,20 +43,20 @@ export default class FctNavBar extends React.Component {
               <FctClientConsumer>
                 {
                   // See https://stackoverflow.com/questions/41030361/how-to-update-react-context-from-inside-a-child-component
-                  ({fctClient}) =>
-                    (
-                      <OverlayTrigger
-                        placement={'bottom'}
-                        overlay={<Tooltip>New search</Tooltip>}
+                  ({ fctClient }) =>
+                  (
+                    <OverlayTrigger
+                      placement={'bottom'}
+                      overlay={<Tooltip>New search</Tooltip>}
+                    >
+                      <Link
+                        className="nav-link" to="/"
+                        onClick={() => fctClient.handleNewSearchRequest()}
                       >
-                        <Link
-                          className="nav-link" to="/"
-                          onClick={() => fctClient.handleNewSearchRequest()}
-                        >
-                          <span className="oi oi-magnifying-glass" style={{ color: 'white' }}></span>
-                        </Link>
-                      </OverlayTrigger>
-                    )
+                        <span className="oi oi-magnifying-glass" style={{ color: 'white' }}></span>
+                      </Link>
+                    </OverlayTrigger>
+                  )
                 }
               </FctClientConsumer>
             </li>
@@ -75,7 +78,7 @@ export default class FctNavBar extends React.Component {
                 overlay={<Tooltip>Login</Tooltip>}
               >
                 <Link className="nav-link active" to="#" title="Login">
-                  <span className="oi oi-account-login" style={{ position: 'relative', top: '-2px' }} aria-hidden="true"></span></Link>
+                  <span className="oi oi-account-login" aria-hidden="true"></span></Link>
               </OverlayTrigger>
             </li>
             <li className="nav-item" style={{ display: 'none' }}>
@@ -84,7 +87,7 @@ export default class FctNavBar extends React.Component {
                 overlay={<Tooltip>Logout</Tooltip>}
               >
                 <Link className="nav-link active" to="#">
-                  <span className="oi oi-account-logout" title="Logout" style={{ position: 'relative', top: '-2px' }} aria-hidden="true">
+                  <span className="oi oi-account-logout" title="Logout" aria-hidden="true">
                   </span></Link>
               </OverlayTrigger>
 
@@ -92,12 +95,13 @@ export default class FctNavBar extends React.Component {
           </ul>
           <OverlayTrigger
             placement={'left'}
-            overlay={<Tooltip>Settings</Tooltip>}
+            overlay={<Tooltip>Settings / Filters</Tooltip>}
           >
             <button type="button" className="btn btn-default shadow-none" id="sidebarToggle" onClick={this.drawerToggleClickHndlr} >
-              <span className="oi oi-cog" aria-hidden="true"></span>
+              <span className={sidebarToggleIcon} aria-hidden="true" style={{ color: sidebarToggleIconColour }}></span>
             </button>
           </OverlayTrigger>
+
         </div>
       </nav>
     )

@@ -44,9 +44,14 @@ export default class SearchResultsPage extends React.Component {
 
     return (
       <div style={{ height: '100%' }}>
-        <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer 
+        <FctNavBar
+          drawerToggleClickHandler={this.props.drawerToggleClickHandler}
+          sideDrawerOpen={this.props.sideDrawerOpen}
+          staticSideDrawer={this.props.staticSideDrawer}
+        />
+        <FctSideDrawer
           show={this.props.sideDrawerOpen}
+          drawerPinClickHandler={this.props.drawerPinClickHandler}
           staticSideDrawer={this.props.staticSideDrawer}
           currentPageName="SearchResultsPage"
           drawerToggleClickHandler={this.props.drawerToggleClickHandler}
@@ -54,7 +59,7 @@ export default class SearchResultsPage extends React.Component {
         {backdrop}
         <div className="container-fluid">
           <div className="row opl-filter-summary-background pr-3 pt-2">
-          {side_drawer_is_static &&
+            {side_drawer_is_static &&
               <div className="side-drawer-static-spacer"></div>
             }
             <div className="col">

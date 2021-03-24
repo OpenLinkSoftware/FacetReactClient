@@ -80,7 +80,7 @@ a:focus {
 }
 
 .sidebar .sidebar-header {
-    padding: 20px;
+    padding: 5px 0px 0px 20px;
     /* background: #6d7fcc; */
     background: var(--palette-color4);
   }

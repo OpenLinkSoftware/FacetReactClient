@@ -130,11 +130,16 @@ export default class SearchEntryPage extends React.Component {
 
     return (
       <div style={{ height: '100%' }}>
-        <FctNavBar drawerToggleClickHandler={this.props.drawerToggleClickHandler} />
-        <FctSideDrawer 
-        show={this.props.sideDrawerOpen} 
-        staticSideDrawer={this.props.staticSideDrawer}
-        currentPageName="SearchEntryPage" />
+        <FctNavBar
+          drawerToggleClickHandler={this.props.drawerToggleClickHandler}
+          sideDrawerOpen={this.props.sideDrawerOpen}
+          staticSideDrawer={this.props.staticSideDrawer}
+        />
+        <FctSideDrawer
+          show={this.props.sideDrawerOpen}
+          drawerPinClickHandler={this.props.drawerPinClickHandler}
+          staticSideDrawer={this.props.staticSideDrawer}
+          currentPageName="SearchEntryPage" />
         {backdrop}
         <div className="container-fluid">
           <div className="row">
@@ -151,9 +156,9 @@ export default class SearchEntryPage extends React.Component {
             <h4>Precision Search &amp; Find</h4>
           </div>
 
-          <Tabs defaultActiveKey="entityText" id="searchInputTabs" 
+          <Tabs defaultActiveKey="entityText" id="searchInputTabs"
             className={tabs_classname}
-            >
+          >
             <Tab eventKey="entityText" title="Entity Text">
               <Row>
                 <Col md={{ span: 6, offset: tab_col_offset }} className="opl-search-tab-content">

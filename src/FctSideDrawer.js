@@ -4,15 +4,14 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { FctClientConsumer } from './FctClientContext'
 
 const FctSideDrawer = props => {
-  const side_drawer_is_static = props.staticSideDrawer;
   let drawerClasses = 'sidebar side-drawer';
-  if (!side_drawer_is_static) {
+  if (!props.staticSideDrawer) {
     drawerClasses += ' side-drawer-dynamic';
   }
   if (props.show) {
     drawerClasses += ' open';
   }
-  
+
   // Only display the following sidebar links when on the search results page.
   // Otherwise hide them.
   //  - Entity Relation Filters
@@ -195,19 +194,33 @@ const FctSideDrawer = props => {
     </>
     ;
 
-  let contextSensitiveContent;
+  let contextSensitiveContent, sidebarHeader;
   if (props.currentPageName === "SearchResultsPage") {
     contextSensitiveContent = contextSensitiveLinks;
+    sidebarHeader = "Settings & Filters";
   }
   else {
     contextSensitiveContent = <></>;
+    sidebarHeader = "Settings";
   }
 
+  let sidebarPinIcon = props.staticSideDrawer ? 'oi oi-lock-locked' : 'oi oi-pin'; // :'oi oi-lock-unlocked';
 
   return (
     <nav className={drawerClasses}>
+      <div style={{ textAlign: "right" }}>
+        <OverlayTrigger
+          placement={'right'}
+          overlay={<Tooltip>Pin Setting/Filters sidebar</Tooltip>}
+        >
+          <button type="button" className="btn btn-default shadow-none" id="sidebarPin" onClick={() => { props.drawerPinClickHandler() }} >
+            <span className={sidebarPinIcon} aria-hidden="true"></span>
+          </button>
+        </OverlayTrigger>
+      </div>
+
       <div className="sidebar-header">
-        <h3>Settings</h3>
+        <h3>{sidebarHeader}</h3>
       </div>
       <div>
         <ul className="list-unstyled components">
