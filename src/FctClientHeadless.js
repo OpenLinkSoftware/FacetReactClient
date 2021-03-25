@@ -1,14 +1,6 @@
 import FctUiUtil from './FctUiUtil';
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
-
-// const DFLT_DESCRIBE_ENDPOINT = 'http://linkeddata.uriburner.com/describe/';
-const DFLT_DESCRIBE_ENDPOINT = 'http://localhost:8896/describe/';
-
-// Disabled - Use the defaults in FctJsClient instead
-//
-// const DFLT_SERVICE_ENDPOINT = 'http://linkeddata.uriburner.com/fct/service';
-// const DFLT_VIEW_LIMIT = 50;
-// const DFLT_VIEW_TYPE = "text";
+import { fctConfig } from './FctConfig';
 
 //
 // FctClientHeadless is a bridge which converts UI events into
@@ -17,7 +9,7 @@ const DFLT_DESCRIBE_ENDPOINT = 'http://localhost:8896/describe/';
 //
 // FctClientHeadless is NOT a React component. It is a class
 // which provides a means of sharing FctQuery state and data
-// across pages via a React context. It intentionally UIless,
+// across pages via a React context. It is intentionally UIless,
 // aka headless, and doesn't render anything. 
 //
 // In contrast, FctClient performs a similar function, but IS
@@ -34,22 +26,25 @@ class FctClientHeadless {
   constructor(contextChangeListener) {
     this.contextChangeListener = contextChangeListener;
 
+    this.describeEndpoint = fctConfig.getDefaultDescribeEndpoint();
+
     this.fctQuery = new FctQuery();
     this.serviceEndpoint = this.fctQuery.getDefaultServiceEndpoint();
     this.viewLimit = this.fctQuery.getDefaultViewLimit();
 
-    // Override the FctJsClient defaults
-    //
-    // this.serviceEndpoint = DFLT_SERVICE_ENDPOINT;
-    // this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
-    //
-    // this.viewLimit = DFLT_VIEW_LIMIT;
-    // this.fctQuery.setViewLimit(this.viewLimit);
-    //
-    // this.fctQuery.setViewType(DFLT_VIEW_TYPE);
+    // Override the FacetJsClient defaults with
+    // the FacetReactClient's own defaults.
+    this.serviceEndpoint = fctConfig.getDefaultServiceEndpoint();
+    this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
 
-    // viewLimit may be overridden in the UI.
-    // TO DO: Add UI controls to allow setting of serviceEndpoint and describeEndpoint.
+    this.viewLimit = fctConfig.getDefaultViewLimit()
+    this.fctQuery.setViewLimit(this.viewLimit);
+
+    // TO DO:
+    // Add UI controls to allow a user to set the Facet service host. 
+    // The paths of the Facet service and describe service are fixed
+    // and need to be appended to the Facet service host.
+    // User-specific settings need to be saved to browser storage.
 
     this.state = {
       searchText: "",

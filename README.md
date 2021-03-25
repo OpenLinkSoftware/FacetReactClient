@@ -11,3 +11,7 @@ See also:
 
 * branch [develop](https://github.com/cblakeley/FacetReactClient/tree/develop)
 * [FacetReactClientDeploy](https://github.com/cblakeley/FacetReactClientDeploy)
+
+## Deployment
+
+Before building an app-bundle.js for use with FacetReactClientDeploy, edit `FctConfig.js` to set the Facet Service host to be used by the deployed FacetReactClient. In `FctConfig.js`, ensure `deploymentBasePath` is set to `'/facet'`.

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import FctUiUtil from './FctUiUtil';
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
+import { fctConfig } from './FctConfig';
 import FctErrCntnr from './FctErrCntnr';
 import FctRspDbActvty from './FctRspDbActvty';
 import FctRspRslt from './FctRspRslt';
@@ -74,21 +75,11 @@ class ForcedError extends React.Component {
 
 // -------------------------------------
 
-// const DFLT_DESCRIBE_ENDPOINT = 'http://linkeddata.uriburner.com/describe/';
-const DFLT_DESCRIBE_ENDPOINT = 'http://localhost:8896/describe/';
-
-// Disabled - Use the defaults in FctJsClient instead
-//
-// const DFLT_SERVICE_ENDPOINT = 'http://linkeddata.uriburner.com/fct/service';
-// const DFLT_VIEW_LIMIT = 50;
-// const DFLT_VIEW_TYPE = "text";
-
 const componentContainerStyle = {
   padding: '5px',
   border: 'solid 2px lightgray',
   marginBottom: '5px'
 }
-// 
 
 class FctClient extends React.Component {
   constructor(props) {
@@ -104,24 +95,25 @@ class FctClient extends React.Component {
     this.handlePresetChange = this.handlePresetChange.bind(this); // TO DO: Remove once testing complete
     this.handleForceError = this.handleForceError.bind(this); // TO DO: Remove once testing complete
 
-    this.describeEndpoint = DFLT_DESCRIBE_ENDPOINT;
+    this.describeEndpoint = fctConfig.getDefaultDescribeEndpoint();
     
     this.fctQuery = new FctQuery();
     this.serviceEndpoint = this.fctQuery.getDefaultServiceEndpoint();
     this.viewLimit = this.fctQuery.getDefaultViewLimit();
 
-    // Override the FctJsClient defaults
-    //
-    // this.serviceEndpoint = DFLT_SERVICE_ENDPOINT;
-    // this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
-    //
-    // this.viewLimit = DFLT_VIEW_LIMIT;
-    // this.fctQuery.setViewLimit(this.viewLimit);
-    //
-    // this.fctQuery.setViewType(DFLT_VIEW_TYPE);
+    // Override the FacetJsClient defaults with
+    // the FacetReactClient's own defaults.
+    this.serviceEndpoint = fctConfig.getDefaultServiceEndpoint();
+    this.fctQuery.setServiceEndpoint(this.serviceEndpoint);
 
-    // viewLimit may be overridden in the UI.
-    // TO DO: Add UI controls to allow setting of serviceEndpoint and describeEndpoint.
+    this.viewLimit = fctConfig.getDefaultViewLimit()
+    this.fctQuery.setViewLimit(this.viewLimit);
+
+    // TO DO:
+    // Add UI controls to allow a user to set the Facet service host. 
+    // The paths of the Facet service and describe service are fixed
+    // and need to be appended to the Facet service host.
+    // User-specific settings need to be saved to browser storage.
 
     this.state = {
       searchText: "",
@@ -129,7 +121,7 @@ class FctClient extends React.Component {
       fctError: null,
       viewType: props.viewType || this.fctQuery.getViewType(),
       viewSubjectIndex: 1,
-      tripleTerminology: "eav",   // TO DO: Initialize from UI control. spo | eav
+      tripleTerminology: "eav",   // spo | eav
       preset: "none",
       forcedError: false,
     };
