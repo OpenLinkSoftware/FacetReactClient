@@ -9,8 +9,9 @@ import * as fctUiCommon from './FctUiCommon';
 const componentContainerStyle = {
   overflowX: 'auto',
   overflowY: 'auto',
-  maxHeight: '200px',
+  maxHeight: '400px',
   maxWidth: '100%',
+  fontSize: '80%', 
 }
 
 export default class FctRspPrprtsInRslt extends React.Component {
