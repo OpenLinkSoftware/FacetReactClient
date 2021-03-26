@@ -5,6 +5,7 @@ import FctUiUtil from './FctUiUtil';
 import { FctQuery, FctResult } from '../lib/facet-js-client.js';
 import { fctConfig } from './FctConfig';
 import FctErrCntnr from './FctErrCntnr';
+import FctEndpoint from './FctEndpoint';
 import FctRspDbActvty from './FctRspDbActvty';
 import FctRspRslt from './FctRspRslt';
 import FctRspLimit from './FctRspLimit';
@@ -96,7 +97,7 @@ class FctClient extends React.Component {
     this.handleForceError = this.handleForceError.bind(this); // TO DO: Remove once testing complete
 
     this.describeEndpoint = fctConfig.getDefaultDescribeEndpoint();
-    
+
     this.fctQuery = new FctQuery();
     this.serviceEndpoint = this.fctQuery.getDefaultServiceEndpoint();
     this.viewLimit = this.fctQuery.getDefaultViewLimit();
@@ -349,6 +350,11 @@ class FctClient extends React.Component {
                 <div>Component: FctRspDbActivity</div>
                 <div style={componentContainerStyle}>
                   <FctRspDbActvty dbActivity={dbActivity} />
+                </div>
+
+                <div>Component: FctEndpoint</div>
+                <div style={componentContainerStyle}>
+                  <FctEndpoint serviceEndpoint={this.serviceEndpoint} />
                 </div>
 
               </div>

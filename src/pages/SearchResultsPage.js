@@ -10,6 +10,7 @@ import Backdrop from '../Backdrop';
 
 import FctClientContext from '../FctClientContext';
 
+import FctEndpoint from '../FctEndpoint';
 import FctFilters from '../FctFilters';
 import FctRspDbActvty from '../FctRspDbActvty';
 import FctRspLimit from '../FctRspLimit';
@@ -136,8 +137,13 @@ export default class SearchResultsPage extends React.Component {
                 />
               </div>
 
-              <div className="mt-3 py-1 border-top">
-                <FctRspDbActvty dbActivity={dbActivity} />
+              <div className="d-flex mt-3 py-1 border-top">
+                <div className="flex-fill">
+                  <FctRspDbActvty dbActivity={dbActivity} />
+                </div>
+                <div>
+                  <FctEndpoint serviceEndpoint={fctClient.serviceEndpoint} />
+                </div>
               </div>
             </div>
 
