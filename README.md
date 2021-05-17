@@ -20,6 +20,14 @@ Before building an app-bundle.js for use with FacetReactClientDeploy, edit `FctC
 
 <http://osdb.openlinksw.com:4433/facet/>
 
+### A Quick Test Drive
+
+* Try searching on text 'skiing'.
+* Open and pin the 'Settings/Filters' sidebar.
+* Select 'Type' from the available Entity Filters, then select 'Ski Resort' from the listed entity types.
+* Select 'Attributes' from the Entity Filters list, then select 'altitude (m)'
+* Note the filters being applied by Fct to successively narrow the search results in each step above.
+
 ## CORS 
 
 If your browser console reveals errors due to CORS restrictions, the SQL script below can be applied to the Virtuoso instance hosting the target FCT service. It is intended for **development use only**.
