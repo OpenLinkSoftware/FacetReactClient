@@ -1,6 +1,6 @@
 # FacetReactClient
 
-2019-Nov-07  
+2021-May-17   
 CMSB
 
 A React-based client for the [Virtuoso Faceted Browsing Service](http://vos.openlinksw.com/owiki/wiki/VOS/VirtuosoFacetsWebService).
@@ -11,6 +11,14 @@ See also:
 
 * branch [develop](https://github.com/OpenLinkSoftware/FacetReactClient/tree/develop)
 * [FacetReactClientDeploy](https://github.com/OpenLinkSoftware/FacetReactClientDeploy)
+
+## Current Status
+
+FacetReactClient is a work in progress. It is incomplete and does not yet include all the features and filter options supported by the production version of [fct](https://github.com/OpenLinkSoftware/fct), like that deployed on [URIBurner](http://linkeddata.uriburner.com/fct/).
+
+FacetReactClient as it stands is intended to serve as an example of a React client built on top of [FacetJsClient](https://github.com/OpenLinkSoftware/FacetReactClient) and utilising the [Faceted Browsing Service](http://vos.openlinksw.com/owiki/wiki/VOS/VirtuosoFacetsWebService) `/fct/service` endpoint. The hope is you might find it useful as the starting point for your own UI to Faceted Browsing Service. 
+
+FacetReactClient includes a minimal UI alongside the React UI. It provides a basic framework for testing components with a minimum of decoration. This scaffolding is a stop gap feature en route to a production version and hasn't yet been removed.
 
 ## Deployment
 
