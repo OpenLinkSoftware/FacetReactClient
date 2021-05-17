@@ -15,3 +15,33 @@ See also:
 ## Deployment
 
 Before building an app-bundle.js for use with FacetReactClientDeploy, edit `FctConfig.js` to set the Facet Service host to be used by the deployed FacetReactClient. In `FctConfig.js`, ensure `deploymentBasePath` is set to `'/facet'`.
+
+## Current Test Server
+
+<http://osdb.openlinksw.com:4433/facet/>
+
+## CORS 
+
+If your browser console reveals errors due to CORS restrictions, the SQL script below can be applied to the Virtuoso instance hosting the target FCT service. It is intended for **development use only**.
+
+```
+DB.DBA.VHOST_REMOVE (
+  lhost=>'*ini*',
+  vhost=>'*ini*',
+  lpath=>'/fct/service'
+);
+
+DB.DBA.VHOST_DEFINE (
+  lhost=>'*ini*',
+  vhost=>'*ini*',
+  lpath=>'/fct/service',
+  ppath=>'/SOAP/Http/fct_svc',
+  is_dav=>0,
+  is_brws=>0,
+  soap_user=>'SPARQL',
+  ses_vars=>0,
+  opts=>vector ('cors', '*', 'cors_restricted', 0),
+  is_default_host=>0
+);
+
+```
